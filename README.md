@@ -1,1 +1,10 @@
-# app-java-x-kotlin
+# Java x Kotlin
+Mesmo aplicativo com linguagens diferentes
+
+
+##Java 
+Versão: 
+
+
+##Kotlin
+Versão: 
