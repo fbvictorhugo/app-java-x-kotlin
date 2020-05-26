@@ -1,7 +1,10 @@
 package net.fbvictorhugo.k.barreirasanitaria
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import net.fbvictorhugo.k.barreirasanitaria.modelo.Pessoa
+import net.fbvictorhugo.k.barreirasanitaria.modelo.Questionario
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
