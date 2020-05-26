@@ -2,9 +2,12 @@
 Mesmo aplicativo com linguagens diferentes
 
 
-##Java 
+## Android Studio 
+Versão: 3.6.3
+
+## Java 
 Versão: 
 
 
-##Kotlin
+## Kotlin
 Versão: 
