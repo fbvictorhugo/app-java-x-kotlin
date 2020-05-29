@@ -1,6 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/app_screen"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/pessoa_inputlayout_nome"
+        style="@style/TextInputLayout_OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/campo_nome">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pessoa_edt_nome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/pessoa_inputlayout_documento"
+        style="@style/TextInputLayout_OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/campo_documento">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pessoa_edt_documento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/pessoa_inputlayout_data_nascimento"
+        style="@style/TextInputLayout_OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/campo_data_nascimento">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pessoa_edt_data_nascimento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/pessoa_inputlayout_telefone"
+        style="@style/TextInputLayout_OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/campo_telefone">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pessoa_edt_telefone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/pessoa_inputlayout_bairro"
+        style="@style/TextInputLayout_OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/campo_bairro">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pessoa_edt_bairro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/pessoa_inputlayout_cidade"
+            style="@style/TextInputLayout_OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/campo_cidade">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/pessoa_edt_cidade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayout_OutlinedBox"
+            android:id="@+id/pessoa_inputlayout_estado"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/campo_estado">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/pessoa_edt_estado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/pessoa_btn_salvar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="32dp"
+        style="@style/PrimaryButton"
+        android:text="@string/btn_salvar" />
 
 </LinearLayout>

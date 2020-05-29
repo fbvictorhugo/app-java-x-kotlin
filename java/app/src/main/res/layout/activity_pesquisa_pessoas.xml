@@ -2,20 +2,26 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/app_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin">
+        android:layout_height="wrap_content">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/pesquisa_pessoas_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pesquisa_pessoas_inputlayout_pesquisar"
+            tools:listitem="@layout/adapter_lista_padrao" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/pesquisa_pessoas_edt_pesquisar"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:id="@+id/pesquisa_pessoas_inputlayout_pesquisar"
+            style="@style/TextInputLayout_OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/prompt_pesquisa"
@@ -24,28 +30,11 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/pesquisa_pessoas_edt_pesquisar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
         </com.google.android.material.textfield.TextInputLayout>
-
-        <!--        <androidx.appcompat.widget.AppCompatEditText-->
-        <!--            android:id="@+id/pesquisa_pessoas_edt_pesquisar"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:hint="@string/prompt_pesquisa"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toTopOf="parent" />-->
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/pesquisa_pessoas_rcv_pessoas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pesquisa_pessoas_edt_pesquisar"
-            tools:listitem="@layout/adapter_lista_padrao" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
