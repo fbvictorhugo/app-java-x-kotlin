@@ -1,4 +1,4 @@
-package net.fbvictorhugo.j.barreirasanitaria.modelo;
+package net.fbvictorhugo.j.barreirasanitaria.data.model;
 
 import java.util.Date;
 

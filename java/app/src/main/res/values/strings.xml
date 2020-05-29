@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">Barreira Sanitaria J</string>
+
+    <string name="title_activity_login">Login</string>
+
+
+    <string name="btn_entrar">Entrar</string>
+    <string name="btn_salvar">Salvar</string>
+
+    <string name="prompt_pesquisa">Pesquisa por documento</string>
+    <string name="prompt_username">Usuário</string>
+    <string name="prompt_password">Senha</string>
+
+    <string name="campo_nome">Nome</string>
+    <string name="campo_descricao">Descrição</string>
+    <string name="campo_endereco">Endereço</string>
+    <string name="campo_bairro">Bairro</string>
+    <string name="campo_cidade">Cidade</string>
+    <string name="campo_estado">Estado</string>
+
+    <string name="campo_data_nascimento">Data nascimento</string>
+    <string name="campo_documento">Documento</string>
+    <string name="campo_telefone">Telefone</string>
+
 </resources>
