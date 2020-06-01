@@ -36,5 +36,8 @@
     <string name="tipo_documento_cpf">CPF</string>
     <string name="tipo_documento_rg">RG</string>
     <string name="tipo_documento_cnh">CNH</string>
+    <string name="msg_erro_usuario_obrigatorio">Usuário é obrigatório</string>
+    <string name="msg_erro_senha_obrigatoria">Senha é obrigatória</string>
+    <string name="msg_bem_vindo_">Bem vindo %s</string>
 
 </resources>

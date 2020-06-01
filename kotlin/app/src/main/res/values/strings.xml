@@ -1,3 +1,43 @@
 <resources>
-    <string name="app_name">Barreira Sanitaria K</string>
+    <string name="app_name">Barreira Sanitaria J</string>
+
+    <string name="title_activity_login">Login</string>
+
+
+    <string name="btn_entrar">Entrar</string>
+    <string name="btn_salvar">Salvar</string>
+
+    <string name="prompt_pesquisa">Pesquisa por documento</string>
+    <string name="prompt_username">Usuário</string>
+    <string name="prompt_password">Senha</string>
+
+    <string name="campo_nome">Nome</string>
+    <string name="campo_descricao">Descrição</string>
+    <string name="campo_endereco">Endereço</string>
+    <string name="campo_bairro">Bairro</string>
+    <string name="campo_cidade">Cidade</string>
+    <string name="campo_estado">Estado</string>
+
+    <string name="campo_data_nascimento">Data nascimento</string>
+    <string name="campo_documento">Documento CPF</string>
+    <string name="campo_telefone">Telefone</string>
+    <string name="campo_barreira">Barreira</string>
+    <string name="campo_pessoa">Pessoa</string>
+
+    <string name="perguta_viagem_exterior">Fez alguma viagem ao exterior nos últimos 30 dias?</string>
+    <string name="perguta_sintoma_febre">Teve febre nos ultimos dias?</string>
+    <string name="perguta_sintoma_coriza">Você está com coriza?</string>
+    <string name="perguta_sintoma_tosse">Tem tossido muito ultimamente?</string>
+    <string name="perguta_sintoma_cancaco">Sentido-se cançado?</string>
+    <string name="perguta_sintoma_perda_paladar">Perda de paladar ou olfato?</string>
+    <string name="perguta_sintoma_falta_ar">Dificuldade de respirar ou falta de ar?</string>
+    <string name="perguta_sintoma_contato_com_enfermos">Teve contato com alguém com sintomas?</string>
+    <string name="observacoes">Observações</string>
+    <string name="tipo_documento_cpf">CPF</string>
+    <string name="tipo_documento_rg">RG</string>
+    <string name="tipo_documento_cnh">CNH</string>
+    <string name="msg_erro_usuario_obrigatorio">Usuário é obrigatório</string>
+    <string name="msg_erro_senha_obrigatoria">Senha é obrigatória</string>
+    <string name="msg_bem_vindo_">Bem vindo %s</string>
+
 </resources>

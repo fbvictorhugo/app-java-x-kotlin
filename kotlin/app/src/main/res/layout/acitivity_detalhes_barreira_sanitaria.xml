@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/app_screen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/barreira_inputlayout_nome"
+        style="@style/TextInputLayout_OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/campo_nome">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/barreira_edt_nome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/barreira_inputlayout_descricao"
+        style="@style/TextInputLayout_OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/campo_descricao">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/barreira_edt_descricao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/TextInputLayout_OutlinedBox"
+        android:id="@+id/barreira_inputlayout_endereco"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/campo_endereco">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/barreira_edt_endereco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/barreira_inputlayout_bairro"
+        style="@style/TextInputLayout_OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/campo_bairro">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/barreira_edt_bairro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/barreira_inputlayout_cidade"
+            style="@style/TextInputLayout_OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/campo_cidade">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/barreira_edt_cidade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayout_OutlinedBox"
+            android:id="@+id/barreira_inputlayout_estado"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/campo_estado">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/barreira_edt_estado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/barreira_btn_salvar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="32dp"
+        style="@style/PrimaryButton"
+        android:text="@string/btn_salvar" />
+
+</LinearLayout>

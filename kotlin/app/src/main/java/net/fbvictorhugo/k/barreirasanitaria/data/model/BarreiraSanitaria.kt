@@ -1,4 +1,4 @@
-package net.fbvictorhugo.k.barreirasanitaria.modelo
+package net.fbvictorhugo.k.barreirasanitaria.data.model
 
 data class BarreiraSanitaria(
     var id: Long, var nome: String, var descricao: String,
