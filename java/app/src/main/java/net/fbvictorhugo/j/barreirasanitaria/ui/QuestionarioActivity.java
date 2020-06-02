@@ -7,19 +7,25 @@ import net.fbvictorhugo.j.barreirasanitaria.R;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatTextView;
 
-public class DetalhesBarreiraSanitariaActivty extends AppCompatActivity {
+public class QuestionarioActivity extends AppCompatActivity {
+    private AppCompatTextView mTxtNomePessoa;
+    private AppCompatTextView mTxtNomeBarreira;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalhes_barreira_sanitaria);
+        setContentView(R.layout.activity_questionario);
+
+        findViews();
         configuraActionBar(getSupportActionBar());
+        configuraDadosTela();
+        configuraClickListeners();
     }
 
     void configuraActionBar(ActionBar supportActionBar) {
         if (supportActionBar != null) {
-            supportActionBar.setTitle(R.string.title_activity_cadastro_barreira_sanitaria);
             supportActionBar.setDisplayHomeAsUpEnabled(true);
             supportActionBar.setDisplayShowHomeEnabled(true);
         }
@@ -35,4 +41,17 @@ public class DetalhesBarreiraSanitariaActivty extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void findViews() {
+        mTxtNomeBarreira = findViewById(R.id.questionario_txt_nome_barreira);
+        mTxtNomePessoa = findViewById(R.id.questionario_txt_nome_pessoa);
+    }
+
+    private void configuraDadosTela() {
+        mTxtNomeBarreira.setText(getIntent().getStringExtra(Constantes.EXTRA_NOME_BARREIRA));
+        mTxtNomePessoa.setText(getIntent().getStringExtra(Constantes.EXTRA_NOME_PESSOA));
+    }
+
+    private void configuraClickListeners() {
+
+    }
 }

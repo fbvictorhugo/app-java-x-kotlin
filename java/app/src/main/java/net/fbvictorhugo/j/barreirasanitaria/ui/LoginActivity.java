@@ -4,9 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -15,6 +12,9 @@ import net.fbvictorhugo.j.barreirasanitaria.data.dao.DAOFactory;
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.IUsuarioDAO;
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.TabelasDataBase;
 import net.fbvictorhugo.j.barreirasanitaria.data.model.Usuario;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -78,7 +78,11 @@ public class LoginActivity extends AppCompatActivity {
             if (usuarioValido(usuario)) {
                 String menssagem = String.format(getResources().getString(R.string.msg_bem_vindo_), usuario.getNome());
                 UtilDialog.showToast(getApplicationContext(), menssagem);
-                startActivity(new Intent(getApplicationContext(), ListaBarreirasActivity.class));
+                Intent intent = new Intent(this, ListaBarreirasActivity.class);
+                intent.putExtra(Constantes.EXTRA_ID_USURARIO, usuario.getId());
+                intent.putExtra(Constantes.EXTRA_NOME_USURARIO, usuario.getNome());
+                startActivity(intent);
+                finish();
             }
         }
     }

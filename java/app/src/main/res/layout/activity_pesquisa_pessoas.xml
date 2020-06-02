@@ -10,6 +10,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/pesquisa_pessoas_label_barreira"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/texto_barreira"
+            android:textSize="@dimen/tamanho_texto_destaque"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/pesquisa_pessoas_txt_nome_barreira"
+            style="@style/TextHighlight.Form"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/pesquisa_pessoas_label_barreira"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@tools:sample/cities"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/pesquisa_pessoas_recyclerview"
             android:layout_width="match_parent"
@@ -24,15 +44,18 @@
             style="@style/TextInputLayout_OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:hint="@string/prompt_pesquisa"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/pesquisa_pessoas_label_barreira">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/pesquisa_pessoas_edt_pesquisar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:imeOptions="actionSearch"
+                android:inputType="number" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

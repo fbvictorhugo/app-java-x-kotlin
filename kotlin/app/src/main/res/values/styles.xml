@@ -6,6 +6,11 @@
         <item name="colorAccent">@color/accent</item>
     </style>
 
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <style name="PrimaryButton" parent="@style/Widget.MaterialComponents.Button">
         <item name="colorButtonNormal">@color/primaryColor</item>
         <item name="colorControlHighlight">@color/primaryLightColor</item>
@@ -20,7 +25,7 @@
 
     <style name="app_screen">
         <item name="android:padding">@dimen/activity_margin</item>
-        <item name="background">@color/screen_background</item>
+        <item name="android:background">@color/screenBackground</item>
     </style>
 
     <style name="TextInputLayout_OutlinedBox" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -29,6 +34,22 @@
 
     <style name="checkbox">
         <item name="android:layoutDirection">rtl</item>
+    </style>
+
+    <style name="TextHighlight">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body1</item>
+    </style>
+
+    <style name="TextHighlight.Title">
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+        <item name="android:textSize">36sp</item>
+    </style>
+
+    <style name="TextHighlight.Form">
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body2</item>
+        <item name="android:textSize">@dimen/tamanho_texto_destaque</item>
     </style>
 
 </resources>

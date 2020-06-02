@@ -3,12 +3,17 @@
 
     <string name="title_activity_login">Login</string>
     <string name="title_activity_barreiras">Barreiras Sanitárias</string>
-    <string name="title_activity_nova_barreira_sanitaria">Nova Barreira Sanitária</string>
+    <string name="title_activity_cadastro_barreira_sanitaria">Cadastro Barreira Sanitária</string>
+    <string name="title_activity_detalhes_barreira_sanitaria">Detalhes Barreira Sanitária</string>
+    <string name="title_activity_cadastro_pessoa">Cadastro Pessoa</string>
+    <string name="title_activity_detalhes_pessoa">Detalhes Pessoa</string>
+    <string name="title_activity_pesquisa_pessoas">Pesquisa pessoas</string>
+    <string name="title_activity_questionario">Questionário</string>
 
     <string name="btn_entrar">Entrar</string>
     <string name="btn_salvar">Salvar</string>
 
-    <string name="prompt_pesquisa">Pesquisa por documento</string>
+    <string name="prompt_pesquisa">Pesquisa pelo CPF</string>
     <string name="prompt_username">Usuário</string>
     <string name="prompt_password">Senha</string>
 
@@ -33,12 +38,16 @@
     <string name="perguta_sintoma_perda_paladar">Perda de paladar ou olfato?</string>
     <string name="perguta_sintoma_falta_ar">Dificuldade de respirar ou falta de ar?</string>
     <string name="perguta_sintoma_contato_com_enfermos">Teve contato com alguém com sintomas?</string>
-    <string name="observacoes">Observações</string>
-    <string name="tipo_documento_cpf">CPF</string>
-    <string name="tipo_documento_rg">RG</string>
-    <string name="tipo_documento_cnh">CNH</string>
+    <string name="campo_observacoes">Observações</string>
     <string name="msg_erro_usuario_obrigatorio">Usuário é obrigatório</string>
     <string name="msg_erro_senha_obrigatoria">Senha é obrigatória</string>
-    <string name="msg_bem_vindo_">Bem vindo %s</string>
+    <string name="msg_bem_vindo_">Bem vindo, %s</string>
+    <string name="texto_nao">Não</string>
+    <string name="texto_sim">Sim</string>
+    <string name="texto_cpf_">CPF: %s</string>
+    <string name="titulo_atencao">Atenção</string>
+    <string name="msg_deseja_editar_informacoes_">Deseja editar as informações de:\n%s ?</string>
+    <string name="texto_barreira">Barreira: </string>
+    <string name="texto_pessoa">"Pessoa: "</string>
 
 </resources>

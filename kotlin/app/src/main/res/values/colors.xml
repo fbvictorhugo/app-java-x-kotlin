@@ -9,6 +9,6 @@
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
 
-    <color name="screen_background">#F1F5F7</color>
+    <color name="screenBackground">#F1F5F7</color>
 
 </resources>

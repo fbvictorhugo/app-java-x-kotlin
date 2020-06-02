@@ -23,10 +23,18 @@
         <activity
             android:name=".ui.ListaBarreirasActivity"
             android:label="@string/title_activity_barreiras" />
-
-        <activity android:name=".ui.DetalhesBarreiraSanitariaActivty" />
-
-
+        <activity
+            android:name=".ui.DetalhesBarreiraSanitariaActivty"
+            android:label="@string/title_activity_detalhes_barreira_sanitaria" />
+        <activity
+            android:name=".ui.DetalhesPessoaActivity"
+            android:label="@string/title_activity_detalhes_pessoa" />
+        <activity
+            android:name=".ui.PesquisaPessoasActivity"
+            android:label="@string/title_activity_pesquisa_pessoas" />
+        <activity
+            android:name=".ui.QuestionarioActivity"
+            android:label="@string/title_activity_questionario" />
     </application>
 
 </manifest>

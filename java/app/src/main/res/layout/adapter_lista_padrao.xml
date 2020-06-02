@@ -21,15 +21,14 @@
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceListItem"
             android:textStyle="bold"
-            tools:text="Texto principal" />
+            tools:text="@tools:sample/full_names" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/adapter_item_tv_sencundario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceListItemSecondary"
-            tools:text="Texto secundario" />
-
+            tools:text="@tools:sample/us_zipcodes" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

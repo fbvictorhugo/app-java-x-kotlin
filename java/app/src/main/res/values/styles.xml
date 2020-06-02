@@ -30,6 +30,7 @@
 
     <style name="TextInputLayout_OutlinedBox" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:layout_margin">4dp</item>
+        <item name="backgroundColor">@color/white</item>
     </style>
 
     <style name="checkbox">

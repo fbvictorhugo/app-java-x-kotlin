@@ -10,8 +10,16 @@ import java.util.Random;
 public class BarreiraSanitariaDummyDataBase implements IBarreiraSanitariaDAO {
 
     private List<BarreiraSanitaria> mDummyList;
+    private static BarreiraSanitariaDummyDataBase sFactory;
 
-    public BarreiraSanitariaDummyDataBase() {
+    public static BarreiraSanitariaDummyDataBase getInstance() {
+        if (sFactory == null) {
+            sFactory = new BarreiraSanitariaDummyDataBase();
+        }
+        return sFactory;
+    }
+
+    private BarreiraSanitariaDummyDataBase() {
         mDummyList = new ArrayList<>();
 
         BarreiraSanitaria barreiraSanitaria = new BarreiraSanitaria();
@@ -38,7 +46,7 @@ public class BarreiraSanitariaDummyDataBase implements IBarreiraSanitariaDAO {
     }
 
     @Override
-    public List<BarreiraSanitaria> listarBarreiras() {
+    public List<BarreiraSanitaria> listar() {
         return mDummyList;
     }
 

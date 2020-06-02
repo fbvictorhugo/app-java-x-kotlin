@@ -7,7 +7,16 @@ import java.util.Date;
 
 public class UsuarioDummyDataBase implements IUsuarioDAO {
 
-    public UsuarioDummyDataBase() {
+    private static UsuarioDummyDataBase sFactory;
+
+    public static UsuarioDummyDataBase getInstance() {
+        if (sFactory == null) {
+            sFactory = new UsuarioDummyDataBase();
+        }
+        return sFactory;
+    }
+
+    private UsuarioDummyDataBase() {
 
     }
 
@@ -25,4 +34,5 @@ public class UsuarioDummyDataBase implements IUsuarioDAO {
             return null;
         }
     }
+
 }

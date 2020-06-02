@@ -8,18 +8,18 @@ import net.fbvictorhugo.j.barreirasanitaria.R;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class DetalhesBarreiraSanitariaActivty extends AppCompatActivity {
+public class DetalhesPessoaActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalhes_barreira_sanitaria);
+        setContentView(R.layout.activity_detalhes_pessoa);
         configuraActionBar(getSupportActionBar());
     }
 
     void configuraActionBar(ActionBar supportActionBar) {
         if (supportActionBar != null) {
-            supportActionBar.setTitle(R.string.title_activity_cadastro_barreira_sanitaria);
+            supportActionBar.setTitle(R.string.title_activity_cadastro_pessoa);
             supportActionBar.setDisplayHomeAsUpEnabled(true);
             supportActionBar.setDisplayShowHomeEnabled(true);
         }
@@ -34,5 +34,4 @@ public class DetalhesBarreiraSanitariaActivty extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

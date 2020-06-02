@@ -1,6 +1,7 @@
 package net.fbvictorhugo.j.barreirasanitaria.data.dao;
 
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.dummy.BarreiraSanitariaDummyDataBase;
+import net.fbvictorhugo.j.barreirasanitaria.data.dao.dummy.PessoaDummyDataBase;
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.dummy.UsuarioDummyDataBase;
 
 public class DAOFactory {
@@ -25,9 +26,12 @@ public class DAOFactory {
 
         switch (tabela) {
             case USUARIO:
-                return new UsuarioDummyDataBase();
+                return UsuarioDummyDataBase.getInstance();
             case BARREIRA_SANITARIA:
-                return new BarreiraSanitariaDummyDataBase();
+                return BarreiraSanitariaDummyDataBase.getInstance();
+            case PESSOA:
+                return PessoaDummyDataBase.getInstance();
+
             default:
                 return null;
         }

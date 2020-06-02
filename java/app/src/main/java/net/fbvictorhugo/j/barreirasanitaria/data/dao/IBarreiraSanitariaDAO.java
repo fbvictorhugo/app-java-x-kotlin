@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface IBarreiraSanitariaDAO {
 
-    List<BarreiraSanitaria> listarBarreiras();
+    List<BarreiraSanitaria> listar();
 
 }

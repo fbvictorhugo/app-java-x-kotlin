@@ -1,35 +1,39 @@
 package net.fbvictorhugo.j.barreirasanitaria.ui.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import net.fbvictorhugo.j.barreirasanitaria.R;
-import net.fbvictorhugo.j.barreirasanitaria.data.model.BarreiraSanitaria;
+import net.fbvictorhugo.j.barreirasanitaria.data.model.Pessoa;
 
 import java.util.List;
 
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class BarreirasRecyclerAdapter extends RecyclerView.Adapter<BarreirasRecyclerAdapter.MyViewHolder> {
+public class PessoasRecyclerAdapter extends RecyclerView.Adapter<PessoasRecyclerAdapter.MyViewHolder> {
 
-    private List<BarreiraSanitaria> mDataset;
+    private List<Pessoa> mDataset;
     private OnItemClickListener onItemClickListener;
+    private Context mContext;
 
-    public BarreirasRecyclerAdapter() {
+    public PessoasRecyclerAdapter() {
     }
 
     @Override
-    public BarreirasRecyclerAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PessoasRecyclerAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_lista_padrao, parent, false);
+        mContext = parent.getContext();
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         holder.textViewPrincipal.setText(mDataset.get(position).getNome());
-        holder.textViewSecundario.setText(mDataset.get(position).getDescricao());
+        String textoCpf = String.format(mContext.getResources().getString(R.string.texto_cpf_), String.valueOf(mDataset.get(position).getNumeroDocumeto()));
+        holder.textViewSecundario.setText(textoCpf);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,14 +59,14 @@ public class BarreirasRecyclerAdapter extends RecyclerView.Adapter<BarreirasRecy
         return mDataset != null ? mDataset.size() : 0;
     }
 
-    public void adiciona(BarreiraSanitaria barreiraSanitaria) {
+    public void adiciona(Pessoa pessoa) {
         if (mDataset != null) {
-            mDataset.add(barreiraSanitaria);
+            mDataset.add(pessoa);
             notifyDataSetChanged();
         }
     }
 
-    public void atualiza(List<BarreiraSanitaria> newDataset) {
+    public void atualiza(List<Pessoa> newDataset) {
         mDataset = newDataset;
         notifyDataSetChanged();
     }
@@ -85,9 +89,9 @@ public class BarreirasRecyclerAdapter extends RecyclerView.Adapter<BarreirasRecy
 
     public interface OnItemClickListener {
 
-        void onClick(BarreiraSanitaria barreiraSanitaria);
+        void onClick(Pessoa pessoa);
 
-        void onLongClick(BarreiraSanitaria barreiraSanitaria);
+        void onLongClick(Pessoa pessoa);
     }
 
 }
