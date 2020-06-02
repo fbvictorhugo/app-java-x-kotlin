@@ -2,7 +2,8 @@
     <string name="app_name">Barreira Sanitaria J</string>
 
     <string name="title_activity_login">Login</string>
-
+    <string name="title_activity_barreiras">Barreiras Sanitárias</string>
+    <string name="title_activity_nova_barreira_sanitaria">Nova Barreira Sanitária</string>
 
     <string name="btn_entrar">Entrar</string>
     <string name="btn_salvar">Salvar</string>

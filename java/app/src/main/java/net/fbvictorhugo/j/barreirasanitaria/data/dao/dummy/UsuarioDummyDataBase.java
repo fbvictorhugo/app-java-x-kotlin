@@ -5,9 +5,9 @@ import net.fbvictorhugo.j.barreirasanitaria.data.model.Usuario;
 
 import java.util.Date;
 
-public class UsuarioDummyDAO implements IUsuarioDAO {
+public class UsuarioDummyDataBase implements IUsuarioDAO {
 
-    public UsuarioDummyDAO() {
+    public UsuarioDummyDataBase() {
 
     }
 

@@ -1,6 +1,7 @@
 package net.fbvictorhugo.j.barreirasanitaria.data.dao;
 
-import net.fbvictorhugo.j.barreirasanitaria.data.dao.dummy.UsuarioDummyDAO;
+import net.fbvictorhugo.j.barreirasanitaria.data.dao.dummy.BarreiraSanitariaDummyDataBase;
+import net.fbvictorhugo.j.barreirasanitaria.data.dao.dummy.UsuarioDummyDataBase;
 
 public class DAOFactory {
 
@@ -16,25 +17,19 @@ public class DAOFactory {
         return sFactory;
     }
 
-    public Object getDataSource(Class dataSourceInterface) {
-        return instaceDummyDAO(dataSourceInterface);
+    public Object getDataSource(final TabelasDataBase tabela) {
+        return instaceDummyDAO(tabela);
     }
 
-    private Object instaceDummyDAO(Class dataSourceInterface) {
-        if (isSameClass(dataSourceInterface, IUsuarioDAO.class)) {
-            return new UsuarioDummyDAO();
-        } else {
-            return null;
-        }
-    }
+    private Object instaceDummyDAO(final TabelasDataBase tabela) {
 
-    private boolean isSameClass(Class verifyClass, Class targetClass) {
-
-        if (verifyClass != null && targetClass != null) {
-            if (verifyClass.toString().equals(targetClass.toString())) {
-                return true;
-            }
+        switch (tabela) {
+            case USUARIO:
+                return new UsuarioDummyDataBase();
+            case BARREIRA_SANITARIA:
+                return new BarreiraSanitariaDummyDataBase();
+            default:
+                return null;
         }
-        return false;
     }
 }

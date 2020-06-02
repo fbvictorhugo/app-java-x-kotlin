@@ -4,16 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import net.fbvictorhugo.j.barreirasanitaria.R;
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.DAOFactory;
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.IUsuarioDAO;
+import net.fbvictorhugo.j.barreirasanitaria.data.dao.TabelasDataBase;
 import net.fbvictorhugo.j.barreirasanitaria.data.model.Usuario;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -71,14 +72,14 @@ public class LoginActivity extends AppCompatActivity {
             mInputLayoutSenha.setError(getResources().getString(R.string.msg_erro_senha_obrigatoria));
         } else {
 
-//            IUsuarioDAO usuarioDAO = (IUsuarioDAO) DAOFactory.getInstance(this).getDataSource(IUsuarioDAO.class);
-//            Usuario usuario = usuarioDAO.procurarUsuario(login, senha);
-//
-//            if (usuarioValido(usuario)) {
-//                String menssagem = String.format(getResources().getString(R.string.msg_bem_vindo_), usuario.getNome());
-//                UtilDialog.showToast(getApplicationContext(), menssagem);
-//                startActivity(new Intent(getApplicationContext(), ListaBarreirasActivity.class));
-//            }
+            IUsuarioDAO usuarioDAO = (IUsuarioDAO) DAOFactory.getInstance().getDataSource(TabelasDataBase.USUARIO);
+            Usuario usuario = usuarioDAO.procurarUsuario(login, senha);
+
+            if (usuarioValido(usuario)) {
+                String menssagem = String.format(getResources().getString(R.string.msg_bem_vindo_), usuario.getNome());
+                UtilDialog.showToast(getApplicationContext(), menssagem);
+                startActivity(new Intent(getApplicationContext(), ListaBarreirasActivity.class));
+            }
         }
     }
 

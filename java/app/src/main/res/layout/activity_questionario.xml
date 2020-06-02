@@ -21,10 +21,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:textSize="@dimen/tamanho_texto_destaque"
             android:text="@string/campo_barreira"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
+            style="@style/TextHighlight.Form"
             tools:text="BR - 267" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -44,9 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@string/campo_barreira"
-            android:textSize="@dimen/tamanho_texto_destaque"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
+            style="@style/TextHighlight.Form"
             tools:text="Fulano de Tal do Povo" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
