@@ -39,4 +39,22 @@ public class PessoaDummyDataBase implements IPessoaDAO {
         return mDummyList;
     }
 
+    @Override
+    public void inserir(Pessoa pessoa) throws Exception {
+
+    }
+
+    @Override
+    public void atualizar(Pessoa pessoa) throws Exception {
+
+    }
+
+    private long getProximoIdDisponivel() {
+        if (mDummyList.size() == 0) {
+            return 1;
+        } else {
+            return mDummyList.get(mDummyList.size() - 1).getId() + 1;
+        }
+    }
+
 }

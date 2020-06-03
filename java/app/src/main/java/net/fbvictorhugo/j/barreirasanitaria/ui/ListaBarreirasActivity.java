@@ -97,7 +97,9 @@ public class ListaBarreirasActivity extends AppCompatActivity {
     }
 
     private void clickBotaoNovaBarreira() {
-        startActivity(new Intent(getApplicationContext(), DetalhesBarreiraSanitariaActivty.class));
+        Intent intent = new Intent(this, DetalhesBarreiraSanitariaActivty.class);
+        intent.putExtra(Constantes.EXTRA_MODO_CADASTRO, true);
+        startActivity(intent);
     }
 
     private void onClickItemLista(BarreiraSanitaria barreiraSanitaria) {

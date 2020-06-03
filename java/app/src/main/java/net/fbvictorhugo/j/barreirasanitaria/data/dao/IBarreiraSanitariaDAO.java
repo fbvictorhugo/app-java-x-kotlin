@@ -8,4 +8,8 @@ public interface IBarreiraSanitariaDAO {
 
     List<BarreiraSanitaria> listar();
 
+    void inserir(BarreiraSanitaria barreiraSanitaria) throws Exception;
+
+    void atualizar(BarreiraSanitaria barreiraSanitaria) throws Exception;
+
 }

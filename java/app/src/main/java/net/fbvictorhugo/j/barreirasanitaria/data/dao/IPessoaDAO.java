@@ -7,4 +7,9 @@ import java.util.List;
 public interface IPessoaDAO {
 
     List<Pessoa> listar();
+
+    void inserir(Pessoa pessoa) throws Exception;
+
+    void atualizar(Pessoa pessoa) throws Exception;
+
 }

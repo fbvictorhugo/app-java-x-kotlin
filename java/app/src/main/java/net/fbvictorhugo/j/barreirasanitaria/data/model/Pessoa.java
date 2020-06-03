@@ -7,7 +7,6 @@ public class Pessoa {
     private long id;
     private String nome;
     private long numeroDocumeto;
-    private int tipoDocumento;
     private Date dataNascimento;
     private int telefone;
     private String cidade;
@@ -36,14 +35,6 @@ public class Pessoa {
 
     public void setNumeroDocumeto(long numeroDocumeto) {
         this.numeroDocumeto = numeroDocumeto;
-    }
-
-    public int getTipoDocumento() {
-        return tipoDocumento;
-    }
-
-    public void setTipoDocumento(int tipoDocumento) {
-        this.tipoDocumento = tipoDocumento;
     }
 
     public Date getDataNascimento() {

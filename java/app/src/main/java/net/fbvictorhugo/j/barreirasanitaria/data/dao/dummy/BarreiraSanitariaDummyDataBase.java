@@ -5,7 +5,6 @@ import net.fbvictorhugo.j.barreirasanitaria.data.model.BarreiraSanitaria;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class BarreiraSanitariaDummyDataBase implements IBarreiraSanitariaDAO {
 
@@ -22,32 +21,43 @@ public class BarreiraSanitariaDummyDataBase implements IBarreiraSanitariaDAO {
     private BarreiraSanitariaDummyDataBase() {
         mDummyList = new ArrayList<>();
 
-        BarreiraSanitaria barreiraSanitaria = new BarreiraSanitaria();
-        barreiraSanitaria.setId(new Random().nextLong());
-        barreiraSanitaria.setNome("Barreira 267");
-        barreiraSanitaria.setDescricao("Fica na avenida");
-        barreiraSanitaria.setCidade("Cataguases");
-        barreiraSanitaria.setBairro("Centro");
-        barreiraSanitaria.setEstado("MG");
-        barreiraSanitaria.setEndereco("Rua Major Vieira");
-
-        mDummyList.add(barreiraSanitaria);
-
-        barreiraSanitaria = new BarreiraSanitaria();
-        barreiraSanitaria.setId(new Random().nextLong());
-        barreiraSanitaria.setNome("Barreira 52");
-        barreiraSanitaria.setDescricao("bloqueio azul");
-        barreiraSanitaria.setCidade("Cataguases");
-        barreiraSanitaria.setBairro("Haide");
-        barreiraSanitaria.setEstado("MG");
-        barreiraSanitaria.setEndereco("Rua Major Vieira");
-
-        mDummyList.add(barreiraSanitaria);
     }
 
     @Override
     public List<BarreiraSanitaria> listar() {
         return mDummyList;
+    }
+
+    @Override
+    public void inserir(BarreiraSanitaria barreiraSanitaria) throws Exception {
+        if (barreiraSanitaria == null) {
+            throw new NullPointerException("Modelo BarreiraSanitaria está nulo.");
+        }
+
+        barreiraSanitaria.setId(getProximoIdDisponivel());
+        mDummyList.add(barreiraSanitaria);
+    }
+
+    @Override
+    public void atualizar(BarreiraSanitaria barreiraSanitaria) throws Exception {
+
+    }
+
+    private long getProximoIdDisponivel() {
+        if (mDummyList.size() == 0) {
+            return 1;
+        } else {
+            return mDummyList.get(mDummyList.size() - 1).getId() + 1;
+        }
+    }
+
+    public BarreiraSanitaria procurar(long id) {
+        for (BarreiraSanitaria barreira : mDummyList) {
+            if (barreira.getId() == id) {
+                return barreira;
+            }
+        }
+        return null;
     }
 
 }

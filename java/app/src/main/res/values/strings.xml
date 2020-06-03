@@ -6,8 +6,8 @@
     <string name="title_activity_cadastro_barreira_sanitaria">Cadastro Barreira Sanitária</string>
     <string name="title_activity_detalhes_barreira_sanitaria">Detalhes Barreira Sanitária</string>
     <string name="title_activity_cadastro_pessoa">Cadastro Pessoa</string>
-    <string name="title_activity_detalhes_pessoa">Detalhes Pessoa</string>
-    <string name="title_activity_pesquisa_pessoas">Pesquisa pessoas</string>
+    <string name="title_activity_detalhes_pessoa">Dados Pessoais</string>
+    <string name="title_activity_pesquisa_pessoas">Pesquisa Pessoas</string>
     <string name="title_activity_questionario">Questionário</string>
 
     <string name="btn_entrar">Entrar</string>
@@ -39,15 +39,18 @@
     <string name="perguta_sintoma_falta_ar">Dificuldade de respirar ou falta de ar?</string>
     <string name="perguta_sintoma_contato_com_enfermos">Teve contato com alguém com sintomas?</string>
     <string name="campo_observacoes">Observações</string>
-    <string name="msg_erro_usuario_obrigatorio">Usuário é obrigatório</string>
-    <string name="msg_erro_senha_obrigatoria">Senha é obrigatória</string>
+    <string name="msg_erro_campo_obrigatorio">Campo obrigatório.</string>
     <string name="msg_bem_vindo_">Bem vindo, %s</string>
-    <string name="texto_nao">Não</string>
-    <string name="texto_sim">Sim</string>
+    <string name="texto_btn_nao">Não</string>
+    <string name="texto_btn_sim">Sim</string>
     <string name="texto_cpf_">CPF: %s</string>
     <string name="titulo_atencao">Atenção</string>
     <string name="msg_deseja_editar_informacoes_">Deseja editar as informações de:\n%s ?</string>
     <string name="texto_barreira">Barreira: </string>
     <string name="texto_pessoa">"Pessoa: "</string>
+    <string name="msg_cadastrado_com_sucesso">Cadastrado com sucesso!</string>
+    <string name="msg_alterado_com_sucesso">Alterado com sucesso</string>
+    <string name="texto_btn_ok">OK</string>
+    <string name="msg_erro_generico">Não foi possível concluir a ação.</string>
 
 </resources>

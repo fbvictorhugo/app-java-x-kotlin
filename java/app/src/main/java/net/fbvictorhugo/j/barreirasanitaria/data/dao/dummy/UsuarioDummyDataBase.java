@@ -17,7 +17,6 @@ public class UsuarioDummyDataBase implements IUsuarioDAO {
     }
 
     private UsuarioDummyDataBase() {
-
     }
 
     @Override
