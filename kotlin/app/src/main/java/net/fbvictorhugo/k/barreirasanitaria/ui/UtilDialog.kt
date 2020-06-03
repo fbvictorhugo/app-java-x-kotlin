@@ -8,17 +8,16 @@ import net.fbvictorhugo.k.barreirasanitaria.R
 
 internal object UtilDialog {
 
-    fun showToast(context: Context, message: String) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    fun showToast(context: Context, mensagem: String) {
+        Toast.makeText(context, mensagem, Toast.LENGTH_LONG).show()
     }
 
     fun showDialogSimNao(
-        context: Context?,
-        mensagem: String?,
-        onPositiveClickListener: DialogInterface.OnClickListener?
+        context: Context,
+        mensagem: String,
+        onPositiveClickListener: DialogInterface.OnClickListener
     ) {
-        val builder =
-            AlertDialog.Builder(context!!)
+        val builder = AlertDialog.Builder(context!!)
         builder.setCancelable(false)
         builder.setTitle(R.string.titulo_atencao)
         builder.setMessage(mensagem)
@@ -28,12 +27,11 @@ internal object UtilDialog {
     }
 
     fun showDialogOK(
-        context: Context?,
-        mensagem: String?,
-        onOkClickListener: DialogInterface.OnClickListener?
+        context: Context,
+        mensagem: String,
+        onOkClickListener: DialogInterface.OnClickListener? = null
     ) {
-        val builder =
-            AlertDialog.Builder(context!!)
+        val builder = AlertDialog.Builder(context)
         builder.setCancelable(false)
         builder.setTitle(R.string.titulo_atencao)
         builder.setMessage(mensagem)
@@ -41,10 +39,8 @@ internal object UtilDialog {
         builder.create().show()
     }
 
-    fun showDialogAlerta(
-        context: Context?,
-        mensagem: String?
-    ) {
-        showDialogOK(context, mensagem, null)
+    fun showDialogAlerta(context: Context, mensagem: String) {
+        showDialogOK(context, mensagem)
     }
+
 }

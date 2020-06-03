@@ -9,6 +9,7 @@ import com.google.android.material.textfield.TextInputLayout
 import net.fbvictorhugo.k.barreirasanitaria.R
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.DAOFactory
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.IUsuarioDAO
+import net.fbvictorhugo.k.barreirasanitaria.data.dao.TabelasDataBase
 import net.fbvictorhugo.k.barreirasanitaria.data.model.Usuario
 
 class LoginActivity : AppCompatActivity() {
@@ -40,34 +41,35 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun clickBotaoEntrar() {
-        var login: String? = null
-        var senha: String? = null
-
         mInputLayoutUsuario?.error = ""
-        login = mEdtUsuario?.text.toString()
-
         mInputLayoutSenha?.error = ""
-        senha = mEdtSenha?.text.toString()
 
-        if (login.trim { it <= ' ' }.isEmpty()) {
-            mInputLayoutUsuario!!.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
-        } else if (senha.trim { it <= ' ' }.isEmpty()) {
-            mInputLayoutSenha!!.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
+        val login = mEdtUsuario?.text.toString()
+        val senha = mEdtSenha?.text.toString()
+
+        if (login.trim().isEmpty()) {
+            mInputLayoutUsuario?.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
+        } else if (senha.trim().isEmpty()) {
+            mInputLayoutSenha?.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
         } else {
 
             val usuarioDAO: IUsuarioDAO =
-                DAOFactory.getDataSource(IUsuarioDAO::class) as IUsuarioDAO
+                DAOFactory.getDataSource(TabelasDataBase.USUARIO) as IUsuarioDAO
             val usuario: Usuario? = usuarioDAO.procurarUsuario(login, senha)
+
             if (usuarioValido(usuario)) {
-                val menssagem = java.lang.String.format(
-                    resources.getString(R.string.msg_bem_vindo_), usuario?.nome
+                val intent = Intent(this, ListaBarreirasActivity::class.java)
+                intent.putExtra(Constantes.EXTRA_ID_USURARIO, usuario?.id)
+                intent.putExtra(Constantes.EXTRA_NOME_USURARIO, usuario?.nome)
+                startActivity(intent)
+                finish()
+            } else {
+                UtilDialog.showDialogAlerta(
+                    this,
+                    resources.getString(R.string.msg_usuario_nao_encontrado)
                 )
-                UtilDialog.showToast(applicationContext, menssagem)
-                startActivity(Intent(applicationContext, ListaBarreirasActivity::class.java))
             }
         }
-
-
     }
 
     private fun usuarioValido(usuario: Usuario?): Boolean {

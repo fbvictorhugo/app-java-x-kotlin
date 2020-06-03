@@ -10,8 +10,8 @@ import androidx.appcompat.app.AlertDialog;
 
 class UtilDialog {
 
-    static void showToast(Context context, String message) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+    static void showToast(Context context, String mensagem) {
+        Toast.makeText(context, mensagem, Toast.LENGTH_LONG).show();
     }
 
     static void showDialogSimNao(final Context context, String mensagem, DialogInterface.OnClickListener onPositiveClickListener) {
@@ -36,4 +36,5 @@ class UtilDialog {
     static void showDialogAlerta(final Context context, String mensagem) {
         showDialogOK(context, mensagem, null);
     }
+
 }

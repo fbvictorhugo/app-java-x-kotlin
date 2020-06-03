@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Barreira Sanitaria J</string>
+    <string name="app_name">Barreira Sanitárias\nKotlin</string>
 
     <string name="title_activity_login">Login</string>
     <string name="title_activity_barreiras">Barreiras Sanitárias</string>
@@ -54,5 +54,6 @@
     <string name="msg_erro_generico">Não foi possível concluir a ação.</string>
     <string name="msg_nenhuma_barreira_encontrada">Nenhuma Barreira Sanitária encontrada!</string>
     <string name="msg_nenhuma_pessoa_encontrada">Nenhum registro encontrado.\n Tente procurar ou cadastrar.</string>
+    <string name="msg_usuario_nao_encontrado">Usuário não encontrado!</string>
 
 </resources>

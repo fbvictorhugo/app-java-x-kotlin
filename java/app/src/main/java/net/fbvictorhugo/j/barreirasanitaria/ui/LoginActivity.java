@@ -53,16 +53,22 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void clickBotaoEntrar() {
+        if (mInputLayoutUsuario != null) {
+            mInputLayoutUsuario.setError("");
+        }
+
+        if (mInputLayoutSenha != null) {
+            mInputLayoutSenha.setError("");
+        }
+
         String login = null;
         String senha = null;
 
-        if (mEdtUsuario != null && mInputLayoutUsuario != null) {
-            mInputLayoutUsuario.setError("");
+        if (mEdtUsuario != null) {
             login = mEdtUsuario.getText().toString();
         }
 
-        if (mEdtSenha != null && mInputLayoutSenha != null) {
-            mInputLayoutSenha.setError("");
+        if (mEdtSenha != null) {
             senha = mEdtSenha.getText().toString();
         }
 
@@ -72,8 +78,8 @@ public class LoginActivity extends AppCompatActivity {
             mInputLayoutSenha.setError(getResources().getString(R.string.msg_erro_campo_obrigatorio));
         } else {
 
-            IUsuarioDAO usuarioDAO = (IUsuarioDAO) DAOFactory.getInstance().getDataSource(TabelasDataBase.USUARIO);
-            Usuario usuario = usuarioDAO.procurarUsuario(login, senha);
+            final IUsuarioDAO usuarioDAO = (IUsuarioDAO) DAOFactory.getInstance().getDataSource(TabelasDataBase.USUARIO);
+            final Usuario usuario = usuarioDAO.procurarUsuario(login, senha);
 
             if (usuarioValido(usuario)) {
                 Intent intent = new Intent(this, ListaBarreirasActivity.class);
@@ -81,6 +87,8 @@ public class LoginActivity extends AppCompatActivity {
                 intent.putExtra(Constantes.EXTRA_NOME_USURARIO, usuario.getNome());
                 startActivity(intent);
                 finish();
+            } else {
+                UtilDialog.showDialogAlerta(this, getResources().getString(R.string.msg_usuario_nao_encontrado));
             }
         }
     }
