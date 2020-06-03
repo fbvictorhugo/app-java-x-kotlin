@@ -29,9 +29,9 @@ public class DetalhesBarreiraSanitariaActivty extends AppCompatActivity {
     private TextInputEditText mEdtEstado;
     private AppCompatButton mBtnSalvar;
     private IBarreiraSanitariaDAO mBarreiraSanitariaDAO;
-    private TextInputLayout mBarreiraInputlayoutNome;
-    private TextInputLayout mBarreiraInputlayoutCidade;
-    private TextInputLayout mBarreiraInputlayoutEstado;
+    private TextInputLayout mInputlayoutNome;
+    private TextInputLayout mInputlayoutCidade;
+    private TextInputLayout mInputlayoutEstado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,9 +76,9 @@ public class DetalhesBarreiraSanitariaActivty extends AppCompatActivity {
         mEdtEstado = findViewById(R.id.barreira_edt_estado);
         mBtnSalvar = findViewById(R.id.barreira_btn_salvar);
 
-        mBarreiraInputlayoutNome = findViewById(R.id.barreira_inputlayout_nome);
-        mBarreiraInputlayoutCidade = findViewById(R.id.barreira_inputlayout_cidade);
-        mBarreiraInputlayoutEstado = findViewById(R.id.barreira_inputlayout_estado);
+        mInputlayoutNome = findViewById(R.id.barreira_inputlayout_nome);
+        mInputlayoutCidade = findViewById(R.id.barreira_inputlayout_cidade);
+        mInputlayoutEstado = findViewById(R.id.barreira_inputlayout_estado);
     }
 
     private void configuraClickListeners() {
@@ -120,23 +120,23 @@ public class DetalhesBarreiraSanitariaActivty extends AppCompatActivity {
     }
 
     private boolean verificaFormularioValido() {
-        mBarreiraInputlayoutNome.setError("");
-        mBarreiraInputlayoutCidade.setError("");
-        mBarreiraInputlayoutEstado.setError("");
+        mInputlayoutNome.setError("");
+        mInputlayoutCidade.setError("");
+        mInputlayoutEstado.setError("");
 
         boolean isFormularioValido = true;
         if (mEdtNome.getText().toString().isEmpty()) {
             isFormularioValido = false;
-            mBarreiraInputlayoutNome.setError(getResources().getString(R.string.msg_erro_campo_obrigatorio));
+            mInputlayoutNome.setError(getResources().getString(R.string.msg_erro_campo_obrigatorio));
         }
         if (mEdtCidade.getText().toString().isEmpty()) {
             isFormularioValido = false;
-            mBarreiraInputlayoutCidade.setError(getResources().getString(R.string.msg_erro_campo_obrigatorio));
+            mInputlayoutCidade.setError(getResources().getString(R.string.msg_erro_campo_obrigatorio));
         }
 
         if (mEdtEstado.getText().toString().isEmpty()) {
             isFormularioValido = false;
-            mBarreiraInputlayoutEstado.setError(getResources().getString(R.string.msg_erro_campo_obrigatorio));
+            mInputlayoutEstado.setError(getResources().getString(R.string.msg_erro_campo_obrigatorio));
         }
 
         return isFormularioValido;

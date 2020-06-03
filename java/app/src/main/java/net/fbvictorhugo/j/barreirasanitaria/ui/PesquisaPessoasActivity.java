@@ -29,6 +29,7 @@ public class PesquisaPessoasActivity extends AppCompatActivity {
     private FloatingActionButton mFabCadastroPessoa;
     private PessoasRecyclerAdapter mPessoasRecyclerAdapter;
     private AppCompatTextView mTxtNomeBarreira;
+    private AppCompatTextView mTxtListaVazia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +72,7 @@ public class PesquisaPessoasActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.pesquisa_pessoas_recyclerview);
         mFabCadastroPessoa = findViewById(R.id.pesquisa_pessoas_fab);
         mTxtNomeBarreira = findViewById(R.id.pesquisa_pessoas_txt_nome_barreira);
+        mTxtListaVazia = findViewById(R.id.pesquisa_pessoas_txt_lista_vazia);
     }
 
     private void configuraDadosTela() {
@@ -114,6 +116,10 @@ public class PesquisaPessoasActivity extends AppCompatActivity {
             IPessoaDAO pessoaDAO = (IPessoaDAO) DAOFactory.getInstance().getDataSource(TabelasDataBase.PESSOA);
             List<Pessoa> pessoas = pessoaDAO.listar();
             mPessoasRecyclerAdapter.atualiza(pessoas);
+
+            if (pessoas.size() > 0) {
+                mTxtListaVazia.setVisibility(View.GONE);
+            }
         }
     }
 

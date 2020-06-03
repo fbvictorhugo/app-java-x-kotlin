@@ -18,6 +18,7 @@ import java.util.List;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,6 +27,7 @@ public class ListaBarreirasActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private BarreirasRecyclerAdapter mBarreirasRecyclerAdapter;
     private FloatingActionButton mFabNovaBarreira;
+    private AppCompatTextView mTxtListaVazia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,7 @@ public class ListaBarreirasActivity extends AppCompatActivity {
     private void findViews() {
         mRecyclerView = findViewById(R.id.barreiras_recyclerview);
         mFabNovaBarreira = findViewById(R.id.barreiras_fab);
+        mTxtListaVazia = findViewById(R.id.barreiras_txt_lista_vazia);
     }
 
     private void configuraRecyclerView() {
@@ -93,6 +96,10 @@ public class ListaBarreirasActivity extends AppCompatActivity {
             IBarreiraSanitariaDAO barreiraSanitariaDAO = (IBarreiraSanitariaDAO) DAOFactory.getInstance().getDataSource(TabelasDataBase.BARREIRA_SANITARIA);
             List<BarreiraSanitaria> barreiraSanitarias = barreiraSanitariaDAO.listar();
             mBarreirasRecyclerAdapter.atualiza(barreiraSanitarias);
+
+            if (barreiraSanitarias.size() > 0) {
+                mTxtListaVazia.setVisibility(View.GONE);
+            }
         }
     }
 
