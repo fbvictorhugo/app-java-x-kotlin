@@ -50,9 +50,9 @@ class LoginActivity : AppCompatActivity() {
         senha = mEdtSenha?.text.toString()
 
         if (login.trim { it <= ' ' }.isEmpty()) {
-            mInputLayoutUsuario!!.error = resources.getString(R.string.msg_erro_usuario_obrigatorio)
+            mInputLayoutUsuario!!.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
         } else if (senha.trim { it <= ' ' }.isEmpty()) {
-            mInputLayoutSenha!!.error = resources.getString(R.string.msg_erro_senha_obrigatoria)
+            mInputLayoutSenha!!.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
         } else {
 
             val usuarioDAO: IUsuarioDAO =

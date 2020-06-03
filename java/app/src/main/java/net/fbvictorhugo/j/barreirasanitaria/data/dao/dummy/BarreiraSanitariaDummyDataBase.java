@@ -20,7 +20,6 @@ public class BarreiraSanitariaDummyDataBase implements IBarreiraSanitariaDAO {
 
     private BarreiraSanitariaDummyDataBase() {
         mDummyList = new ArrayList<>();
-
     }
 
     @Override
@@ -40,7 +39,7 @@ public class BarreiraSanitariaDummyDataBase implements IBarreiraSanitariaDAO {
 
     @Override
     public void atualizar(BarreiraSanitaria barreiraSanitaria) throws Exception {
-
+        //TODO("Not yet implemented")
     }
 
     private long getProximoIdDisponivel() {
@@ -49,15 +48,6 @@ public class BarreiraSanitariaDummyDataBase implements IBarreiraSanitariaDAO {
         } else {
             return mDummyList.get(mDummyList.size() - 1).getId() + 1;
         }
-    }
-
-    public BarreiraSanitaria procurar(long id) {
-        for (BarreiraSanitaria barreira : mDummyList) {
-            if (barreira.getId() == id) {
-                return barreira;
-            }
-        }
-        return null;
     }
 
 }

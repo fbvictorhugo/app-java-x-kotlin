@@ -20,7 +20,6 @@ public class QuestionarioDummyDataBase implements IQuestionarioDAO {
 
     private QuestionarioDummyDataBase() {
         mDummyList = new ArrayList<>();
-
     }
 
     @Override
@@ -30,6 +29,7 @@ public class QuestionarioDummyDataBase implements IQuestionarioDAO {
 
     @Override
     public void inserir(Questionario questionario) throws Exception {
-
+        //TODO("Not yet implemented")
     }
+
 }

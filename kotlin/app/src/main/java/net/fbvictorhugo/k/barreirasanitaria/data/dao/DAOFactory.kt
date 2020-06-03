@@ -1,29 +1,25 @@
 package net.fbvictorhugo.k.barreirasanitaria.data.dao
 
-import net.fbvictorhugo.k.barreirasanitaria.data.dao.dummy.UsuarioDummyDAO
-import kotlin.reflect.KClass
+import net.fbvictorhugo.k.barreirasanitaria.data.dao.TabelasDataBase.*
+import net.fbvictorhugo.k.barreirasanitaria.data.dao.dummy.BarreiraSanitariaDummyDataBase
+import net.fbvictorhugo.k.barreirasanitaria.data.dao.dummy.PessoaDummyDataBase
+import net.fbvictorhugo.k.barreirasanitaria.data.dao.dummy.QuestionarioDummyDataBase
+import net.fbvictorhugo.k.barreirasanitaria.data.dao.dummy.UsuarioDummyDataBase
 
 object DAOFactory {
 
-    fun getDataSource(dataSourceInterface: KClass<IUsuarioDAO>): Any? {
-        return instaceDummyDAO(dataSourceInterface)
+    fun getDataSource(tabela: TabelasDataBase): Any? {
+        return instaceDummyDAO(tabela)
     }
 
-    private fun instaceDummyDAO(dataSourceInterface: KClass<IUsuarioDAO>): Any? {
-        return if (isSameClass(dataSourceInterface, IUsuarioDAO::class)) {
-            UsuarioDummyDAO()
-        } else {
-            null
+    fun instaceDummyDAO(tabela: TabelasDataBase): Any? {
+
+        return when (tabela) {
+            USUARIO -> UsuarioDummyDataBase
+            BARREIRA_SANITARIA -> BarreiraSanitariaDummyDataBase
+            PESSOA -> PessoaDummyDataBase
+            QUESTIONARIO -> QuestionarioDummyDataBase
         }
     }
 
-    private fun isSameClass(
-        verifyClass: KClass<IUsuarioDAO>,
-        targetClass: KClass<IUsuarioDAO>
-    ): Boolean {
-        if (verifyClass.toString() == targetClass.toString()) {
-            return true
-        }
-        return false
-    }
 }

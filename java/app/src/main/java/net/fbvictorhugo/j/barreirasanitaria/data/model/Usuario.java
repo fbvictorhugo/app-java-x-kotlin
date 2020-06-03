@@ -4,17 +4,17 @@ import java.util.Date;
 
 public class Usuario {
 
-    private int id;
+    private long id;
     private String nome;
     private String login;
     private String senha;
     private Date ultimoLogin;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
