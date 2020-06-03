@@ -29,7 +29,18 @@
     </style>
 
     <style name="TextInputLayout_OutlinedBox" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">4dp</item>
+        <item name="backgroundColor">@color/white</item>
+    </style>
+
+    <style name="TextInputEditText_Form">
+        <item name="android:imeOptions">actionNext</item>
+        <item name="android:inputType">text</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="backgroundColor">@color/white</item>
     </style>
 
     <style name="checkbox">
@@ -48,6 +59,17 @@
     </style>
 
     <style name="TextHighlight.Form">
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body2</item>
+        <item name="android:textSize">@dimen/tamanho_texto_destaque</item>
+    </style>
+
+    <style name="TextHighlight.ListaVazia">
+        <item name="android:textColor">@color/erro</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:padding">24dp</item>
+        <item name="android:gravity">center</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body2</item>
         <item name="android:textSize">@dimen/tamanho_texto_destaque</item>
     </style>

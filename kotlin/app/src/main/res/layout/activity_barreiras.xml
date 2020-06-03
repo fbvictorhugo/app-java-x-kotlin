@@ -6,6 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/barreiras_txt_lista_vazia"
+        style="@style/TextHighlight.ListaVazia"
+        android:text="@string/msg_nenhuma_barreira_encontrada" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/barreiras_recyclerview"
         android:layout_width="match_parent"

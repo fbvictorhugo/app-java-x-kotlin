@@ -14,16 +14,16 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/tamanho_texto_destaque"
-            android:text="@string/campo_barreira" />
+            android:text="@string/texto_barreira"
+            android:textSize="@dimen/tamanho_texto_destaque" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/questionario_txt_nome_barreira"
+            style="@style/TextHighlight.Form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@string/campo_barreira"
-            style="@style/TextHighlight.Form"
-            tools:text="BR - 267" />
+            tools:text="@tools:sample/cities" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -34,97 +34,108 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/tamanho_texto_destaque"
-            android:text="@string/campo_pessoa" />
+            android:text="@string/texto_pessoa"
+            android:textSize="@dimen/tamanho_texto_destaque" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/questionario_txt_nome_pessoa"
+            style="@style/TextHighlight.Form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@string/campo_barreira"
-            style="@style/TextHighlight.Form"
-            tools:text="Fulano de Tal do Povo" />
+            tools:text="@tools:sample/first_names" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.appcompat.widget.AppCompatCheckBox
-        android:layout_marginTop="16dp"
-        android:id="@+id/questionario_check_pergunta_viagem_exterior"
-        style="@style/checkbox"
+    <ScrollView
+        android:layout_marginTop="@dimen/activity_margin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/perguta_viagem_exterior" />
+        android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatCheckBox
-        android:id="@+id/questionario_check_pergunta_febre"
-        style="@style/checkbox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/perguta_sintoma_febre" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <androidx.appcompat.widget.AppCompatCheckBox
-        android:id="@+id/questionario_check_pergunta_coriza"
-        style="@style/checkbox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/perguta_sintoma_coriza" />
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/questionario_check_pergunta_viagem_exterior"
+                style="@style/checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/perguta_viagem_exterior" />
 
-    <androidx.appcompat.widget.AppCompatCheckBox
-        android:id="@+id/questionario_check_pergunta_tosse"
-        style="@style/checkbox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/perguta_sintoma_tosse" />
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/questionario_check_pergunta_febre"
+                style="@style/checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/perguta_sintoma_febre" />
 
-    <androidx.appcompat.widget.AppCompatCheckBox
-        android:id="@+id/questionario_check_pergunta_cancaco"
-        style="@style/checkbox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/perguta_sintoma_cancaco" />
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/questionario_check_pergunta_coriza"
+                style="@style/checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/perguta_sintoma_coriza" />
 
-    <androidx.appcompat.widget.AppCompatCheckBox
-        android:id="@+id/questionario_check_pergunta_paladar"
-        style="@style/checkbox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/perguta_sintoma_perda_paladar" />
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/questionario_check_pergunta_tosse"
+                style="@style/checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/perguta_sintoma_tosse" />
 
-    <androidx.appcompat.widget.AppCompatCheckBox
-        android:id="@+id/questionario_check_pergunta_falta_ar"
-        style="@style/checkbox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/perguta_sintoma_falta_ar" />
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/questionario_check_pergunta_cancaco"
+                style="@style/checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/perguta_sintoma_cancaco" />
 
-    <androidx.appcompat.widget.AppCompatCheckBox
-        android:id="@+id/questionario_check_contato_com_enfermos"
-        style="@style/checkbox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/perguta_sintoma_contato_com_enfermos" />
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/questionario_check_pergunta_paladar"
+                style="@style/checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/perguta_sintoma_perda_paladar" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/questionario_inputlayout_observacoes"
-        style="@style/TextInputLayout_OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/observacoes">
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/questionario_check_pergunta_falta_ar"
+                style="@style/checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/perguta_sintoma_falta_ar" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/questionario_edt_observacoes"
-        android:layout_width="match_parent"
-        android:maxLines="3"
-        android:layout_height="wrap_content" />
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/questionario_check_contato_com_enfermos"
+                style="@style/checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/perguta_sintoma_contato_com_enfermos" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/questionario_inputlayout_observacoes"
+                style="@style/TextInputLayout_OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/campo_observacoes">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/questionario_btn_salvar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginTop="32dp"
-        style="@style/PrimaryButton"
-        android:text="@string/btn_salvar" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/questionario_edt_observacoes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="3" />
 
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/questionario_btn_salvar"
+                style="@style/PrimaryButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="32dp"
+                android:text="@string/btn_salvar" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
 </androidx.appcompat.widget.LinearLayoutCompat>

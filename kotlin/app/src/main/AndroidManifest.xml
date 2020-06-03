@@ -9,13 +9,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.LoginActivity">
+
+        <activity
+            android:name=".ui.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.ListaBarreirasActivity"
+            android:label="@string/title_activity_barreiras" />
+        <activity
+            android:name=".ui.DetalhesBarreiraSanitariaActivty"
+            android:label="@string/title_activity_detalhes_barreira_sanitaria" />
+        <activity
+            android:name=".ui.DetalhesPessoaActivity"
+            android:label="@string/title_activity_detalhes_pessoa" />
+        <activity
+            android:name=".ui.PesquisaPessoasActivity"
+            android:label="@string/title_activity_pesquisa_pessoas" />
+        <activity
+            android:name=".ui.QuestionarioActivity"
+            android:label="@string/title_activity_questionario" />
     </application>
 
 </manifest>
