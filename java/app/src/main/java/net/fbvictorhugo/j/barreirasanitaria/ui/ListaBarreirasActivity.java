@@ -40,13 +40,6 @@ public class ListaBarreirasActivity extends AppCompatActivity {
         configuraClickListeners();
     }
 
-    private void configuraActionBar(ActionBar supportActionBar) {
-        if (supportActionBar != null) {
-            String nomeUsuario = getIntent().getStringExtra(Constantes.EXTRA_NOME_USURARIO);
-            supportActionBar.setSubtitle(String.format(getResources().getString(R.string.msg_bem_vindo_), nomeUsuario));
-        }
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -60,11 +53,17 @@ public class ListaBarreirasActivity extends AppCompatActivity {
         mTxtListaVazia = findViewById(R.id.barreiras_txt_lista_vazia);
     }
 
+    private void configuraActionBar(ActionBar supportActionBar) {
+        if (supportActionBar != null) {
+            String nomeUsuario = getIntent().getStringExtra(Constantes.EXTRA_NOME_USURARIO);
+            supportActionBar.setSubtitle(String.format(getResources().getString(R.string.msg_bem_vindo_), nomeUsuario));
+        }
+    }
+
     private void configuraRecyclerView() {
         if (mRecyclerView != null) {
             mRecyclerView.setHasFixedSize(true);
-            LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-            mRecyclerView.setLayoutManager(layoutManager);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
             mBarreirasRecyclerAdapter = new BarreirasRecyclerAdapter();
             mRecyclerView.setAdapter(mBarreirasRecyclerAdapter);
         }

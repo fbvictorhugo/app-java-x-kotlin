@@ -53,8 +53,7 @@ class LoginActivity : AppCompatActivity() {
             mInputLayoutSenha?.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
         } else {
 
-            val usuarioDAO: IUsuarioDAO =
-                DAOFactory.getDataSource(TabelasDataBase.USUARIO) as IUsuarioDAO
+            val usuarioDAO: IUsuarioDAO =DAOFactory.getDataSource(TabelasDataBase.USUARIO) as IUsuarioDAO
             val usuario: Usuario? = usuarioDAO.procurarUsuario(login, senha)
 
             if (usuarioValido(usuario)) {

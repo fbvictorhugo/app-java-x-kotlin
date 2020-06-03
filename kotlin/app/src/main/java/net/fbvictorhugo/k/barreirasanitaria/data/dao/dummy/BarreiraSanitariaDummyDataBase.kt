@@ -5,7 +5,7 @@ import net.fbvictorhugo.k.barreirasanitaria.data.model.BarreiraSanitaria
 
 object BarreiraSanitariaDummyDataBase : IBarreiraSanitariaDAO {
 
-    private var mDummyList: ArrayList<BarreiraSanitaria> = ArrayList()
+    private val mDummyList: ArrayList<BarreiraSanitaria> = ArrayList()
 
     override fun listar(): ArrayList<BarreiraSanitaria> {
         return mDummyList

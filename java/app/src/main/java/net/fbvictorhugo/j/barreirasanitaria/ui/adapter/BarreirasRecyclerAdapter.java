@@ -55,13 +55,6 @@ public class BarreirasRecyclerAdapter extends RecyclerView.Adapter<BarreirasRecy
         return mDataset != null ? mDataset.size() : 0;
     }
 
-    public void adiciona(BarreiraSanitaria barreiraSanitaria) {
-        if (mDataset != null) {
-            mDataset.add(barreiraSanitaria);
-            notifyDataSetChanged();
-        }
-    }
-
     public void atualiza(List<BarreiraSanitaria> newDataset) {
         mDataset = newDataset;
         notifyDataSetChanged();
@@ -84,7 +77,6 @@ public class BarreirasRecyclerAdapter extends RecyclerView.Adapter<BarreirasRecy
     }
 
     public interface OnItemClickListener {
-
         void onClick(BarreiraSanitaria barreiraSanitaria);
 
         void onLongClick(BarreiraSanitaria barreiraSanitaria);

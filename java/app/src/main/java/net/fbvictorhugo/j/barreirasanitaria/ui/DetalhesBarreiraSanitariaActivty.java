@@ -43,7 +43,6 @@ public class DetalhesBarreiraSanitariaActivty extends AppCompatActivity {
 
         findViews();
         configuraActionBar(getSupportActionBar());
-        //configuraDadosTela();
         configuraClickListeners();
     }
 
