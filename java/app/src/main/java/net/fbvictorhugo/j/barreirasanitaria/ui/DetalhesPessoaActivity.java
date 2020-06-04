@@ -10,19 +10,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class DetalhesPessoaActivity extends AppCompatActivity {
 
+    private boolean isModoCadastro;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhes_pessoa);
         configuraActionBar(getSupportActionBar());
-    }
-
-    void configuraActionBar(ActionBar supportActionBar) {
-        if (supportActionBar != null) {
-            supportActionBar.setTitle(R.string.title_activity_cadastro_pessoa);
-            supportActionBar.setDisplayHomeAsUpEnabled(true);
-            supportActionBar.setDisplayShowHomeEnabled(true);
-        }
     }
 
     @Override
@@ -33,5 +27,15 @@ public class DetalhesPessoaActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    void configuraActionBar(ActionBar supportActionBar) {
+        if (supportActionBar != null) {
+            if (isModoCadastro) {
+                supportActionBar.setTitle(R.string.title_activity_cadastro_pessoa);
+            }
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
+            supportActionBar.setDisplayShowHomeEnabled(true);
+        }
     }
 }

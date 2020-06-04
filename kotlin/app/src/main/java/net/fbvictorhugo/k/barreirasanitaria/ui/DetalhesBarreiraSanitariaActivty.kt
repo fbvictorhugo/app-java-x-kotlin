@@ -42,17 +42,6 @@ class DetalhesBarreiraSanitariaActivty : AppCompatActivity() {
         configuraClickListeners()
     }
 
-    fun configuraActionBar(supportActionBar: ActionBar?) {
-        if (isModoCadastro) {
-            supportActionBar?.title =
-                resources.getString(R.string.title_activity_cadastro_barreira_sanitaria)
-        }
-        supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            setDisplayShowHomeEnabled(true)
-        }
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
@@ -75,6 +64,17 @@ class DetalhesBarreiraSanitariaActivty : AppCompatActivity() {
         mInputlayoutNome = findViewById(R.id.barreira_inputlayout_nome)
         mInputlayoutCidade = findViewById(R.id.barreira_inputlayout_cidade)
         mInputlayoutEstado = findViewById(R.id.barreira_inputlayout_estado)
+    }
+
+    fun configuraActionBar(supportActionBar: ActionBar?) {
+        if (isModoCadastro) {
+            supportActionBar?.title =
+                resources.getString(R.string.title_activity_cadastro_barreira_sanitaria)
+        }
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+        }
     }
 
     fun configuraClickListeners() {

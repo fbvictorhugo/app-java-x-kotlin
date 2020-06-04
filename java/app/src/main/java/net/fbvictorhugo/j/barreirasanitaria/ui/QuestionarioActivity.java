@@ -24,13 +24,6 @@ public class QuestionarioActivity extends AppCompatActivity {
         configuraClickListeners();
     }
 
-    void configuraActionBar(ActionBar supportActionBar) {
-        if (supportActionBar != null) {
-            supportActionBar.setDisplayHomeAsUpEnabled(true);
-            supportActionBar.setDisplayShowHomeEnabled(true);
-        }
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -44,6 +37,13 @@ public class QuestionarioActivity extends AppCompatActivity {
     private void findViews() {
         mTxtNomeBarreira = findViewById(R.id.questionario_txt_nome_barreira);
         mTxtNomePessoa = findViewById(R.id.questionario_txt_nome_pessoa);
+    }
+
+    void configuraActionBar(ActionBar supportActionBar) {
+        if (supportActionBar != null) {
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
+            supportActionBar.setDisplayShowHomeEnabled(true);
+        }
     }
 
     private void configuraDadosTela() {

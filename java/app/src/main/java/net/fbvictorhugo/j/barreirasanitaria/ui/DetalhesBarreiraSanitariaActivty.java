@@ -46,16 +46,6 @@ public class DetalhesBarreiraSanitariaActivty extends AppCompatActivity {
         configuraClickListeners();
     }
 
-    void configuraActionBar(ActionBar supportActionBar) {
-        if (supportActionBar != null) {
-            if (isModoCadastro) {
-                supportActionBar.setTitle(R.string.title_activity_cadastro_barreira_sanitaria);
-            }
-            supportActionBar.setDisplayHomeAsUpEnabled(true);
-            supportActionBar.setDisplayShowHomeEnabled(true);
-        }
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -78,6 +68,16 @@ public class DetalhesBarreiraSanitariaActivty extends AppCompatActivity {
         mInputlayoutNome = findViewById(R.id.barreira_inputlayout_nome);
         mInputlayoutCidade = findViewById(R.id.barreira_inputlayout_cidade);
         mInputlayoutEstado = findViewById(R.id.barreira_inputlayout_estado);
+    }
+
+    void configuraActionBar(ActionBar supportActionBar) {
+        if (supportActionBar != null) {
+            if (isModoCadastro) {
+                supportActionBar.setTitle(R.string.title_activity_cadastro_barreira_sanitaria);
+            }
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
+            supportActionBar.setDisplayShowHomeEnabled(true);
+        }
     }
 
     private void configuraClickListeners() {

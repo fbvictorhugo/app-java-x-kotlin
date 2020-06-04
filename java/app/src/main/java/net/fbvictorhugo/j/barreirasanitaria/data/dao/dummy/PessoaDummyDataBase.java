@@ -20,19 +20,6 @@ public class PessoaDummyDataBase implements IPessoaDAO {
 
     private PessoaDummyDataBase() {
         mDummyList = new ArrayList<>();
-//        Pessoa pessoa = new Pessoa();
-//        pessoa.setId(1);
-//        pessoa.setNumeroDocumeto(1);
-//        pessoa.setNome("João das Neves");
-//
-//        mDummyList.add(pessoa);
-//
-//        pessoa = new Pessoa();
-//        pessoa.setId(2);
-//        pessoa.setNumeroDocumeto(2);
-//        pessoa.setNome("Fulano de Tal");
-//        mDummyList.add(pessoa);
-
     }
 
     public List<Pessoa> listar() {

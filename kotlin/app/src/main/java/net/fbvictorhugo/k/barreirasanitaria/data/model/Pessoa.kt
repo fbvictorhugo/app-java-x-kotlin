@@ -2,7 +2,13 @@ package net.fbvictorhugo.k.barreirasanitaria.data.model
 
 import java.util.*
 
-data class Pessoa(
-    var id: Long, var nome: String, var numeroDocumento: Long,var dataNascimento: Date, var telefone: Int, var cidade: String, var estado: String,
-    var bairro: String
-)
+data class Pessoa(var nome: String) {
+    var id: Long = 0
+    var numeroDocumento: Long = 0
+    lateinit var dataNascimento: Date
+    var telefone: Int? = null
+    lateinit var cidade: String
+    lateinit var estado: String
+    lateinit var bairro: String
+    lateinit var endereco: String
+}

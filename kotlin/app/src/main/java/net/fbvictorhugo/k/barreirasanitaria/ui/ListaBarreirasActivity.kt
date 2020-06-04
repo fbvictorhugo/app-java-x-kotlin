@@ -86,7 +86,7 @@ class ListaBarreirasActivity : AppCompatActivity() {
         mBarreirasRecyclerAdapter?.atualiza(barreiraSanitarias as ArrayList<BarreiraSanitaria>)
 
         if (barreiraSanitarias.isNotEmpty()) {
-            mTxtListaVazia!!.visibility = View.GONE
+            mTxtListaVazia?.visibility = View.GONE
         }
     }
 

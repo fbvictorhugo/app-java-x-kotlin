@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
 
 import net.fbvictorhugo.j.barreirasanitaria.R;
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.DAOFactory;
@@ -30,6 +31,7 @@ public class PesquisaPessoasActivity extends AppCompatActivity {
     private PessoasRecyclerAdapter mPessoasRecyclerAdapter;
     private AppCompatTextView mTxtNomeBarreira;
     private AppCompatTextView mTxtListaVazia;
+    private TextInputEditText mEdtPesquisa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +47,10 @@ public class PesquisaPessoasActivity extends AppCompatActivity {
         configuraClickListeners();
     }
 
-    void configuraActionBar(ActionBar supportActionBar) {
-        if (supportActionBar != null) {
-            supportActionBar.setDisplayHomeAsUpEnabled(true);
-            supportActionBar.setDisplayShowHomeEnabled(true);
-        }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        pesquisaPessoas();
     }
 
     @Override
@@ -62,22 +63,23 @@ public class PesquisaPessoasActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        pesquisaPessoas();
-    }
-
     private void findViews() {
         mRecyclerView = findViewById(R.id.pesquisa_pessoas_recyclerview);
         mFabCadastroPessoa = findViewById(R.id.pesquisa_pessoas_fab);
         mTxtNomeBarreira = findViewById(R.id.pesquisa_pessoas_txt_nome_barreira);
         mTxtListaVazia = findViewById(R.id.pesquisa_pessoas_txt_lista_vazia);
+        mEdtPesquisa = findViewById(R.id.pesquisa_pessoas_edt_pesquisar);
+    }
+
+    private  void configuraActionBar(ActionBar supportActionBar) {
+        if (supportActionBar != null) {
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
+            supportActionBar.setDisplayShowHomeEnabled(true);
+        }
     }
 
     private void configuraDadosTela() {
-        String nomeBarreira = getIntent().getStringExtra(Constantes.EXTRA_NOME_BARREIRA);
-        mTxtNomeBarreira.setText(nomeBarreira);
+        mTxtNomeBarreira.setText(getIntent().getStringExtra(Constantes.EXTRA_NOME_BARREIRA));
     }
 
     private void configuraRecyclerView() {
@@ -124,7 +126,10 @@ public class PesquisaPessoasActivity extends AppCompatActivity {
     }
 
     private void clickBotaoCadastroPessoa() {
-        startActivity(new Intent(getApplicationContext(), DetalhesPessoaActivity.class));
+        Intent intent = new Intent(this, DetalhesPessoaActivity.class);
+        intent.putExtra(Constantes.EXTRA_MODO_CADASTRO, true);
+        intent.putExtra(Constantes.EXTRA_NUMERO_DOCUMENTO, mEdtPesquisa.getText().toString());
+        startActivity(intent);
     }
 
     private void onClickItemLista(Pessoa pessoa) {

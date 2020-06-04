@@ -4,7 +4,7 @@ import java.util.*
 
 data class Usuario(var nome: String) {
     var id: Long = 0
-    var login: String = ""
-    var senha: String = ""
+    lateinit var login: String
+    lateinit var senha: String
     var ultimoLogin: Date? = null
 }
