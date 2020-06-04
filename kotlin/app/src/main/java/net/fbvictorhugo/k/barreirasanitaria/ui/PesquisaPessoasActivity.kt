@@ -101,11 +101,11 @@ class PesquisaPessoasActivity : AppCompatActivity() {
 
     private fun pesquisaPessoas() {
         val pessoaDAO: IPessoaDAO = DAOFactory.getDataSource(TabelasDataBase.PESSOA) as IPessoaDAO
-        val barreiraSanitarias: List<Pessoa> = pessoaDAO.listar()
+        val pessoas: ArrayList<Pessoa> = pessoaDAO.listar()
 
-        mPessoasRecyclerAdapter?.atualiza(barreiraSanitarias as ArrayList<Pessoa>)
+        mPessoasRecyclerAdapter?.atualiza(pessoas)
 
-        if (barreiraSanitarias.isNotEmpty()) {
+        if (pessoas.isNotEmpty()) {
             mTxtListaVazia?.visibility = View.GONE
         }
     }
@@ -131,7 +131,6 @@ class PesquisaPessoasActivity : AppCompatActivity() {
     }
 
     private fun onLongClickClickItemLista(pessoa: Pessoa?) {
-
         val messagem = String.format(
             resources.getString(R.string.msg_deseja_editar_informacoes_),
             pessoa?.nome

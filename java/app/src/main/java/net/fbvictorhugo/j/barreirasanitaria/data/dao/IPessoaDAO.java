@@ -12,4 +12,6 @@ public interface IPessoaDAO {
 
     void atualizar(Pessoa pessoa) throws Exception;
 
+    List<Pessoa> pesquisar(long numeroDocumento);
+
 }

@@ -22,13 +22,26 @@ public class PessoaDummyDataBase implements IPessoaDAO {
         mDummyList = new ArrayList<>();
     }
 
+    private long getProximoIdDisponivel() {
+        if (mDummyList.size() == 0) {
+            return 1;
+        } else {
+            return mDummyList.get(mDummyList.size() - 1).getId() + 1;
+        }
+    }
+
     public List<Pessoa> listar() {
         return mDummyList;
     }
 
     @Override
     public void inserir(Pessoa pessoa) throws Exception {
-        //TODO("Not yet implemented")
+        if (pessoa == null) {
+            throw new NullPointerException("Modelo Pessoa está nulo.");
+        }
+
+        pessoa.setId(getProximoIdDisponivel());
+        mDummyList.add(pessoa);
     }
 
     @Override
@@ -36,12 +49,15 @@ public class PessoaDummyDataBase implements IPessoaDAO {
         //TODO("Not yet implemented")
     }
 
-    private long getProximoIdDisponivel() {
-        if (mDummyList.size() == 0) {
-            return 1;
-        } else {
-            return mDummyList.get(mDummyList.size() - 1).getId() + 1;
+    public List<Pessoa> pesquisar(long numeroDocumento) {
+        List<Pessoa> resultado = new ArrayList<>();
+        for (Pessoa pessoa : mDummyList) {
+            if (pessoa.getNumeroDocumento() == numeroDocumento) {
+                resultado.add(pessoa);
+                break;
+            }
         }
+        return resultado;
     }
 
 }

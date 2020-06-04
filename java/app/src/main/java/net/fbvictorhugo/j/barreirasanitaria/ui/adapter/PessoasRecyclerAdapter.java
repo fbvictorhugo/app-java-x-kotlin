@@ -32,7 +32,7 @@ public class PessoasRecyclerAdapter extends RecyclerView.Adapter<PessoasRecycler
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         holder.textViewPrincipal.setText(mDataset.get(position).getNome());
-        String textoCpf = String.format(mContext.getResources().getString(R.string.texto_cpf_), String.valueOf(mDataset.get(position).getNumeroDocumeto()));
+        String textoCpf = String.format(mContext.getResources().getString(R.string.texto_cpf_), String.valueOf(mDataset.get(position).getNumeroDocumento()));
         holder.textViewSecundario.setText(textoCpf);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

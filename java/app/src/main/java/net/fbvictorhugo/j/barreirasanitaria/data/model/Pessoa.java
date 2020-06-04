@@ -6,9 +6,9 @@ public class Pessoa {
 
     private long id;
     private String nome;
-    private long numeroDocumeto;
+    private long numeroDocumento;
     private Date dataNascimento;
-    private int telefone;
+    private long telefone;
     private String cidade;
     private String estado;
     private String bairro;
@@ -29,12 +29,12 @@ public class Pessoa {
         this.nome = nome;
     }
 
-    public long getNumeroDocumeto() {
-        return numeroDocumeto;
+    public long getNumeroDocumento() {
+        return numeroDocumento;
     }
 
-    public void setNumeroDocumeto(long numeroDocumeto) {
-        this.numeroDocumeto = numeroDocumeto;
+    public void setNumeroDocumento(long numeroDocumento) {
+        this.numeroDocumento = numeroDocumento;
     }
 
     public Date getDataNascimento() {
@@ -45,11 +45,11 @@ public class Pessoa {
         this.dataNascimento = dataNascimento;
     }
 
-    public int getTelefone() {
+    public long getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(long telefone) {
         this.telefone = telefone;
     }
 

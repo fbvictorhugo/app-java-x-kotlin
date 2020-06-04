@@ -22,7 +22,7 @@ public class UsuarioDummyDataBase implements IUsuarioDAO {
         mDummyList = new ArrayList<>();
         Usuario usuario = new Usuario();
         usuario.setId(1);
-        usuario.setLogin("abc");
+        usuario.setLogin("asd");
         usuario.setSenha("123");
         usuario.setNome("Victor Hugo");
 

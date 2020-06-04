@@ -53,7 +53,9 @@
     <string name="texto_btn_ok">OK</string>
     <string name="msg_erro_generico">Não foi possível concluir a ação.</string>
     <string name="msg_nenhuma_barreira_encontrada">Nenhuma Barreira Sanitária encontrada!</string>
-    <string name="msg_nenhuma_pessoa_encontrada">Nenhum registro encontrado.\n Tente procurar ou cadastrar.</string>
+    <string name="msg_nenhuma_pessoa_encontrada">Nenhum registro encontrado.\n Tente procurar novamente.</string>
     <string name="msg_usuario_nao_encontrado">Usuário não encontrado!</string>
+    <string name="msg_erro_data_invalida_">Data inválida. Tente no formato %s.</string>
+    <string name="msg_erro_termo_pesquisa_">Erro ao pesquisar o termo: \'%s\'.</string>
 
 </resources>

@@ -16,22 +16,27 @@ import net.fbvictorhugo.j.barreirasanitaria.data.dao.TabelasDataBase;
 import net.fbvictorhugo.j.barreirasanitaria.data.model.Pessoa;
 import net.fbvictorhugo.j.barreirasanitaria.ui.adapter.PessoasRecyclerAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class PesquisaPessoasActivity extends AppCompatActivity {
 
+    private static final int RESULT_CADASTRO = 999;
     private RecyclerView mRecyclerView;
     private FloatingActionButton mFabCadastroPessoa;
     private PessoasRecyclerAdapter mPessoasRecyclerAdapter;
     private AppCompatTextView mTxtNomeBarreira;
     private AppCompatTextView mTxtListaVazia;
     private TextInputEditText mEdtPesquisa;
+    private AppCompatImageButton mBtnPesquisar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,17 +53,22 @@ public class PesquisaPessoasActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        pesquisaPessoas();
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (resultCode == RESULT_OK && requestCode == RESULT_CADASTRO) {
+            long numDocumento = data.getLongExtra(Constantes.EXTRA_NUMERO_DOCUMENTO, 0);
+            if (numDocumento > 0) {
+                mEdtPesquisa.setText(String.valueOf(numDocumento));
+                mBtnPesquisar.callOnClick();
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -69,9 +79,10 @@ public class PesquisaPessoasActivity extends AppCompatActivity {
         mTxtNomeBarreira = findViewById(R.id.pesquisa_pessoas_txt_nome_barreira);
         mTxtListaVazia = findViewById(R.id.pesquisa_pessoas_txt_lista_vazia);
         mEdtPesquisa = findViewById(R.id.pesquisa_pessoas_edt_pesquisar);
+        mBtnPesquisar = findViewById(R.id.pesquisa_pessoas_btn_pesquisar);
     }
 
-    private  void configuraActionBar(ActionBar supportActionBar) {
+    private void configuraActionBar(ActionBar supportActionBar) {
         if (supportActionBar != null) {
             supportActionBar.setDisplayHomeAsUpEnabled(true);
             supportActionBar.setDisplayShowHomeEnabled(true);
@@ -111,16 +122,40 @@ public class PesquisaPessoasActivity extends AppCompatActivity {
                 onLongClickClickItemLista(pessoa);
             }
         });
+
+        mBtnPesquisar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pesquisaPessoas();
+            }
+        });
     }
 
     private void pesquisaPessoas() {
         if (mPessoasRecyclerAdapter != null) {
-            IPessoaDAO pessoaDAO = (IPessoaDAO) DAOFactory.getInstance().getDataSource(TabelasDataBase.PESSOA);
-            List<Pessoa> pessoas = pessoaDAO.listar();
-            mPessoasRecyclerAdapter.atualiza(pessoas);
+            String termoPesquisa = "";
 
-            if (pessoas.size() > 0) {
-                mTxtListaVazia.setVisibility(View.GONE);
+            try {
+                termoPesquisa = mEdtPesquisa.getText().toString();
+                IPessoaDAO pessoaDAO = (IPessoaDAO) DAOFactory.getInstance().getDataSource(TabelasDataBase.PESSOA);
+
+                if (termoPesquisa.isEmpty()) {
+                    mPessoasRecyclerAdapter.atualiza(new ArrayList<Pessoa>());
+                    mTxtListaVazia.setVisibility(View.VISIBLE);
+                } else {
+                    long documnentoPesquisa = Long.parseLong(termoPesquisa);
+
+                    List<Pessoa> pessoas = pessoaDAO.pesquisar(documnentoPesquisa);
+                    mPessoasRecyclerAdapter.atualiza(pessoas);
+
+                    if (pessoas.size() > 0) {
+                        mTxtListaVazia.setVisibility(View.GONE);
+                    }
+                }
+            } catch (Exception e) {
+                String mensagem = String.format(getResources().getString(R.string.msg_erro_termo_pesquisa_), termoPesquisa);
+                UtilDialog.showDialogAlerta(this, mensagem);
+                e.printStackTrace();
             }
         }
     }
@@ -129,7 +164,7 @@ public class PesquisaPessoasActivity extends AppCompatActivity {
         Intent intent = new Intent(this, DetalhesPessoaActivity.class);
         intent.putExtra(Constantes.EXTRA_MODO_CADASTRO, true);
         intent.putExtra(Constantes.EXTRA_NUMERO_DOCUMENTO, mEdtPesquisa.getText().toString());
-        startActivity(intent);
+        startActivityForResult(intent, RESULT_CADASTRO);
     }
 
     private void onClickItemLista(Pessoa pessoa) {
