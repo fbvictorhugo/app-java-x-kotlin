@@ -112,9 +112,7 @@ public class DetalhesPessoaActivity extends AppCompatActivity {
     private void onClickBtnSalvar() {
         IPessoaDAO mPessoaDAO = (PessoaDummyDataBase) DAOFactory.getInstance().getDataSource(TabelasDataBase.PESSOA);
 
-        boolean valido = verificaFormularioValido();
-
-        if (valido) {
+        if (verificaFormularioValido()) {
             final Pessoa pessoa = populaModelo();
             try {
                 String mensagem;

@@ -12,4 +12,6 @@ interface IPessoaDAO {
     @Throws(Exception::class)
     fun atualizar(pessoa: Pessoa)
 
+    fun pesquisar(numeroDocumento: Long): ArrayList<Pessoa>
+
 }

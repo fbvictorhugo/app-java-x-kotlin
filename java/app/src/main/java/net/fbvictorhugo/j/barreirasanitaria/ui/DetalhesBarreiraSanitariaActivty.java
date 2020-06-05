@@ -1,10 +1,7 @@
 package net.fbvictorhugo.j.barreirasanitaria.ui;
 
-import android.app.Activity;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.MenuItem;
 import android.view.View;
 

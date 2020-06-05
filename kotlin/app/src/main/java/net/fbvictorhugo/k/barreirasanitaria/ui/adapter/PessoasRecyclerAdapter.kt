@@ -1,6 +1,6 @@
 package net.fbvictorhugo.k.barreirasanitaria.ui.adapter
 
-
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,18 +11,25 @@ import net.fbvictorhugo.k.barreirasanitaria.data.model.Pessoa
 
 class PessoasRecyclerAdapter : RecyclerView.Adapter<PessoasRecyclerAdapter.MyViewHolder>() {
 
+    private var context: Context? = null
     private var mDataset: ArrayList<Pessoa>? = null
     var onItemClickListener: OnItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.adapter_lista_padrao, parent, false)
+        context = parent.context
+
+        val view =
+            LayoutInflater.from(context).inflate(R.layout.adapter_lista_padrao, parent, false)
         return MyViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.textViewPrincipal.text = mDataset?.get(position)?.nome
-        holder.textViewSecundario.text = mDataset?.get(position)?.numeroDocumento.toString()
+        val textoCpf = String.format(
+            context?.resources?.getString(R.string.texto_cpf_)!!,
+            mDataset?.get(position)?.numeroDocumento
+        )
+        holder.textViewSecundario.text = textoCpf
 
         holder.itemView.setOnClickListener { onItemClickListener?.onClick(mDataset?.get(position)) }
         holder.itemView.setOnLongClickListener {
@@ -52,4 +59,5 @@ class PessoasRecyclerAdapter : RecyclerView.Adapter<PessoasRecyclerAdapter.MyVie
         fun onClick(pessoa: Pessoa?)
         fun onLongClick(pessoa: Pessoa?)
     }
+
 }

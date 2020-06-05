@@ -21,7 +21,7 @@ class BarreirasRecyclerAdapter : RecyclerView.Adapter<BarreirasRecyclerAdapter.M
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.textViewPrincipal.text = mDataset?.get(position)?.nome
-        holder.textViewSecundario.text = mDataset?.get(position)?.descricao
+        holder.textViewSecundario.text = getTextoExibicaoComplemento(mDataset?.get(position))
 
         holder.itemView.setOnClickListener { onItemClickListener?.onClick(mDataset?.get(position)) }
         holder.itemView.setOnLongClickListener {
@@ -47,8 +47,20 @@ class BarreirasRecyclerAdapter : RecyclerView.Adapter<BarreirasRecyclerAdapter.M
             baseView.findViewById(R.id.adapter_item_tv_sencundario)
     }
 
+    private fun getTextoExibicaoComplemento(barreiraSanitaria: BarreiraSanitaria?): String {
+        return when (barreiraSanitaria) {
+            null -> ""
+            else -> return if (barreiraSanitaria.descricao.isEmpty()) {
+                "${barreiraSanitaria.cidade} / ${barreiraSanitaria.estado}"
+            } else {
+                barreiraSanitaria.descricao
+            }
+        }
+    }
+
     interface OnItemClickListener {
         fun onClick(barreiraSanitaria: BarreiraSanitaria?)
         fun onLongClick(barreiraSanitaria: BarreiraSanitaria?)
     }
+
 }

@@ -29,7 +29,7 @@ public class BarreirasRecyclerAdapter extends RecyclerView.Adapter<BarreirasRecy
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         holder.textViewPrincipal.setText(mDataset.get(position).getNome());
-        holder.textViewSecundario.setText(mDataset.get(position).getDescricao());
+        holder.textViewSecundario.setText(getTextoExibicaoComplemento(mDataset.get(position)));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,6 +74,17 @@ public class BarreirasRecyclerAdapter extends RecyclerView.Adapter<BarreirasRecy
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         onItemClickListener = listener;
+    }
+
+    private String getTextoExibicaoComplemento(BarreiraSanitaria barreiraSanitaria) {
+        if (barreiraSanitaria != null) {
+            if (barreiraSanitaria.getDescricao().isEmpty()) {
+                return
+                        barreiraSanitaria.getCidade() + " / " + barreiraSanitaria.getEstado();
+            } else {
+                return barreiraSanitaria.getDescricao();
+            }
+        } else return "";
     }
 
     public interface OnItemClickListener {

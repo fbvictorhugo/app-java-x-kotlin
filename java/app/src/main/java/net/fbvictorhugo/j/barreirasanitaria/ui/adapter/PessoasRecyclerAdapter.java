@@ -24,8 +24,8 @@ public class PessoasRecyclerAdapter extends RecyclerView.Adapter<PessoasRecycler
 
     @Override
     public PessoasRecyclerAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_lista_padrao, parent, false);
         mContext = parent.getContext();
+        View view = LayoutInflater.from(mContext).inflate(R.layout.adapter_lista_padrao, parent, false);
         return new MyViewHolder(view);
     }
 

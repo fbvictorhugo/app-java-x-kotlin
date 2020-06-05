@@ -7,20 +7,12 @@ object PessoaDummyDataBase : IPessoaDAO {
 
     private val mDummyList: ArrayList<Pessoa> = ArrayList()
 
-    init {
-        val pessoa = Pessoa("João das Neves")
-            .apply {
-                id = 1
-                numeroDocumento = 10020010052
-            }
-        mDummyList.add(pessoa)
-
-        val pessoa2 = Pessoa("Fulano de Tal")
-            .apply {
-                id = 2
-                numeroDocumento = 10020010042
-            }
-        mDummyList.add(pessoa2)
+    fun getProximoIdDisponivel(): Long {
+        return if (mDummyList.size == 0) {
+            1
+        } else {
+            mDummyList[mDummyList.size - 1].id + 1
+        }
     }
 
     override fun listar(): ArrayList<Pessoa> {
@@ -28,11 +20,23 @@ object PessoaDummyDataBase : IPessoaDAO {
     }
 
     override fun inserir(pessoa: Pessoa) {
-        TODO("Not yet implemented")
+        pessoa.id = getProximoIdDisponivel();
+        mDummyList.add(pessoa);
     }
 
     override fun atualizar(pessoa: Pessoa) {
         TODO("Not yet implemented")
+    }
+
+    override fun pesquisar(numeroDocumento: Long): ArrayList<Pessoa> {
+        val resultado: ArrayList<Pessoa> = ArrayList()
+        for (pessoa in mDummyList) {
+            if (pessoa.numeroDocumento == numeroDocumento) {
+                resultado.add(pessoa)
+                break
+            }
+        }
+        return resultado
     }
 
 }

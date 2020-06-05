@@ -54,7 +54,7 @@ public class PesquisaPessoasActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (resultCode == RESULT_OK && requestCode == RESULT_CADASTRO) {
+        if (resultCode == RESULT_OK && requestCode == RESULT_CADASTRO && data != null) {
             long numDocumento = data.getLongExtra(Constantes.EXTRA_NUMERO_DOCUMENTO, 0);
             if (numDocumento > 0) {
                 mEdtPesquisa.setText(String.valueOf(numDocumento));

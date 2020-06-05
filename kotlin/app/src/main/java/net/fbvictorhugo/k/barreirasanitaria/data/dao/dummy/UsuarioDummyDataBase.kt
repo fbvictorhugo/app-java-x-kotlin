@@ -11,7 +11,7 @@ object UsuarioDummyDataBase : IUsuarioDAO {
         val usuario = Usuario("Victor Hugo")
         usuario.apply {
             id = 1
-            login = "abc"
+            login = "asd"
             senha = "123"
         }
         mDummyList.add(usuario)
