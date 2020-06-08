@@ -1,5 +1,5 @@
 # Java x Kotlin
-Mesmo aplicativo com linguagens diferentes
+Um estudo sobre as Linguagens Java e Kotlin para o desenvolvimento de aplicativos para Android
 
 
 ## Android Studio 
