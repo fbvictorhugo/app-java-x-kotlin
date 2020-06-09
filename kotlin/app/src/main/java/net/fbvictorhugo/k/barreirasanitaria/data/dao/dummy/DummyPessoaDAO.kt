@@ -1,9 +1,9 @@
 package net.fbvictorhugo.k.barreirasanitaria.data.dao.dummy
 
-import net.fbvictorhugo.k.barreirasanitaria.data.dao.IPessoaDAO
+import net.fbvictorhugo.k.barreirasanitaria.data.dao.PessoaDAO
 import net.fbvictorhugo.k.barreirasanitaria.data.model.Pessoa
 
-object PessoaDummyDataBase : IPessoaDAO {
+object DummyPessoaDAO : PessoaDAO {
 
     private val mDummyList: ArrayList<Pessoa> = ArrayList()
 

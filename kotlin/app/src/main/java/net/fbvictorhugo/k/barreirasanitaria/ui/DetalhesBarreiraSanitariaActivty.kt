@@ -9,8 +9,8 @@ import androidx.appcompat.widget.AppCompatButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import net.fbvictorhugo.k.barreirasanitaria.R
+import net.fbvictorhugo.k.barreirasanitaria.data.dao.BarreiraSanitariaDAO
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.DAOFactory
-import net.fbvictorhugo.k.barreirasanitaria.data.dao.IBarreiraSanitariaDAO
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.TabelasDataBase
 import net.fbvictorhugo.k.barreirasanitaria.data.model.BarreiraSanitaria
 
@@ -24,7 +24,7 @@ class DetalhesBarreiraSanitariaActivty : AppCompatActivity() {
     private var mEdtCidade: TextInputEditText? = null
     private var mEdtEstado: TextInputEditText? = null
     private var mBtnSalvar: AppCompatButton? = null
-    private var mBarreiraSanitariaDAO: IBarreiraSanitariaDAO? = null
+
     private var mInputlayoutNome: TextInputLayout? = null
     private var mInputlayoutCidade: TextInputLayout? = null
     private var mInputlayoutEstado: TextInputLayout? = null
@@ -33,9 +33,6 @@ class DetalhesBarreiraSanitariaActivty : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalhes_barreira_sanitaria)
         isModoCadastro = intent.getBooleanExtra(Constantes.EXTRA_MODO_CADASTRO, true)
-
-        mBarreiraSanitariaDAO =
-            DAOFactory.getDataSource(TabelasDataBase.BARREIRA_SANITARIA) as IBarreiraSanitariaDAO?
 
         findViews()
         configuraActionBar(supportActionBar)
@@ -86,13 +83,16 @@ class DetalhesBarreiraSanitariaActivty : AppCompatActivity() {
         if (valido) {
             val barreiraSanitaria = populaModelo()
             try {
+                val barreiraSanitariaDAO =
+                    DAOFactory.getDataSource(TabelasDataBase.BARREIRA_SANITARIA) as BarreiraSanitariaDAO
+
                 var mensagem = ""
 
                 if (isModoCadastro) {
-                    mBarreiraSanitariaDAO!!.inserir(barreiraSanitaria)
+                    barreiraSanitariaDAO.inserir(barreiraSanitaria)
                     mensagem = resources.getString(R.string.msg_cadastrado_com_sucesso)
                 } else {
-                    mBarreiraSanitariaDAO!!.atualizar(barreiraSanitaria)
+                    barreiraSanitariaDAO.atualizar(barreiraSanitaria)
                     mensagem = resources.getString(R.string.msg_alterado_com_sucesso)
                 }
 

@@ -12,7 +12,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import net.fbvictorhugo.k.barreirasanitaria.R
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.DAOFactory
-import net.fbvictorhugo.k.barreirasanitaria.data.dao.IPessoaDAO
+import net.fbvictorhugo.k.barreirasanitaria.data.dao.PessoaDAO
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.TabelasDataBase
 import net.fbvictorhugo.k.barreirasanitaria.data.model.Pessoa
 import java.text.SimpleDateFormat
@@ -22,10 +22,10 @@ import java.util.*
 class DetalhesPessoaActivity : AppCompatActivity() {
 
     private val FORMATO_DATA_NASCIMENTO = "dd/MM/yyyy"
-    private var isModoCadastro = false
+    private var _modoCadastro = false
 
-    private var mEdtNome: TextInputEditText? = null
-    private var mEdtDocumento: TextInputEditText? = null
+    private var _edtNome: TextInputEditText? = null
+    private var _edtDocumento: TextInputEditText? = null
     private var mEdtDataNascimento: TextInputEditText? = null
     private var mEdtTelefone: TextInputEditText? = null
     private var mEdtBairro: TextInputEditText? = null
@@ -43,7 +43,7 @@ class DetalhesPessoaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalhes_pessoa)
 
-        isModoCadastro = intent.getBooleanExtra(Constantes.EXTRA_MODO_CADASTRO, true)
+        _modoCadastro = intent.getBooleanExtra(Constantes.EXTRA_MODO_CADASTRO, true)
 
         findViews()
         configuraActionBar(supportActionBar)
@@ -62,8 +62,8 @@ class DetalhesPessoaActivity : AppCompatActivity() {
     }
 
     private fun findViews() {
-        mEdtNome = findViewById(R.id.pessoa_edt_nome)
-        mEdtDocumento = findViewById(R.id.pessoa_edt_documento)
+        _edtNome = findViewById(R.id.pessoa_edt_nome)
+        _edtDocumento = findViewById(R.id.pessoa_edt_documento)
         mEdtDataNascimento = findViewById(R.id.pessoa_edt_data_nascimento)
         mEdtTelefone = findViewById(R.id.pessoa_edt_telefone)
         mEdtBairro = findViewById(R.id.pessoa_edt_bairro)
@@ -79,7 +79,7 @@ class DetalhesPessoaActivity : AppCompatActivity() {
     }
 
     private fun configuraActionBar(supportActionBar: ActionBar?) {
-        if (isModoCadastro) {
+        if (_modoCadastro) {
             supportActionBar?.title =
                 resources.getString(R.string.title_activity_cadastro_pessoa)
         }
@@ -90,8 +90,8 @@ class DetalhesPessoaActivity : AppCompatActivity() {
     }
 
     private fun configuraDadosTela() {
-        if (isModoCadastro) {
-            mEdtDocumento?.setText(intent.getStringExtra(Constantes.EXTRA_NUMERO_DOCUMENTO))
+        if (_modoCadastro) {
+            _edtDocumento?.setText(intent.getStringExtra(Constantes.EXTRA_NUMERO_DOCUMENTO))
         }
     }
 
@@ -100,14 +100,14 @@ class DetalhesPessoaActivity : AppCompatActivity() {
     }
 
     private fun onClickBtnSalvar() {
-        val mPessoaDAO = DAOFactory.getDataSource(TabelasDataBase.PESSOA) as IPessoaDAO
+        val mPessoaDAO = DAOFactory.getDataSource(TabelasDataBase.PESSOA) as PessoaDAO
 
         if (verificaFormularioValido()) {
             val pessoa = populaModelo()
 
             try {
                 val mensagem: String
-                if (isModoCadastro) {
+                if (_modoCadastro) {
                     mPessoaDAO.inserir(pessoa)
                     mensagem = resources.getString(R.string.msg_cadastrado_com_sucesso)
                 } else {
@@ -148,12 +148,12 @@ class DetalhesPessoaActivity : AppCompatActivity() {
 
         var isFormularioValido = true
 
-        if (mEdtNome?.text.toString().isEmpty()) {
+        if (_edtNome?.text.toString().isEmpty()) {
             isFormularioValido = false
             mInputlayoutNome?.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
         }
 
-        if (mEdtDocumento?.text.toString().isEmpty()) {
+        if (_edtDocumento?.text.toString().isEmpty()) {
             isFormularioValido = false
             mInputlayoutDocumento?.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
         }
@@ -193,9 +193,9 @@ class DetalhesPessoaActivity : AppCompatActivity() {
     }
 
     private fun populaModelo(): Pessoa {
-        return Pessoa(mEdtNome?.text.toString())
+        return Pessoa(_edtNome?.text.toString())
             .apply {
-                numeroDocumento = formataNumeroDocumento(mEdtDocumento?.text.toString())
+                numeroDocumento = formataNumeroDocumento(_edtDocumento?.text.toString())
                 dataNascimento = formataDataNascimento(mEdtDataNascimento?.text.toString())
                 telefone = formataNumeroTelefone(mEdtTelefone?.text.toString())
                 bairro = mEdtBairro?.text.toString()

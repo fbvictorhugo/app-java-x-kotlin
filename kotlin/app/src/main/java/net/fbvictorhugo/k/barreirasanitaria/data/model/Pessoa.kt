@@ -10,5 +10,4 @@ data class Pessoa(var nome: String) {
     lateinit var cidade: String
     lateinit var estado: String
     lateinit var bairro: String
-    lateinit var endereco: String
 }

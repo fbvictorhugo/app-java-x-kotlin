@@ -16,7 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 import net.fbvictorhugo.k.barreirasanitaria.R
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.DAOFactory
-import net.fbvictorhugo.k.barreirasanitaria.data.dao.IPessoaDAO
+import net.fbvictorhugo.k.barreirasanitaria.data.dao.PessoaDAO
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.TabelasDataBase
 import net.fbvictorhugo.k.barreirasanitaria.data.model.Pessoa
 import net.fbvictorhugo.k.barreirasanitaria.extension.maiorQue
@@ -118,8 +118,8 @@ class PesquisaPessoasActivity : AppCompatActivity() {
         var termoPesquisa = "";
         try {
             termoPesquisa = mEdtPesquisa?.text.toString()
-            val pessoaDAO: IPessoaDAO =
-                DAOFactory.getDataSource(TabelasDataBase.PESSOA) as IPessoaDAO
+            val pessoaDAO: PessoaDAO =
+                DAOFactory.getDataSource(TabelasDataBase.PESSOA) as PessoaDAO
             if (termoPesquisa.isEmpty()) {
                 mPessoasRecyclerAdapter?.atualiza(ArrayList())
                 mTxtListaVazia?.visibility = View.VISIBLE

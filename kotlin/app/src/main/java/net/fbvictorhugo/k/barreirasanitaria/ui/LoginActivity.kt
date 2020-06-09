@@ -8,7 +8,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import net.fbvictorhugo.k.barreirasanitaria.R
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.DAOFactory
-import net.fbvictorhugo.k.barreirasanitaria.data.dao.IUsuarioDAO
+import net.fbvictorhugo.k.barreirasanitaria.data.dao.UsuarioDAO
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.TabelasDataBase
 import net.fbvictorhugo.k.barreirasanitaria.data.model.Usuario
 
@@ -53,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
             mInputLayoutSenha?.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
         } else {
 
-            val usuarioDAO: IUsuarioDAO =DAOFactory.getDataSource(TabelasDataBase.USUARIO) as IUsuarioDAO
+            val usuarioDAO: UsuarioDAO =DAOFactory.getDataSource(TabelasDataBase.USUARIO) as UsuarioDAO
             val usuario: Usuario? = usuarioDAO.procurarUsuario(login, senha)
 
             if (usuarioValido(usuario)) {

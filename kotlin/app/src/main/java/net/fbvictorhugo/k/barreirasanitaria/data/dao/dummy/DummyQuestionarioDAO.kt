@@ -1,9 +1,9 @@
 package net.fbvictorhugo.k.barreirasanitaria.data.dao.dummy
 
-import net.fbvictorhugo.k.barreirasanitaria.data.dao.IQuestionarioDAO
+import net.fbvictorhugo.k.barreirasanitaria.data.dao.QuestionarioDAO
 import net.fbvictorhugo.k.barreirasanitaria.data.model.Questionario
 
-object QuestionarioDummyDataBase : IQuestionarioDAO {
+object DummyQuestionarioDAO : QuestionarioDAO {
 
     private val mDummyList: ArrayList<Questionario> = ArrayList()
 

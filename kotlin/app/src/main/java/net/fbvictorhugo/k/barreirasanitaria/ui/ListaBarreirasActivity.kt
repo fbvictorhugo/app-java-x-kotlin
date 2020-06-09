@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import net.fbvictorhugo.k.barreirasanitaria.R
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.DAOFactory
-import net.fbvictorhugo.k.barreirasanitaria.data.dao.IBarreiraSanitariaDAO
+import net.fbvictorhugo.k.barreirasanitaria.data.dao.BarreiraSanitariaDAO
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.TabelasDataBase
 import net.fbvictorhugo.k.barreirasanitaria.data.model.BarreiraSanitaria
 import net.fbvictorhugo.k.barreirasanitaria.ui.adapter.BarreirasRecyclerAdapter
@@ -79,8 +79,8 @@ class ListaBarreirasActivity : AppCompatActivity() {
     }
 
     fun pesquisaBarreirasSanitarias() {
-        val barreiraSanitariaDAO: IBarreiraSanitariaDAO =
-            DAOFactory.getDataSource(TabelasDataBase.BARREIRA_SANITARIA) as IBarreiraSanitariaDAO
+        val barreiraSanitariaDAO: BarreiraSanitariaDAO =
+            DAOFactory.getDataSource(TabelasDataBase.BARREIRA_SANITARIA) as BarreiraSanitariaDAO
         val barreiraSanitarias: List<BarreiraSanitaria> = barreiraSanitariaDAO.listar()
 
         mBarreirasRecyclerAdapter?.atualiza(barreiraSanitarias as ArrayList<BarreiraSanitaria>)

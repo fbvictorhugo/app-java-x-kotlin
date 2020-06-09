@@ -2,7 +2,7 @@ package net.fbvictorhugo.k.barreirasanitaria.data.dao
 
 import net.fbvictorhugo.k.barreirasanitaria.data.model.BarreiraSanitaria
 
-interface IBarreiraSanitariaDAO {
+interface BarreiraSanitariaDAO {
 
     fun listar(): ArrayList<BarreiraSanitaria>
 
