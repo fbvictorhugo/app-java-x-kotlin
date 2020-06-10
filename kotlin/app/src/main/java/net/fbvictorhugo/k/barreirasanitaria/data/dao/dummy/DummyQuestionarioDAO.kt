@@ -5,10 +5,10 @@ import net.fbvictorhugo.k.barreirasanitaria.data.model.Questionario
 
 object DummyQuestionarioDAO : QuestionarioDAO {
 
-    private val mDummyList: ArrayList<Questionario> = ArrayList()
+    private val _dummyList: ArrayList<Questionario> = ArrayList()
 
     override fun listar(): ArrayList<Questionario> {
-        return mDummyList
+        return _dummyList
     }
 
     override fun inserir(questionario: Questionario) {

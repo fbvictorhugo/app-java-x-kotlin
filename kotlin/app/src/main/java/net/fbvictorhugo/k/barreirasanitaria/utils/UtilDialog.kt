@@ -1,4 +1,4 @@
-package net.fbvictorhugo.k.barreirasanitaria.ui;
+package net.fbvictorhugo.k.barreirasanitaria.utils;
 
 import android.content.Context;
 import android.content.DialogInterface
@@ -40,7 +40,10 @@ internal object UtilDialog {
     }
 
     fun showDialogAlerta(context: Context, mensagem: String) {
-        showDialogOK(context, mensagem)
+        showDialogOK(
+            context,
+            mensagem
+        )
     }
 
 }

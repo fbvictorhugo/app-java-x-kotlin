@@ -13,26 +13,28 @@ import net.fbvictorhugo.k.barreirasanitaria.data.dao.BarreiraSanitariaDAO
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.DAOFactory
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.TabelasDataBase
 import net.fbvictorhugo.k.barreirasanitaria.data.model.BarreiraSanitaria
+import net.fbvictorhugo.k.barreirasanitaria.utils.Constantes
+import net.fbvictorhugo.k.barreirasanitaria.utils.UtilDialog
 
 class DetalhesBarreiraSanitariaActivty : AppCompatActivity() {
 
-    private var isModoCadastro = false
-    private var mEdtNome: TextInputEditText? = null
-    private var mEdtDescricao: TextInputEditText? = null
-    private var mEdtEndereco: TextInputEditText? = null
-    private var mEdtBairro: TextInputEditText? = null
-    private var mEdtCidade: TextInputEditText? = null
-    private var mEdtEstado: TextInputEditText? = null
-    private var mBtnSalvar: AppCompatButton? = null
+    private var _modoCadastro = false
+    private var _edtNome: TextInputEditText? = null
+    private var _edtDescricao: TextInputEditText? = null
+    private var _edtEndereco: TextInputEditText? = null
+    private var _edtBairro: TextInputEditText? = null
+    private var _edtCidade: TextInputEditText? = null
+    private var _edtEstado: TextInputEditText? = null
+    private var _btnSalvar: AppCompatButton? = null
 
-    private var mInputlayoutNome: TextInputLayout? = null
-    private var mInputlayoutCidade: TextInputLayout? = null
-    private var mInputlayoutEstado: TextInputLayout? = null
+    private var _inputlayoutNome: TextInputLayout? = null
+    private var _inputlayoutCidade: TextInputLayout? = null
+    private var _inputlayoutEstado: TextInputLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalhes_barreira_sanitaria)
-        isModoCadastro = intent.getBooleanExtra(Constantes.EXTRA_MODO_CADASTRO, true)
+        _modoCadastro = intent.getBooleanExtra(Constantes.EXTRA_MODO_CADASTRO, true)
 
         findViews()
         configuraActionBar(supportActionBar)
@@ -50,21 +52,21 @@ class DetalhesBarreiraSanitariaActivty : AppCompatActivity() {
     }
 
     private fun findViews() {
-        mEdtNome = findViewById(R.id.barreira_edt_nome)
-        mEdtDescricao = findViewById(R.id.barreira_edt_descricao)
-        mEdtEndereco = findViewById(R.id.barreira_edt_endereco)
-        mEdtBairro = findViewById(R.id.barreira_edt_bairro)
-        mEdtCidade = findViewById(R.id.barreira_edt_cidade)
-        mEdtEstado = findViewById(R.id.barreira_edt_estado)
-        mBtnSalvar = findViewById(R.id.barreira_btn_salvar)
+        _edtNome = findViewById(R.id.barreira_edt_nome)
+        _edtDescricao = findViewById(R.id.barreira_edt_descricao)
+        _edtEndereco = findViewById(R.id.barreira_edt_endereco)
+        _edtBairro = findViewById(R.id.barreira_edt_bairro)
+        _edtCidade = findViewById(R.id.barreira_edt_cidade)
+        _edtEstado = findViewById(R.id.barreira_edt_estado)
+        _btnSalvar = findViewById(R.id.barreira_btn_salvar)
 
-        mInputlayoutNome = findViewById(R.id.barreira_inputlayout_nome)
-        mInputlayoutCidade = findViewById(R.id.barreira_inputlayout_cidade)
-        mInputlayoutEstado = findViewById(R.id.barreira_inputlayout_estado)
+        _inputlayoutNome = findViewById(R.id.barreira_inputlayout_nome)
+        _inputlayoutCidade = findViewById(R.id.barreira_inputlayout_cidade)
+        _inputlayoutEstado = findViewById(R.id.barreira_inputlayout_estado)
     }
 
-    fun configuraActionBar(supportActionBar: ActionBar?) {
-        if (isModoCadastro) {
+    private fun configuraActionBar(supportActionBar: ActionBar?) {
+        if (_modoCadastro) {
             supportActionBar?.title =
                 resources.getString(R.string.title_activity_cadastro_barreira_sanitaria)
         }
@@ -74,11 +76,11 @@ class DetalhesBarreiraSanitariaActivty : AppCompatActivity() {
         }
     }
 
-    fun configuraClickListeners() {
-        mBtnSalvar?.setOnClickListener { onClickBtnSalvar() }
+    private fun configuraClickListeners() {
+        _btnSalvar?.setOnClickListener { onClickBtnSalvar() }
     }
 
-    fun onClickBtnSalvar() {
+    private fun onClickBtnSalvar() {
         val valido = verificaFormularioValido()
         if (valido) {
             val barreiraSanitaria = populaModelo()
@@ -88,7 +90,7 @@ class DetalhesBarreiraSanitariaActivty : AppCompatActivity() {
 
                 var mensagem = ""
 
-                if (isModoCadastro) {
+                if (_modoCadastro) {
                     barreiraSanitariaDAO.inserir(barreiraSanitaria)
                     mensagem = resources.getString(R.string.msg_cadastrado_com_sucesso)
                 } else {
@@ -107,39 +109,41 @@ class DetalhesBarreiraSanitariaActivty : AppCompatActivity() {
         }
     }
 
-    fun verificaFormularioValido(): Boolean {
-        mInputlayoutNome?.error = ""
-        mInputlayoutCidade?.error = ""
-        mInputlayoutEstado?.error = ""
+    private fun verificaFormularioValido(): Boolean {
+        _inputlayoutNome?.error = ""
+        _inputlayoutCidade?.error = ""
+        _inputlayoutEstado?.error = ""
         var isFormularioValido = true
 
-        if (mEdtNome?.text.toString().isEmpty()) {
+        if (_edtNome?.text.toString().isEmpty()) {
             isFormularioValido = false
-            mInputlayoutNome?.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
+            _inputlayoutNome?.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
         }
 
-        if (mEdtCidade?.text.toString().isEmpty()) {
+        if (_edtCidade?.text.toString().isEmpty()) {
             isFormularioValido = false
-            mInputlayoutCidade?.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
+            _inputlayoutCidade?.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
         }
 
-        if (mEdtEstado?.text.toString().isEmpty()) {
+        if (_edtEstado?.text.toString().isEmpty()) {
             isFormularioValido = false
-            mInputlayoutEstado?.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
+            _inputlayoutEstado?.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
         }
 
         return isFormularioValido
     }
 
-    fun populaModelo(): BarreiraSanitaria {
-        return BarreiraSanitaria(mEdtNome?.text.toString())
-            .apply {
-                descricao = mEdtDescricao?.text.toString()
-                endereco = mEdtEndereco?.text.toString()
-                bairro = mEdtBairro?.text.toString()
-                cidade = mEdtCidade?.text.toString()
-                estado = mEdtEstado?.text.toString()
-            }
+    private fun populaModelo(): BarreiraSanitaria {
+        val barreiraSanitaria = BarreiraSanitaria(
+            _edtNome?.text.toString(),
+            _edtCidade?.text.toString(),
+            _edtEstado?.text.toString()
+        ).apply {
+            descricao = _edtDescricao?.text.toString()
+            endereco = _edtEndereco?.text.toString()
+            bairro = _edtBairro?.text.toString()
+        }
+        return barreiraSanitaria
     }
 
 }

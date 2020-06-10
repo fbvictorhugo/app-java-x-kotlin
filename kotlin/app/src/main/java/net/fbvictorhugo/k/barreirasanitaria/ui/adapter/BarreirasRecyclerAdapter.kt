@@ -10,7 +10,7 @@ import net.fbvictorhugo.k.barreirasanitaria.data.model.BarreiraSanitaria
 
 class BarreirasRecyclerAdapter : RecyclerView.Adapter<BarreirasRecyclerAdapter.MyViewHolder>() {
 
-    private var mDataset: ArrayList<BarreiraSanitaria>? = null
+    private var _dataset: ArrayList<BarreiraSanitaria>? = null
     var onItemClickListener: OnItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -20,23 +20,23 @@ class BarreirasRecyclerAdapter : RecyclerView.Adapter<BarreirasRecyclerAdapter.M
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.textViewPrincipal.text = mDataset?.get(position)?.nome
-        holder.textViewSecundario.text = getTextoExibicaoComplemento(mDataset?.get(position))
+        holder.textViewPrincipal.text = _dataset?.get(position)?.nome
+        holder.textViewSecundario.text = getTextoExibicaoComplemento(_dataset?.get(position))
 
-        holder.itemView.setOnClickListener { onItemClickListener?.onClick(mDataset?.get(position)) }
+        holder.itemView.setOnClickListener { onItemClickListener?.onClick(_dataset?.get(position)) }
         holder.itemView.setOnLongClickListener {
-            onItemClickListener?.onLongClick(mDataset?.get(position))
+            onItemClickListener?.onLongClick(_dataset?.get(position))
             true
         }
 
     }
 
     override fun getItemCount(): Int {
-        return mDataset?.size ?: 0
+        return _dataset?.size ?: 0
     }
 
     fun atualiza(newDataset: ArrayList<BarreiraSanitaria>) {
-        mDataset = newDataset
+        _dataset = newDataset
         notifyDataSetChanged()
     }
 

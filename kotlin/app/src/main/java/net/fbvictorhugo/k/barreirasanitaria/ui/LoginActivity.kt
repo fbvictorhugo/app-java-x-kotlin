@@ -8,17 +8,19 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import net.fbvictorhugo.k.barreirasanitaria.R
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.DAOFactory
-import net.fbvictorhugo.k.barreirasanitaria.data.dao.UsuarioDAO
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.TabelasDataBase
+import net.fbvictorhugo.k.barreirasanitaria.data.dao.UsuarioDAO
 import net.fbvictorhugo.k.barreirasanitaria.data.model.Usuario
+import net.fbvictorhugo.k.barreirasanitaria.utils.Constantes
+import net.fbvictorhugo.k.barreirasanitaria.utils.UtilDialog
 
 class LoginActivity : AppCompatActivity() {
 
-    var mEdtUsuario: TextInputEditText? = null
-    var mInputLayoutUsuario: TextInputLayout? = null
-    var mEdtSenha: TextInputEditText? = null
-    var mInputLayoutSenha: TextInputLayout? = null
-    var mBtnEntrar: AppCompatButton? = null
+    var _edtUsuario: TextInputEditText? = null
+    var _inputLayoutUsuario: TextInputLayout? = null
+    var _edtSenha: TextInputEditText? = null
+    var _inputLayoutSenha: TextInputLayout? = null
+    var _btnEntrar: AppCompatButton? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,37 +31,41 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun findViews() {
-        mEdtUsuario = findViewById(R.id.login_edt_usuario)
-        mInputLayoutUsuario = findViewById(R.id.login_inputlayout_usuario)
-        mEdtSenha = findViewById(R.id.login_edt_senha)
-        mInputLayoutSenha = findViewById(R.id.login_inputlayout_senha)
-        mBtnEntrar = findViewById(R.id.login_btn_entrar)
+        _edtUsuario = findViewById(R.id.login_edt_usuario)
+        _inputLayoutUsuario = findViewById(R.id.login_inputlayout_usuario)
+        _edtSenha = findViewById(R.id.login_edt_senha)
+        _inputLayoutSenha = findViewById(R.id.login_inputlayout_senha)
+        _btnEntrar = findViewById(R.id.login_btn_entrar)
     }
 
     private fun configuraClickListeners() {
-        mBtnEntrar?.setOnClickListener { clickBotaoEntrar() }
+        _btnEntrar?.setOnClickListener { clickBotaoEntrar() }
     }
 
     private fun clickBotaoEntrar() {
-        mInputLayoutUsuario?.error = ""
-        mInputLayoutSenha?.error = ""
+        _inputLayoutUsuario?.error = ""
+        _inputLayoutSenha?.error = ""
 
-        val login = mEdtUsuario?.text.toString()
-        val senha = mEdtSenha?.text.toString()
+        val login = _edtUsuario?.text.toString()
+        val senha = _edtSenha?.text.toString()
 
         if (login.trim().isEmpty()) {
-            mInputLayoutUsuario?.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
+            _inputLayoutUsuario?.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
         } else if (senha.trim().isEmpty()) {
-            mInputLayoutSenha?.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
+            _inputLayoutSenha?.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
         } else {
 
-            val usuarioDAO: UsuarioDAO =DAOFactory.getDataSource(TabelasDataBase.USUARIO) as UsuarioDAO
+            val usuarioDAO: UsuarioDAO =
+                DAOFactory.getDataSource(TabelasDataBase.USUARIO) as UsuarioDAO
             val usuario: Usuario? = usuarioDAO.procurarUsuario(login, senha)
 
             if (usuarioValido(usuario)) {
                 val intent = Intent(this, ListaBarreirasActivity::class.java)
-                intent.putExtra(Constantes.EXTRA_ID_USURARIO, usuario?.id)
-                intent.putExtra(Constantes.EXTRA_NOME_USURARIO, usuario?.nome)
+                    .apply {
+                        putExtra(Constantes.EXTRA_ID_USURARIO, usuario?.id)
+                        putExtra(Constantes.EXTRA_NOME_USURARIO, usuario?.nome)
+                    }
+
                 startActivity(intent)
                 finish()
             } else {

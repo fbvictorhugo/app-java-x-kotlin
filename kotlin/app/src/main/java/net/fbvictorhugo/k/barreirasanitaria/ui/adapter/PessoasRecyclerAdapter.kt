@@ -11,40 +11,40 @@ import net.fbvictorhugo.k.barreirasanitaria.data.model.Pessoa
 
 class PessoasRecyclerAdapter : RecyclerView.Adapter<PessoasRecyclerAdapter.MyViewHolder>() {
 
-    private var context: Context? = null
-    private var mDataset: ArrayList<Pessoa>? = null
+    private var _context: Context? = null
+    private var _dataset: ArrayList<Pessoa>? = null
     var onItemClickListener: OnItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        context = parent.context
+        _context = parent.context
 
         val view =
-            LayoutInflater.from(context).inflate(R.layout.adapter_lista_padrao, parent, false)
+            LayoutInflater.from(_context).inflate(R.layout.adapter_lista_padrao, parent, false)
         return MyViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.textViewPrincipal.text = mDataset?.get(position)?.nome
+        holder.textViewPrincipal.text = _dataset?.get(position)?.nome
         val textoCpf = String.format(
-            context?.resources?.getString(R.string.texto_cpf_)!!,
-            mDataset?.get(position)?.numeroDocumento
+            _context?.resources?.getString(R.string.texto_cpf_)!!,
+            _dataset?.get(position)?.numeroDocumento
         )
         holder.textViewSecundario.text = textoCpf
 
-        holder.itemView.setOnClickListener { onItemClickListener?.onClick(mDataset?.get(position)) }
+        holder.itemView.setOnClickListener { onItemClickListener?.onClick(_dataset?.get(position)) }
         holder.itemView.setOnLongClickListener {
-            onItemClickListener?.onLongClick(mDataset?.get(position))
+            onItemClickListener?.onLongClick(_dataset?.get(position))
             true
         }
 
     }
 
     override fun getItemCount(): Int {
-        return mDataset?.size ?: 0
+        return _dataset?.size ?: 0
     }
 
     fun atualiza(newDataset: ArrayList<Pessoa>) {
-        mDataset = newDataset
+        _dataset = newDataset
         notifyDataSetChanged()
     }
 

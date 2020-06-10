@@ -11,18 +11,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import net.fbvictorhugo.k.barreirasanitaria.R
-import net.fbvictorhugo.k.barreirasanitaria.data.dao.DAOFactory
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.BarreiraSanitariaDAO
+import net.fbvictorhugo.k.barreirasanitaria.data.dao.DAOFactory
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.TabelasDataBase
 import net.fbvictorhugo.k.barreirasanitaria.data.model.BarreiraSanitaria
 import net.fbvictorhugo.k.barreirasanitaria.ui.adapter.BarreirasRecyclerAdapter
+import net.fbvictorhugo.k.barreirasanitaria.utils.Constantes
+import net.fbvictorhugo.k.barreirasanitaria.utils.UtilDialog
 
 class ListaBarreirasActivity : AppCompatActivity() {
 
-    private var mRecyclerView: RecyclerView? = null
-    private var mBarreirasRecyclerAdapter: BarreirasRecyclerAdapter? = null
-    private var mFabNovaBarreira: FloatingActionButton? = null
-    private var mTxtListaVazia: AppCompatTextView? = null
+    private var _recyclerView: RecyclerView? = null
+    private var _barreirasRecyclerAdapter: BarreirasRecyclerAdapter? = null
+    private var _fabNovaBarreira: FloatingActionButton? = null
+    private var _txtListaVazia: AppCompatTextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,9 +43,9 @@ class ListaBarreirasActivity : AppCompatActivity() {
     }
 
     private fun findViews() {
-        mRecyclerView = findViewById(R.id.barreiras_recyclerview)
-        mFabNovaBarreira = findViewById(R.id.barreiras_fab)
-        mTxtListaVazia = findViewById(R.id.barreiras_txt_lista_vazia)
+        _recyclerView = findViewById(R.id.barreiras_recyclerview)
+        _fabNovaBarreira = findViewById(R.id.barreiras_fab)
+        _txtListaVazia = findViewById(R.id.barreiras_txt_lista_vazia)
     }
 
     private fun configuraActionBar(supportActionBar: ActionBar?) {
@@ -53,20 +55,20 @@ class ListaBarreirasActivity : AppCompatActivity() {
     }
 
     private fun configuraRecyclerView() {
-        mBarreirasRecyclerAdapter = BarreirasRecyclerAdapter()
+        _barreirasRecyclerAdapter = BarreirasRecyclerAdapter()
 
-        mRecyclerView?.apply {
+        _recyclerView?.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
-            adapter = mBarreirasRecyclerAdapter
+            adapter = _barreirasRecyclerAdapter
         }
 
     }
 
     private fun configuraClickListeners() {
-        mFabNovaBarreira?.setOnClickListener { clickBotaoNovaBarreira() }
+        _fabNovaBarreira?.setOnClickListener { clickBotaoNovaBarreira() }
 
-        mBarreirasRecyclerAdapter?.onItemClickListener =
+        _barreirasRecyclerAdapter?.onItemClickListener =
             object : BarreirasRecyclerAdapter.OnItemClickListener {
                 override fun onClick(barreiraSanitaria: BarreiraSanitaria?) {
                     onClickItemLista(barreiraSanitaria)
@@ -78,15 +80,15 @@ class ListaBarreirasActivity : AppCompatActivity() {
             }
     }
 
-    fun pesquisaBarreirasSanitarias() {
+    private fun pesquisaBarreirasSanitarias() {
         val barreiraSanitariaDAO: BarreiraSanitariaDAO =
             DAOFactory.getDataSource(TabelasDataBase.BARREIRA_SANITARIA) as BarreiraSanitariaDAO
         val barreiraSanitarias: List<BarreiraSanitaria> = barreiraSanitariaDAO.listar()
 
-        mBarreirasRecyclerAdapter?.atualiza(barreiraSanitarias as ArrayList<BarreiraSanitaria>)
+        _barreirasRecyclerAdapter?.atualiza(barreiraSanitarias as ArrayList<BarreiraSanitaria>)
 
         if (barreiraSanitarias.isNotEmpty()) {
-            mTxtListaVazia?.visibility = View.GONE
+            _txtListaVazia?.visibility = View.GONE
         }
     }
 

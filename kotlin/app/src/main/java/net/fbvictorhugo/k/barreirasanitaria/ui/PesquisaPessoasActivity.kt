@@ -20,18 +20,20 @@ import net.fbvictorhugo.k.barreirasanitaria.data.dao.PessoaDAO
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.TabelasDataBase
 import net.fbvictorhugo.k.barreirasanitaria.data.model.Pessoa
 import net.fbvictorhugo.k.barreirasanitaria.extension.maiorQue
+import net.fbvictorhugo.k.barreirasanitaria.utils.Constantes.RESULT_CADASTRO
 import net.fbvictorhugo.k.barreirasanitaria.ui.adapter.PessoasRecyclerAdapter
+import net.fbvictorhugo.k.barreirasanitaria.utils.Constantes
+import net.fbvictorhugo.k.barreirasanitaria.utils.UtilDialog
 
 class PesquisaPessoasActivity : AppCompatActivity() {
-    private val RESULT_CADASTRO = 999
 
-    private var mRecyclerView: RecyclerView? = null
-    private var mFabCadastroPessoa: FloatingActionButton? = null
-    private var mPessoasRecyclerAdapter: PessoasRecyclerAdapter? = null
-    private var mTxtNomeBarreira: AppCompatTextView? = null
-    private var mTxtListaVazia: AppCompatTextView? = null
-    private var mEdtPesquisa: TextInputEditText? = null
-    private var mBtnPesquisar: AppCompatImageButton? = null
+    private var _recyclerView: RecyclerView? = null
+    private var _fabCadastroPessoa: FloatingActionButton? = null
+    private var _pessoasRecyclerAdapter: PessoasRecyclerAdapter? = null
+    private var _txtNomeBarreira: AppCompatTextView? = null
+    private var _txtListaVazia: AppCompatTextView? = null
+    private var _edtPesquisa: TextInputEditText? = null
+    private var _btnPesquisar: AppCompatImageButton? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,8 +52,8 @@ class PesquisaPessoasActivity : AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK && requestCode == RESULT_CADASTRO) {
             val numeroDocumento = data?.getLongExtra(Constantes.EXTRA_NUMERO_DOCUMENTO, 0)
             if (numeroDocumento?.maiorQue(0)!!) {
-                mEdtPesquisa?.setText(numeroDocumento.toString())
-                mBtnPesquisar?.callOnClick()
+                _edtPesquisa?.setText(numeroDocumento.toString())
+                _btnPesquisar?.callOnClick()
             }
         }
         super.onActivityResult(requestCode, resultCode, data)
@@ -68,12 +70,12 @@ class PesquisaPessoasActivity : AppCompatActivity() {
     }
 
     private fun findViews() {
-        mRecyclerView = findViewById(R.id.pesquisa_pessoas_recyclerview)
-        mFabCadastroPessoa = findViewById(R.id.pesquisa_pessoas_fab)
-        mTxtNomeBarreira = findViewById(R.id.pesquisa_pessoas_txt_nome_barreira)
-        mTxtListaVazia = findViewById(R.id.pesquisa_pessoas_txt_lista_vazia)
-        mEdtPesquisa = findViewById(R.id.pesquisa_pessoas_edt_pesquisar)
-        mBtnPesquisar = findViewById(R.id.pesquisa_pessoas_btn_pesquisar)
+        _recyclerView = findViewById(R.id.pesquisa_pessoas_recyclerview)
+        _fabCadastroPessoa = findViewById(R.id.pesquisa_pessoas_fab)
+        _txtNomeBarreira = findViewById(R.id.pesquisa_pessoas_txt_nome_barreira)
+        _txtListaVazia = findViewById(R.id.pesquisa_pessoas_txt_lista_vazia)
+        _edtPesquisa = findViewById(R.id.pesquisa_pessoas_edt_pesquisar)
+        _btnPesquisar = findViewById(R.id.pesquisa_pessoas_btn_pesquisar)
     }
 
     private fun configuraActionBar(supportActionBar: ActionBar?) {
@@ -84,23 +86,23 @@ class PesquisaPessoasActivity : AppCompatActivity() {
     }
 
     private fun configuraDadosTela() {
-        mTxtNomeBarreira?.text = intent.getStringExtra(Constantes.EXTRA_NOME_BARREIRA)
+        _txtNomeBarreira?.text = intent.getStringExtra(Constantes.EXTRA_NOME_BARREIRA)
     }
 
     private fun configuraRecyclerView() {
-        mPessoasRecyclerAdapter = PessoasRecyclerAdapter()
+        _pessoasRecyclerAdapter = PessoasRecyclerAdapter()
 
-        mRecyclerView?.apply {
+        _recyclerView?.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
-            adapter = mPessoasRecyclerAdapter
+            adapter = _pessoasRecyclerAdapter
         }
     }
 
     private fun configuraClickListeners() {
-        mFabCadastroPessoa?.setOnClickListener { clickBotaoCadastroPessoa() }
+        _fabCadastroPessoa?.setOnClickListener { clickBotaoCadastroPessoa() }
 
-        mPessoasRecyclerAdapter?.onItemClickListener =
+        _pessoasRecyclerAdapter?.onItemClickListener =
             object : PessoasRecyclerAdapter.OnItemClickListener {
                 override fun onClick(pessoa: Pessoa?) {
                     onClickItemLista(pessoa)
@@ -111,25 +113,25 @@ class PesquisaPessoasActivity : AppCompatActivity() {
                 }
             }
 
-        mBtnPesquisar?.setOnClickListener { pesquisaPessoas() }
+        _btnPesquisar?.setOnClickListener { pesquisaPessoas() }
     }
 
     private fun pesquisaPessoas() {
         var termoPesquisa = "";
         try {
-            termoPesquisa = mEdtPesquisa?.text.toString()
+            termoPesquisa = _edtPesquisa?.text.toString()
             val pessoaDAO: PessoaDAO =
                 DAOFactory.getDataSource(TabelasDataBase.PESSOA) as PessoaDAO
             if (termoPesquisa.isEmpty()) {
-                mPessoasRecyclerAdapter?.atualiza(ArrayList())
-                mTxtListaVazia?.visibility = View.VISIBLE
+                _pessoasRecyclerAdapter?.atualiza(ArrayList())
+                _txtListaVazia?.visibility = View.VISIBLE
             } else {
                 val documentoPesquisa = termoPesquisa.toLong()
                 val pessoas = pessoaDAO.pesquisar(documentoPesquisa)
-                mPessoasRecyclerAdapter?.atualiza(pessoas)
+                _pessoasRecyclerAdapter?.atualiza(pessoas)
 
                 if (pessoas.size > 0) {
-                    mTxtListaVazia?.visibility = View.GONE
+                    _txtListaVazia?.visibility = View.GONE
                 }
             }
 
@@ -147,7 +149,7 @@ class PesquisaPessoasActivity : AppCompatActivity() {
         val intent = Intent(this, DetalhesPessoaActivity::class.java)
             .apply {
                 putExtra(Constantes.EXTRA_MODO_CADASTRO, true)
-                putExtra(Constantes.EXTRA_NUMERO_DOCUMENTO, mEdtPesquisa?.text.toString())
+                putExtra(Constantes.EXTRA_NUMERO_DOCUMENTO, _edtPesquisa?.text.toString())
             }
         startActivityForResult(intent, RESULT_CADASTRO)
     }
@@ -176,7 +178,8 @@ class PesquisaPessoasActivity : AppCompatActivity() {
         )
 
         UtilDialog.showDialogSimNao(this, messagem,
-            DialogInterface.OnClickListener { dialogInterface, i -> //TODO não implementado
+            DialogInterface.OnClickListener { dialogInterface, i ->
+                //TODO não implementado
                 UtilDialog.showToast(baseContext, "Não implementado.")
             })
     }
