@@ -1,11 +1,9 @@
 package net.fbvictorhugo.j.barreirasanitaria.ui;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -62,10 +60,9 @@ public class DetalhesPessoaActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -104,12 +101,7 @@ public class DetalhesPessoaActivity extends AppCompatActivity {
     }
 
     private void configuraClickListeners() {
-        mBtnSalvar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onClickBtnSalvar();
-            }
-        });
+        mBtnSalvar.setOnClickListener(view -> onClickBtnSalvar());
     }
 
     private void onClickBtnSalvar() {
@@ -127,15 +119,12 @@ public class DetalhesPessoaActivity extends AppCompatActivity {
                     mensagem = getResources().getString(R.string.msg_alterado_com_sucesso);
                 }
 
-                UtilDialog.showDialogOK(this, mensagem, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                UtilDialog.showDialogOK(this, mensagem, (dialogInterface, i) -> {
 
-                        Intent intent = new Intent();
-                        intent.putExtra(Constantes.EXTRA_NUMERO_DOCUMENTO, pessoa.getNumeroDocumento());
-                        setResult(Activity.RESULT_OK, intent);
-                        finish();
-                    }
+                    Intent intent = new Intent();
+                    intent.putExtra(Constantes.EXTRA_NUMERO_DOCUMENTO, pessoa.getNumeroDocumento());
+                    setResult(Activity.RESULT_OK, intent);
+                    finish();
                 });
             } catch (Exception e) {
                 UtilDialog.showDialogAlerta(this, getResources().getString(R.string.msg_erro_generico));

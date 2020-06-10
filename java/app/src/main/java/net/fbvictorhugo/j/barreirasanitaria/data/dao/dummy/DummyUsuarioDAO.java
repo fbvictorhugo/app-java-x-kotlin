@@ -9,7 +9,7 @@ import java.util.List;
 public class DummyUsuarioDAO implements UsuarioDAO {
 
     private static DummyUsuarioDAO sInstance;
-    private List<Usuario> mDummyList;
+    private List<Usuario> mDummyList = new ArrayList<>();
 
     public static DummyUsuarioDAO getInstance() {
         if (sInstance == null) {
@@ -19,7 +19,7 @@ public class DummyUsuarioDAO implements UsuarioDAO {
     }
 
     private DummyUsuarioDAO() {
-        mDummyList = new ArrayList<>();
+
         Usuario usuario = new Usuario();
         usuario.setId(1);
         usuario.setLogin("asd");

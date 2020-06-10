@@ -30,22 +30,16 @@ public class BarreirasRecyclerAdapter extends RecyclerView.Adapter<BarreirasRecy
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         holder.textViewPrincipal.setText(mDataset.get(position).getNome());
         holder.textViewSecundario.setText(getTextoExibicaoComplemento(mDataset.get(position)));
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (onItemClickListener != null) {
-                    onItemClickListener.onClick(mDataset.get(position));
-                }
+        holder.itemView.setOnClickListener(view -> {
+            if (onItemClickListener != null) {
+                onItemClickListener.onClick(mDataset.get(position));
             }
         });
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                if (onItemClickListener != null) {
-                    onItemClickListener.onLongClick(mDataset.get(position));
-                }
-                return true;
+        holder.itemView.setOnLongClickListener(view -> {
+            if (onItemClickListener != null) {
+                onItemClickListener.onLongClick(mDataset.get(position));
             }
+            return true;
         });
 
     }

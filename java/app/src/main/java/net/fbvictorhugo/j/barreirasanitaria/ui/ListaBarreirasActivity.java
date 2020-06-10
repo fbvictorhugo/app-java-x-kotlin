@@ -8,8 +8,8 @@ import android.view.View;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import net.fbvictorhugo.j.barreirasanitaria.R;
-import net.fbvictorhugo.j.barreirasanitaria.data.dao.DAOFactory;
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.BarreiraSanitariaDAO;
+import net.fbvictorhugo.j.barreirasanitaria.data.dao.DAOFactory;
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.TabelasDataBase;
 import net.fbvictorhugo.j.barreirasanitaria.data.model.BarreiraSanitaria;
 import net.fbvictorhugo.j.barreirasanitaria.ui.adapter.BarreirasRecyclerAdapter;
@@ -72,12 +72,7 @@ public class ListaBarreirasActivity extends AppCompatActivity {
     }
 
     private void configuraClickListeners() {
-        mFabNovaBarreira.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clickBotaoNovaBarreira();
-            }
-        });
+        mFabNovaBarreira.setOnClickListener(v -> clickBotaoNovaBarreira());
 
         mBarreirasRecyclerAdapter.setOnItemClickListener(new BarreirasRecyclerAdapter.OnItemClickListener() {
             @Override

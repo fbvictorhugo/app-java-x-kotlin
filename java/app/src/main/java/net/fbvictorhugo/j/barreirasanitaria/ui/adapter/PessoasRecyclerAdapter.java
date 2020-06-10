@@ -34,22 +34,16 @@ public class PessoasRecyclerAdapter extends RecyclerView.Adapter<PessoasRecycler
         holder.textViewPrincipal.setText(mDataset.get(position).getNome());
         String textoCpf = String.format(mContext.getResources().getString(R.string.texto_cpf_), String.valueOf(mDataset.get(position).getNumeroDocumento()));
         holder.textViewSecundario.setText(textoCpf);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (onItemClickListener != null) {
-                    onItemClickListener.onClick(mDataset.get(position));
-                }
+        holder.itemView.setOnClickListener(view -> {
+            if (onItemClickListener != null) {
+                onItemClickListener.onClick(mDataset.get(position));
             }
         });
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                if (onItemClickListener != null) {
-                    onItemClickListener.onLongClick(mDataset.get(position));
-                }
-                return true;
+        holder.itemView.setOnLongClickListener(view -> {
+            if (onItemClickListener != null) {
+                onItemClickListener.onLongClick(mDataset.get(position));
             }
+            return true;
         });
 
     }

@@ -1,6 +1,5 @@
 package net.fbvictorhugo.j.barreirasanitaria.ui;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -107,12 +106,7 @@ public class PesquisaPessoasActivity extends AppCompatActivity {
     }
 
     private void configuraClickListeners() {
-        mFabCadastroPessoa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clickBotaoCadastroPessoa();
-            }
-        });
+        mFabCadastroPessoa.setOnClickListener(v -> clickBotaoCadastroPessoa());
 
         mPessoasRecyclerAdapter.setOnItemClickListener(new PessoasRecyclerAdapter.OnItemClickListener() {
             @Override
@@ -126,12 +120,7 @@ public class PesquisaPessoasActivity extends AppCompatActivity {
             }
         });
 
-        mBtnPesquisar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                pesquisaPessoas();
-            }
-        });
+        mBtnPesquisar.setOnClickListener(view -> pesquisaPessoas());
     }
 
     private void pesquisaPessoas() {
@@ -143,7 +132,7 @@ public class PesquisaPessoasActivity extends AppCompatActivity {
                 PessoaDAO pessoaDAO = (PessoaDAO) DAOFactory.getInstance().getDataSource(TabelasDataBase.PESSOA);
 
                 if (termoPesquisa.isEmpty()) {
-                    mPessoasRecyclerAdapter.atualiza(new ArrayList<Pessoa>());
+                    mPessoasRecyclerAdapter.atualiza(new ArrayList<>());
                     mTxtListaVazia.setVisibility(View.VISIBLE);
                 } else {
                     long documnentoPesquisa = Long.parseLong(termoPesquisa);
@@ -181,12 +170,9 @@ public class PesquisaPessoasActivity extends AppCompatActivity {
 
     private void onLongClickClickItemLista(Pessoa pessoa) {
         String messagem = String.format(getResources().getString(R.string.msg_deseja_editar_informacoes_), pessoa.getNome());
-        UtilDialog.showDialogSimNao(this, messagem, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                //TODO não implementado
-                UtilDialog.showToast(getBaseContext(), "Não implementado.");
-            }
+        UtilDialog.showDialogSimNao(this, messagem, (dialogInterface, i) -> {
+            //TODO não implementado
+            UtilDialog.showToast(getBaseContext(), "Não implementado.");
         });
     }
 

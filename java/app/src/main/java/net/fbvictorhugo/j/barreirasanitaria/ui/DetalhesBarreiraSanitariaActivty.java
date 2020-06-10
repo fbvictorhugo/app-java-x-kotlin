@@ -1,16 +1,14 @@
 package net.fbvictorhugo.j.barreirasanitaria.ui;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import net.fbvictorhugo.j.barreirasanitaria.R;
-import net.fbvictorhugo.j.barreirasanitaria.data.dao.DAOFactory;
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.BarreiraSanitariaDAO;
+import net.fbvictorhugo.j.barreirasanitaria.data.dao.DAOFactory;
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.TabelasDataBase;
 import net.fbvictorhugo.j.barreirasanitaria.data.model.BarreiraSanitaria;
 import net.fbvictorhugo.j.barreirasanitaria.utils.Constantes;
@@ -50,10 +48,9 @@ public class DetalhesBarreiraSanitariaActivty extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -83,12 +80,7 @@ public class DetalhesBarreiraSanitariaActivty extends AppCompatActivity {
     }
 
     private void configuraClickListeners() {
-        mBtnSalvar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onClickBtnSalvar();
-            }
-        });
+        mBtnSalvar.setOnClickListener(view -> onClickBtnSalvar());
     }
 
     private void onClickBtnSalvar() {
@@ -108,12 +100,7 @@ public class DetalhesBarreiraSanitariaActivty extends AppCompatActivity {
                     mensagem = getResources().getString(R.string.msg_alterado_com_sucesso);
                 }
 
-                UtilDialog.showDialogOK(this, mensagem, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        finish();
-                    }
-                });
+                UtilDialog.showDialogOK(this, mensagem, (dialogInterface, i) -> finish());
             } catch (Exception e) {
                 UtilDialog.showDialogAlerta(this, getResources().getString(R.string.msg_erro_generico));
             }

@@ -2,15 +2,14 @@ package net.fbvictorhugo.j.barreirasanitaria.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import net.fbvictorhugo.j.barreirasanitaria.R;
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.DAOFactory;
-import net.fbvictorhugo.j.barreirasanitaria.data.dao.UsuarioDAO;
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.TabelasDataBase;
+import net.fbvictorhugo.j.barreirasanitaria.data.dao.UsuarioDAO;
 import net.fbvictorhugo.j.barreirasanitaria.data.model.Usuario;
 import net.fbvictorhugo.j.barreirasanitaria.utils.Constantes;
 import net.fbvictorhugo.j.barreirasanitaria.utils.UtilDialog;
@@ -45,12 +44,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void configuraClickListeners() {
         if (mBtnEntrar != null) {
-            mBtnEntrar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    clickBotaoEntrar();
-                }
-            });
+            mBtnEntrar.setOnClickListener(view -> clickBotaoEntrar());
         }
     }
 
