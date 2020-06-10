@@ -11,10 +11,12 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import net.fbvictorhugo.j.barreirasanitaria.R;
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.DAOFactory;
-import net.fbvictorhugo.j.barreirasanitaria.data.dao.IPessoaDAO;
+import net.fbvictorhugo.j.barreirasanitaria.data.dao.PessoaDAO;
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.TabelasDataBase;
 import net.fbvictorhugo.j.barreirasanitaria.data.model.Pessoa;
 import net.fbvictorhugo.j.barreirasanitaria.ui.adapter.PessoasRecyclerAdapter;
+import net.fbvictorhugo.j.barreirasanitaria.utils.Constantes;
+import net.fbvictorhugo.j.barreirasanitaria.utils.UtilDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +29,10 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import static net.fbvictorhugo.j.barreirasanitaria.utils.Constantes.RESULT_CADASTRO;
+
 public class PesquisaPessoasActivity extends AppCompatActivity {
 
-    private static final int RESULT_CADASTRO = 999;
     private RecyclerView mRecyclerView;
     private FloatingActionButton mFabCadastroPessoa;
     private PessoasRecyclerAdapter mPessoasRecyclerAdapter;
@@ -137,7 +140,7 @@ public class PesquisaPessoasActivity extends AppCompatActivity {
 
             try {
                 termoPesquisa = mEdtPesquisa.getText().toString();
-                IPessoaDAO pessoaDAO = (IPessoaDAO) DAOFactory.getInstance().getDataSource(TabelasDataBase.PESSOA);
+                PessoaDAO pessoaDAO = (PessoaDAO) DAOFactory.getInstance().getDataSource(TabelasDataBase.PESSOA);
 
                 if (termoPesquisa.isEmpty()) {
                     mPessoasRecyclerAdapter.atualiza(new ArrayList<Pessoa>());

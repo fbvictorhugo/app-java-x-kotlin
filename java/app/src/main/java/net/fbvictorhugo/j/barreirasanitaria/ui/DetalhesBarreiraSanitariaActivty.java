@@ -10,9 +10,11 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import net.fbvictorhugo.j.barreirasanitaria.R;
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.DAOFactory;
-import net.fbvictorhugo.j.barreirasanitaria.data.dao.IBarreiraSanitariaDAO;
+import net.fbvictorhugo.j.barreirasanitaria.data.dao.BarreiraSanitariaDAO;
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.TabelasDataBase;
 import net.fbvictorhugo.j.barreirasanitaria.data.model.BarreiraSanitaria;
+import net.fbvictorhugo.j.barreirasanitaria.utils.Constantes;
+import net.fbvictorhugo.j.barreirasanitaria.utils.UtilDialog;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,7 +30,7 @@ public class DetalhesBarreiraSanitariaActivty extends AppCompatActivity {
     private TextInputEditText mEdtCidade;
     private TextInputEditText mEdtEstado;
     private AppCompatButton mBtnSalvar;
-    private IBarreiraSanitariaDAO mBarreiraSanitariaDAO;
+    private BarreiraSanitariaDAO mBarreiraSanitariaDAO;
     private TextInputLayout mInputlayoutNome;
     private TextInputLayout mInputlayoutCidade;
     private TextInputLayout mInputlayoutEstado;
@@ -39,7 +41,7 @@ public class DetalhesBarreiraSanitariaActivty extends AppCompatActivity {
         setContentView(R.layout.activity_detalhes_barreira_sanitaria);
         isModoCadastro = getIntent().getBooleanExtra(Constantes.EXTRA_MODO_CADASTRO, true);
 
-        mBarreiraSanitariaDAO = (IBarreiraSanitariaDAO) DAOFactory.getInstance().getDataSource(TabelasDataBase.BARREIRA_SANITARIA);
+        mBarreiraSanitariaDAO = (BarreiraSanitariaDAO) DAOFactory.getInstance().getDataSource(TabelasDataBase.BARREIRA_SANITARIA);
 
         findViews();
         configuraActionBar(getSupportActionBar());

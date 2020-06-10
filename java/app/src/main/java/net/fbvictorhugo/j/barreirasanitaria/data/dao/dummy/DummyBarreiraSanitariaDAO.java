@@ -1,24 +1,24 @@
 package net.fbvictorhugo.j.barreirasanitaria.data.dao.dummy;
 
-import net.fbvictorhugo.j.barreirasanitaria.data.dao.IBarreiraSanitariaDAO;
+import net.fbvictorhugo.j.barreirasanitaria.data.dao.BarreiraSanitariaDAO;
 import net.fbvictorhugo.j.barreirasanitaria.data.model.BarreiraSanitaria;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BarreiraSanitariaDummyDataBase implements IBarreiraSanitariaDAO {
+public class DummyBarreiraSanitariaDAO implements BarreiraSanitariaDAO {
 
     private List<BarreiraSanitaria> mDummyList;
-    private static BarreiraSanitariaDummyDataBase sFactory;
+    private static DummyBarreiraSanitariaDAO sInstance;
 
-    public static BarreiraSanitariaDummyDataBase getInstance() {
-        if (sFactory == null) {
-            sFactory = new BarreiraSanitariaDummyDataBase();
+    public static DummyBarreiraSanitariaDAO getInstance() {
+        if (sInstance == null) {
+            sInstance = new DummyBarreiraSanitariaDAO();
         }
-        return sFactory;
+        return sInstance;
     }
 
-    private BarreiraSanitariaDummyDataBase() {
+    private DummyBarreiraSanitariaDAO() {
         mDummyList = new ArrayList<>();
     }
 

@@ -9,9 +9,11 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import net.fbvictorhugo.j.barreirasanitaria.R;
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.DAOFactory;
-import net.fbvictorhugo.j.barreirasanitaria.data.dao.IUsuarioDAO;
+import net.fbvictorhugo.j.barreirasanitaria.data.dao.UsuarioDAO;
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.TabelasDataBase;
 import net.fbvictorhugo.j.barreirasanitaria.data.model.Usuario;
+import net.fbvictorhugo.j.barreirasanitaria.utils.Constantes;
+import net.fbvictorhugo.j.barreirasanitaria.utils.UtilDialog;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -78,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
             mInputLayoutSenha.setError(getResources().getString(R.string.msg_erro_campo_obrigatorio));
         } else {
 
-            final IUsuarioDAO usuarioDAO = (IUsuarioDAO) DAOFactory.getInstance().getDataSource(TabelasDataBase.USUARIO);
+            final UsuarioDAO usuarioDAO = (UsuarioDAO) DAOFactory.getInstance().getDataSource(TabelasDataBase.USUARIO);
             final Usuario usuario = usuarioDAO.procurarUsuario(login, senha);
 
             if (usuarioValido(usuario)) {

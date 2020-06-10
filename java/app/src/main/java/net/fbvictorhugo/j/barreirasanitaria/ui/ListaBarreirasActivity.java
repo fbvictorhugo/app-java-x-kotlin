@@ -9,10 +9,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import net.fbvictorhugo.j.barreirasanitaria.R;
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.DAOFactory;
-import net.fbvictorhugo.j.barreirasanitaria.data.dao.IBarreiraSanitariaDAO;
+import net.fbvictorhugo.j.barreirasanitaria.data.dao.BarreiraSanitariaDAO;
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.TabelasDataBase;
 import net.fbvictorhugo.j.barreirasanitaria.data.model.BarreiraSanitaria;
 import net.fbvictorhugo.j.barreirasanitaria.ui.adapter.BarreirasRecyclerAdapter;
+import net.fbvictorhugo.j.barreirasanitaria.utils.Constantes;
+import net.fbvictorhugo.j.barreirasanitaria.utils.UtilDialog;
 
 import java.util.List;
 
@@ -92,7 +94,7 @@ public class ListaBarreirasActivity extends AppCompatActivity {
 
     private void pesquisaBarreirasSanitarias() {
         if (mBarreirasRecyclerAdapter != null) {
-            IBarreiraSanitariaDAO barreiraSanitariaDAO = (IBarreiraSanitariaDAO) DAOFactory.getInstance().getDataSource(TabelasDataBase.BARREIRA_SANITARIA);
+            BarreiraSanitariaDAO barreiraSanitariaDAO = (BarreiraSanitariaDAO) DAOFactory.getInstance().getDataSource(TabelasDataBase.BARREIRA_SANITARIA);
             List<BarreiraSanitaria> barreiraSanitarias = barreiraSanitariaDAO.listar();
             mBarreirasRecyclerAdapter.atualiza(barreiraSanitarias);
 

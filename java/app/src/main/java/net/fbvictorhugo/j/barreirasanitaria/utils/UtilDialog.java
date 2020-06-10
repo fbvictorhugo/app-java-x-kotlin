@@ -1,4 +1,4 @@
-package net.fbvictorhugo.j.barreirasanitaria.ui;
+package net.fbvictorhugo.j.barreirasanitaria.utils;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -8,13 +8,13 @@ import net.fbvictorhugo.j.barreirasanitaria.R;
 
 import androidx.appcompat.app.AlertDialog;
 
-class UtilDialog {
+public class UtilDialog {
 
-    static void showToast(Context context, String mensagem) {
+    public static void showToast(Context context, String mensagem) {
         Toast.makeText(context, mensagem, Toast.LENGTH_LONG).show();
     }
 
-    static void showDialogSimNao(final Context context, String mensagem, DialogInterface.OnClickListener onPositiveClickListener) {
+    public static void showDialogSimNao(final Context context, String mensagem, DialogInterface.OnClickListener onPositiveClickListener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(false);
         builder.setTitle(R.string.titulo_atencao);
@@ -24,7 +24,7 @@ class UtilDialog {
         builder.create().show();
     }
 
-    static void showDialogOK(final Context context, String mensagem, DialogInterface.OnClickListener onOkClickListener) {
+    public static void showDialogOK(final Context context, String mensagem, DialogInterface.OnClickListener onOkClickListener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(false);
         builder.setTitle(R.string.titulo_atencao);
@@ -33,7 +33,7 @@ class UtilDialog {
         builder.create().show();
     }
 
-    static void showDialogAlerta(final Context context, String mensagem) {
+    public static void showDialogAlerta(final Context context, String mensagem) {
         showDialogOK(context, mensagem, null);
     }
 

@@ -4,7 +4,7 @@ import net.fbvictorhugo.j.barreirasanitaria.data.model.BarreiraSanitaria;
 
 import java.util.List;
 
-public interface IBarreiraSanitariaDAO {
+public interface BarreiraSanitariaDAO {
 
     List<BarreiraSanitaria> listar();
 

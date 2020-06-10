@@ -17,6 +17,12 @@ public class Questionario {
     private String observacoes;
     private Date dataResposta;
 
+    public Questionario(long id, long barreiraId, long pessoaId) {
+        this.id = id;
+        this.barreiraId = barreiraId;
+        this.pessoaId = pessoaId;
+    }
+
     public long getId() {
         return id;
     }

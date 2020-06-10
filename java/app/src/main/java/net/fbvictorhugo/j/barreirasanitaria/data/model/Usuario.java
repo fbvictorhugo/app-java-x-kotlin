@@ -10,6 +10,13 @@ public class Usuario {
     private String senha;
     private Date ultimoLogin;
 
+    public Usuario(long id, String nome, String login, String senha) {
+        this.id = id;
+        this.nome = nome;
+        this.login = login;
+        this.senha = senha;
+    }
+
     public long getId() {
         return id;
     }

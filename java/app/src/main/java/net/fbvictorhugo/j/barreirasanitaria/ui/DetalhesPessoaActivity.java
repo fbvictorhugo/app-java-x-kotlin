@@ -12,10 +12,12 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import net.fbvictorhugo.j.barreirasanitaria.R;
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.DAOFactory;
-import net.fbvictorhugo.j.barreirasanitaria.data.dao.IPessoaDAO;
+import net.fbvictorhugo.j.barreirasanitaria.data.dao.PessoaDAO;
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.TabelasDataBase;
-import net.fbvictorhugo.j.barreirasanitaria.data.dao.dummy.PessoaDummyDataBase;
+import net.fbvictorhugo.j.barreirasanitaria.data.dao.dummy.DummyPessoaDAO;
 import net.fbvictorhugo.j.barreirasanitaria.data.model.Pessoa;
+import net.fbvictorhugo.j.barreirasanitaria.utils.Constantes;
+import net.fbvictorhugo.j.barreirasanitaria.utils.UtilDialog;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,8 +28,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import static net.fbvictorhugo.j.barreirasanitaria.utils.Constantes.FORMATO_DATA_NASCIMENTO;
+
 public class DetalhesPessoaActivity extends AppCompatActivity {
-    private final String FORMATO_DATA_NASCIMENTO = "dd/MM/yyyy";
 
     private boolean isModoCadastro;
     private TextInputEditText mEdtNome;
@@ -110,7 +113,7 @@ public class DetalhesPessoaActivity extends AppCompatActivity {
     }
 
     private void onClickBtnSalvar() {
-        IPessoaDAO mPessoaDAO = (PessoaDummyDataBase) DAOFactory.getInstance().getDataSource(TabelasDataBase.PESSOA);
+        PessoaDAO mPessoaDAO = (DummyPessoaDAO) DAOFactory.getInstance().getDataSource(TabelasDataBase.PESSOA);
 
         if (verificaFormularioValido()) {
             final Pessoa pessoa = populaModelo();

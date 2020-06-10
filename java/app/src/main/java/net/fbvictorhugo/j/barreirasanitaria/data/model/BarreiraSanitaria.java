@@ -10,6 +10,13 @@ public class BarreiraSanitaria {
     private String bairro;
     private String endereco;
 
+    public BarreiraSanitaria(long id, String nome, String cidade, String estado) {
+        this.id = id;
+        this.nome = nome;
+        this.cidade = cidade;
+        this.estado = estado;
+    }
+
     public long getId() {
         return id;
     }

@@ -4,7 +4,7 @@ import net.fbvictorhugo.j.barreirasanitaria.data.model.Questionario;
 
 import java.util.List;
 
-public interface IQuestionarioDAO {
+public interface QuestionarioDAO {
 
     List<Questionario> listar();
 

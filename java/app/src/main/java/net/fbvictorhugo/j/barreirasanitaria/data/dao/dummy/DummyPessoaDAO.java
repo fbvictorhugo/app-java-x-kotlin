@@ -1,24 +1,24 @@
 package net.fbvictorhugo.j.barreirasanitaria.data.dao.dummy;
 
-import net.fbvictorhugo.j.barreirasanitaria.data.dao.IPessoaDAO;
+import net.fbvictorhugo.j.barreirasanitaria.data.dao.PessoaDAO;
 import net.fbvictorhugo.j.barreirasanitaria.data.model.Pessoa;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PessoaDummyDataBase implements IPessoaDAO {
+public class DummyPessoaDAO implements PessoaDAO {
 
-    private static PessoaDummyDataBase sFactory;
+    private static DummyPessoaDAO sInstance;
     private List<Pessoa> mDummyList;
 
-    public static PessoaDummyDataBase getInstance() {
-        if (sFactory == null) {
-            sFactory = new PessoaDummyDataBase();
+    public static DummyPessoaDAO getInstance() {
+        if (sInstance == null) {
+            sInstance = new DummyPessoaDAO();
         }
-        return sFactory;
+        return sInstance;
     }
 
-    private PessoaDummyDataBase() {
+    private DummyPessoaDAO() {
         mDummyList = new ArrayList<>();
     }
 

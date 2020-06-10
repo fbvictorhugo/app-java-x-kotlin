@@ -13,6 +13,12 @@ public class Pessoa {
     private String estado;
     private String bairro;
 
+    public Pessoa(long id, String nome, long numeroDocumento) {
+        this.id = id;
+        this.nome = nome;
+        this.numeroDocumento = numeroDocumento;
+    }
+
     public long getId() {
         return id;
     }

@@ -1,22 +1,22 @@
 package net.fbvictorhugo.j.barreirasanitaria.data.dao;
 
-import net.fbvictorhugo.j.barreirasanitaria.data.dao.dummy.BarreiraSanitariaDummyDataBase;
-import net.fbvictorhugo.j.barreirasanitaria.data.dao.dummy.PessoaDummyDataBase;
-import net.fbvictorhugo.j.barreirasanitaria.data.dao.dummy.QuestionarioDummyDataBase;
-import net.fbvictorhugo.j.barreirasanitaria.data.dao.dummy.UsuarioDummyDataBase;
+import net.fbvictorhugo.j.barreirasanitaria.data.dao.dummy.DummyBarreiraSanitariaDAO;
+import net.fbvictorhugo.j.barreirasanitaria.data.dao.dummy.DummyPessoaDAO;
+import net.fbvictorhugo.j.barreirasanitaria.data.dao.dummy.DummyQuestionarioDAO;
+import net.fbvictorhugo.j.barreirasanitaria.data.dao.dummy.DummyUsuarioDAO;
 
 public class DAOFactory {
 
-    private static DAOFactory sFactory;
+    private static DAOFactory sInstance;
 
     private DAOFactory() {
     }
 
     public static DAOFactory getInstance() {
-        if (sFactory == null) {
-            sFactory = new DAOFactory();
+        if (sInstance == null) {
+            sInstance = new DAOFactory();
         }
-        return sFactory;
+        return sInstance;
     }
 
     public Object getDataSource(final TabelasDataBase tabela) {
@@ -27,13 +27,13 @@ public class DAOFactory {
 
         switch (tabela) {
             case USUARIO:
-                return UsuarioDummyDataBase.getInstance();
+                return DummyUsuarioDAO.getInstance();
             case BARREIRA_SANITARIA:
-                return BarreiraSanitariaDummyDataBase.getInstance();
+                return DummyBarreiraSanitariaDAO.getInstance();
             case PESSOA:
-                return PessoaDummyDataBase.getInstance();
+                return DummyPessoaDAO.getInstance();
             case QUESTIONARIO:
-                return QuestionarioDummyDataBase.getInstance();
+                return DummyQuestionarioDAO.getInstance();
 
             default:
                 return null;
