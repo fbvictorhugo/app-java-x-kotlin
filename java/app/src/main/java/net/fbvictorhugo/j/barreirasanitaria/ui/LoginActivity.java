@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             } else {
-                UtilDialog.showDialogAlerta(this, getResources().getString(R.string.msg_usuario_nao_encontrado));
+                UtilDialog.showDialogOK(this, getResources().getString(R.string.msg_usuario_nao_encontrado));
             }
         }
     }

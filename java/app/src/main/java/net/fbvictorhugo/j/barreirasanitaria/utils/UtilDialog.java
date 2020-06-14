@@ -24,7 +24,8 @@ public class UtilDialog {
         builder.create().show();
     }
 
-    public static void showDialogOK(final Context context, String mensagem, DialogInterface.OnClickListener onOkClickListener) {
+    public static void showDialogOK(final Context context, String mensagem,
+                                    DialogInterface.OnClickListener onOkClickListener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(false);
         builder.setTitle(R.string.titulo_atencao);
@@ -33,7 +34,13 @@ public class UtilDialog {
         builder.create().show();
     }
 
-    public static void showDialogAlerta(final Context context, String mensagem) {
+    /**
+     * overload do método showDialogOK , parametro  DialogInterface.OnClickListener padrão nulo.
+     *
+     * @param context  Contexto
+     * @param mensagem Mensagem exibida no Dialog
+     */
+    public static void showDialogOK(final Context context, String mensagem) {
         showDialogOK(context, mensagem, null);
     }
 

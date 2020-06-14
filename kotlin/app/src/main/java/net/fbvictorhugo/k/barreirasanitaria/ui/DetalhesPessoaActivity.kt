@@ -130,9 +130,8 @@ class DetalhesPessoaActivity : AppCompatActivity() {
                 )
 
             } catch (exception: Exception) {
-                UtilDialog.showDialogAlerta(
-                    this,
-                    resources.getString(R.string.msg_erro_generico)
+                UtilDialog.showDialogOK(
+                    this, resources.getString(R.string.msg_erro_generico)
                 )
             }
         }

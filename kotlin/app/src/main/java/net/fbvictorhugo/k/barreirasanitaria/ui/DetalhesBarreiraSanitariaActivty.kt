@@ -88,7 +88,7 @@ class DetalhesBarreiraSanitariaActivty : AppCompatActivity() {
                 val barreiraSanitariaDAO =
                     DAOFactory.getDataSource(TabelasDataBase.BARREIRA_SANITARIA) as BarreiraSanitariaDAO
 
-                var mensagem = ""
+                val mensagem : String
 
                 if (_modoCadastro) {
                     barreiraSanitariaDAO.inserir(barreiraSanitaria)
@@ -102,7 +102,7 @@ class DetalhesBarreiraSanitariaActivty : AppCompatActivity() {
                     DialogInterface.OnClickListener { dialogInterface, i -> finish() })
 
             } catch (exception: Exception) {
-                UtilDialog.showDialogAlerta(
+                UtilDialog.showDialogOK(
                     this, resources.getString(R.string.msg_erro_generico)
                 )
             }

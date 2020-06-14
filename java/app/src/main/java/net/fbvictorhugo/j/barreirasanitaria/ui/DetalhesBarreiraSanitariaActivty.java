@@ -102,7 +102,7 @@ public class DetalhesBarreiraSanitariaActivty extends AppCompatActivity {
 
                 UtilDialog.showDialogOK(this, mensagem, (dialogInterface, i) -> finish());
             } catch (Exception e) {
-                UtilDialog.showDialogAlerta(this, getResources().getString(R.string.msg_erro_generico));
+                UtilDialog.showDialogOK(this, getResources().getString(R.string.msg_erro_generico));
             }
         }
     }

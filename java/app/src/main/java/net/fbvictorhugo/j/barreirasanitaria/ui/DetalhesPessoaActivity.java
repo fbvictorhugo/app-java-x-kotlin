@@ -127,7 +127,7 @@ public class DetalhesPessoaActivity extends AppCompatActivity {
                     finish();
                 });
             } catch (Exception e) {
-                UtilDialog.showDialogAlerta(this, getResources().getString(R.string.msg_erro_generico));
+                UtilDialog.showDialogOK(this, getResources().getString(R.string.msg_erro_generico));
             }
         }
     }

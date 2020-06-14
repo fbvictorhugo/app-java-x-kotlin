@@ -20,9 +20,9 @@ import net.fbvictorhugo.k.barreirasanitaria.data.dao.PessoaDAO
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.TabelasDataBase
 import net.fbvictorhugo.k.barreirasanitaria.data.model.Pessoa
 import net.fbvictorhugo.k.barreirasanitaria.extension.maiorQue
-import net.fbvictorhugo.k.barreirasanitaria.utils.Constantes.RESULT_CADASTRO
 import net.fbvictorhugo.k.barreirasanitaria.ui.adapter.PessoasRecyclerAdapter
 import net.fbvictorhugo.k.barreirasanitaria.utils.Constantes
+import net.fbvictorhugo.k.barreirasanitaria.utils.Constantes.RESULT_CADASTRO
 import net.fbvictorhugo.k.barreirasanitaria.utils.UtilDialog
 
 class PesquisaPessoasActivity : AppCompatActivity() {
@@ -140,7 +140,7 @@ class PesquisaPessoasActivity : AppCompatActivity() {
                 resources.getString(R.string.msg_erro_termo_pesquisa_),
                 termoPesquisa
             )
-            UtilDialog.showDialogAlerta(this, mensagem)
+            UtilDialog.showDialogOK(this, mensagem)
             e.printStackTrace()
         }
     }

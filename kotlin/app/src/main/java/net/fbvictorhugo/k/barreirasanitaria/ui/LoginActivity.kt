@@ -69,9 +69,8 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             } else {
-                UtilDialog.showDialogAlerta(
-                    this,
-                    resources.getString(R.string.msg_usuario_nao_encontrado)
+                UtilDialog.showDialogOK(
+                    this, resources.getString(R.string.msg_usuario_nao_encontrado)
                 )
             }
         }

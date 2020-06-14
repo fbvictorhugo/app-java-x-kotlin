@@ -146,7 +146,7 @@ public class PesquisaPessoasActivity extends AppCompatActivity {
                 }
             } catch (Exception e) {
                 String mensagem = String.format(getResources().getString(R.string.msg_erro_termo_pesquisa_), termoPesquisa);
-                UtilDialog.showDialogAlerta(this, mensagem);
+                UtilDialog.showDialogOK(this, mensagem);
                 e.printStackTrace();
             }
         }

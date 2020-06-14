@@ -6,7 +6,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog
 import net.fbvictorhugo.k.barreirasanitaria.R
 
-internal object UtilDialog {
+object UtilDialog {
 
     fun showToast(context: Context, mensagem: String) {
         Toast.makeText(context, mensagem, Toast.LENGTH_LONG).show()
@@ -17,7 +17,7 @@ internal object UtilDialog {
         mensagem: String,
         onPositiveClickListener: DialogInterface.OnClickListener
     ) {
-        val builder = AlertDialog.Builder(context!!)
+        val builder = AlertDialog.Builder(context)
         builder.setCancelable(false)
         builder.setTitle(R.string.titulo_atencao)
         builder.setMessage(mensagem)
@@ -37,13 +37,6 @@ internal object UtilDialog {
         builder.setMessage(mensagem)
         builder.setPositiveButton(R.string.texto_btn_ok, onOkClickListener)
         builder.create().show()
-    }
-
-    fun showDialogAlerta(context: Context, mensagem: String) {
-        showDialogOK(
-            context,
-            mensagem
-        )
     }
 
 }
