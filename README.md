@@ -1,5 +1,5 @@
 # Java x Kotlin
-Um estudo sobre as Linguagens Java e Kotlin para o desenvolvimento de aplicativos para Android
+Um estudo comparativo sobre as Linguagens Java e Kotlin para o desenvolvimento de aplicativos para Android
 
 
 ## Android Studio 
