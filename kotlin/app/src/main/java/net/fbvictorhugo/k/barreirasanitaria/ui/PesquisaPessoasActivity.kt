@@ -117,7 +117,7 @@ class PesquisaPessoasActivity : AppCompatActivity() {
     }
 
     private fun pesquisaPessoas() {
-        var termoPesquisa = "";
+        var termoPesquisa = ""
         try {
             termoPesquisa = _edtPesquisa?.text.toString()
             val pessoaDAO: PessoaDAO =

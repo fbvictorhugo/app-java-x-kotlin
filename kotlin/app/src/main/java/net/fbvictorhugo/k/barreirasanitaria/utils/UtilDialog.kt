@@ -1,8 +1,8 @@
-package net.fbvictorhugo.k.barreirasanitaria.utils;
+package net.fbvictorhugo.k.barreirasanitaria.utils
 
-import android.content.Context;
+import android.content.Context
 import android.content.DialogInterface
-import android.widget.Toast;
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import net.fbvictorhugo.k.barreirasanitaria.R
 

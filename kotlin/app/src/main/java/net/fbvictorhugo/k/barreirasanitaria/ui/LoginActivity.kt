@@ -16,11 +16,11 @@ import net.fbvictorhugo.k.barreirasanitaria.utils.UtilDialog
 
 class LoginActivity : AppCompatActivity() {
 
-    var _edtUsuario: TextInputEditText? = null
-    var _inputLayoutUsuario: TextInputLayout? = null
-    var _edtSenha: TextInputEditText? = null
-    var _inputLayoutSenha: TextInputLayout? = null
-    var _btnEntrar: AppCompatButton? = null
+    private var _edtUsuario: TextInputEditText? = null
+    private var _inputLayoutUsuario: TextInputLayout? = null
+    private var _edtSenha: TextInputEditText? = null
+    private var _inputLayoutSenha: TextInputLayout? = null
+    private var _btnEntrar: AppCompatButton? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

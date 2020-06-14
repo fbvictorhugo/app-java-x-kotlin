@@ -164,12 +164,12 @@ class DetalhesPessoaActivity : AppCompatActivity() {
         } else {
             val dataNascimento = formataDataNascimento(_edtDataNascimento?.text.toString())
             if (dataNascimento == null) {
-                isFormularioValido = false;
+                isFormularioValido = false
                 val msgErroDataNascimento = String.format(
                     resources.getString(R.string.msg_erro_data_invalida_),
                     FORMATO_DATA_NASCIMENTO
                 )
-                _inputlayoutDataNascimento?.error = msgErroDataNascimento;
+                _inputlayoutDataNascimento?.error = msgErroDataNascimento
             }
         }
 
