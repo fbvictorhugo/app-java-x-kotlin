@@ -4,20 +4,16 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatTextView
+import kotlinx.android.synthetic.main.activity_questionario.*
 import net.fbvictorhugo.k.barreirasanitaria.R
 import net.fbvictorhugo.k.barreirasanitaria.utils.Constantes
 
 class QuestionarioActivity : AppCompatActivity() {
 
-    private var _txtNomeBarreira: AppCompatTextView? = null
-    private var _txtNomePessoa: AppCompatTextView? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_questionario)
 
-        findViews()
         configuraActionBar(supportActionBar)
         configuraDadosTela()
         configuraClickListeners()
@@ -33,11 +29,6 @@ class QuestionarioActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun findViews() {
-        _txtNomeBarreira = findViewById(R.id.questionario_txt_nome_barreira)
-        _txtNomePessoa = findViewById(R.id.questionario_txt_nome_pessoa)
-    }
-
     private fun configuraActionBar(supportActionBar: ActionBar?) {
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
@@ -46,8 +37,8 @@ class QuestionarioActivity : AppCompatActivity() {
     }
 
     private fun configuraDadosTela() {
-        _txtNomeBarreira?.text = intent.getStringExtra(Constantes.EXTRA_NOME_BARREIRA)
-        _txtNomePessoa?.text = intent.getStringExtra(Constantes.EXTRA_NOME_PESSOA)
+        questionario_txt_nome_barreira.text = intent.getStringExtra(Constantes.EXTRA_NOME_BARREIRA)
+        questionario_txt_nome_pessoa.text = intent.getStringExtra(Constantes.EXTRA_NOME_PESSOA)
     }
 
     private fun configuraClickListeners() {

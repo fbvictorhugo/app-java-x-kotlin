@@ -8,12 +8,8 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatImageButton
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.textfield.TextInputEditText
+import kotlinx.android.synthetic.main.activity_pesquisa_pessoas.*
 import net.fbvictorhugo.k.barreirasanitaria.R
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.DAOFactory
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.PessoaDAO
@@ -27,20 +23,11 @@ import net.fbvictorhugo.k.barreirasanitaria.utils.UtilDialog
 
 class PesquisaPessoasActivity : AppCompatActivity() {
 
-    private var _recyclerView: RecyclerView? = null
-    private var _fabCadastroPessoa: FloatingActionButton? = null
     private var _pessoasRecyclerAdapter: PessoasRecyclerAdapter? = null
-    private var _txtNomeBarreira: AppCompatTextView? = null
-    private var _txtListaVazia: AppCompatTextView? = null
-    private var _edtPesquisa: TextInputEditText? = null
-    private var _btnPesquisar: AppCompatImageButton? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pesquisa_pessoas)
-
-        findViews()
-
         configuraActionBar(supportActionBar)
         configuraDadosTela()
 
@@ -52,8 +39,8 @@ class PesquisaPessoasActivity : AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK && requestCode == RESULT_CADASTRO) {
             val numeroDocumento = data?.getLongExtra(Constantes.EXTRA_NUMERO_DOCUMENTO, 0)
             if (numeroDocumento?.maiorQue(0)!!) {
-                _edtPesquisa?.setText(numeroDocumento.toString())
-                _btnPesquisar?.callOnClick()
+                pesquisa_pessoas_edt_pesquisar.setText(numeroDocumento.toString())
+                pesquisa_pessoas_btn_pesquisar.callOnClick()
             }
         }
         super.onActivityResult(requestCode, resultCode, data)
@@ -69,15 +56,6 @@ class PesquisaPessoasActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun findViews() {
-        _recyclerView = findViewById(R.id.pesquisa_pessoas_recyclerview)
-        _fabCadastroPessoa = findViewById(R.id.pesquisa_pessoas_fab)
-        _txtNomeBarreira = findViewById(R.id.pesquisa_pessoas_txt_nome_barreira)
-        _txtListaVazia = findViewById(R.id.pesquisa_pessoas_txt_lista_vazia)
-        _edtPesquisa = findViewById(R.id.pesquisa_pessoas_edt_pesquisar)
-        _btnPesquisar = findViewById(R.id.pesquisa_pessoas_btn_pesquisar)
-    }
-
     private fun configuraActionBar(supportActionBar: ActionBar?) {
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
@@ -86,13 +64,14 @@ class PesquisaPessoasActivity : AppCompatActivity() {
     }
 
     private fun configuraDadosTela() {
-        _txtNomeBarreira?.text = intent.getStringExtra(Constantes.EXTRA_NOME_BARREIRA)
+        pesquisa_pessoas_txt_nome_barreira.text =
+            intent.getStringExtra(Constantes.EXTRA_NOME_BARREIRA)
     }
 
     private fun configuraRecyclerView() {
-        _pessoasRecyclerAdapter = PessoasRecyclerAdapter()
+        _pessoasRecyclerAdapter = PessoasRecyclerAdapter(this)
 
-        _recyclerView?.apply {
+        pesquisa_pessoas_recyclerview.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
             adapter = _pessoasRecyclerAdapter
@@ -100,38 +79,38 @@ class PesquisaPessoasActivity : AppCompatActivity() {
     }
 
     private fun configuraClickListeners() {
-        _fabCadastroPessoa?.setOnClickListener { clickBotaoCadastroPessoa() }
+        pesquisa_pessoas_fab.setOnClickListener { clickBotaoCadastroPessoa() }
 
         _pessoasRecyclerAdapter?.onItemClickListener =
             object : PessoasRecyclerAdapter.OnItemClickListener {
-                override fun onClick(pessoa: Pessoa?) {
+                override fun onClick(pessoa: Pessoa) {
                     onClickItemLista(pessoa)
                 }
 
-                override fun onLongClick(pessoa: Pessoa?) {
+                override fun onLongClick(pessoa: Pessoa) {
                     onLongClickClickItemLista(pessoa)
                 }
             }
 
-        _btnPesquisar?.setOnClickListener { pesquisaPessoas() }
+        pesquisa_pessoas_btn_pesquisar.setOnClickListener { pesquisaPessoas() }
     }
 
     private fun pesquisaPessoas() {
         var termoPesquisa = ""
         try {
-            termoPesquisa = _edtPesquisa?.text.toString()
+            termoPesquisa = pesquisa_pessoas_edt_pesquisar.text.toString()
             val pessoaDAO: PessoaDAO =
                 DAOFactory.getDataSource(TabelasDataBase.PESSOA) as PessoaDAO
             if (termoPesquisa.isEmpty()) {
                 _pessoasRecyclerAdapter?.atualiza(ArrayList())
-                _txtListaVazia?.visibility = View.VISIBLE
+                pesquisa_pessoas_txt_lista_vazia.visibility = View.VISIBLE
             } else {
                 val documentoPesquisa = termoPesquisa.toLong()
                 val pessoas = pessoaDAO.pesquisar(documentoPesquisa)
                 _pessoasRecyclerAdapter?.atualiza(pessoas)
 
                 if (pessoas.size > 0) {
-                    _txtListaVazia?.visibility = View.GONE
+                    pesquisa_pessoas_txt_lista_vazia.visibility = View.GONE
                 }
             }
 
@@ -149,12 +128,15 @@ class PesquisaPessoasActivity : AppCompatActivity() {
         val intent = Intent(this, DetalhesPessoaActivity::class.java)
             .apply {
                 putExtra(Constantes.EXTRA_MODO_CADASTRO, true)
-                putExtra(Constantes.EXTRA_NUMERO_DOCUMENTO, _edtPesquisa?.text.toString())
+                putExtra(
+                    Constantes.EXTRA_NUMERO_DOCUMENTO,
+                    pesquisa_pessoas_edt_pesquisar.text.toString()
+                )
             }
         startActivityForResult(intent, RESULT_CADASTRO)
     }
 
-    private fun onClickItemLista(pessoa: Pessoa?) {
+    private fun onClickItemLista(pessoa: Pessoa) {
         val intent = Intent(this, QuestionarioActivity::class.java)
             .apply {
                 putExtra(
@@ -165,16 +147,16 @@ class PesquisaPessoasActivity : AppCompatActivity() {
                     Constantes.EXTRA_NOME_BARREIRA,
                     intent.getStringExtra(Constantes.EXTRA_NOME_BARREIRA)
                 )
-                putExtra(Constantes.EXTRA_ID_PESSOA, pessoa?.id)
-                putExtra(Constantes.EXTRA_NOME_PESSOA, pessoa?.nome)
+                putExtra(Constantes.EXTRA_ID_PESSOA, pessoa.id)
+                putExtra(Constantes.EXTRA_NOME_PESSOA, pessoa.nome)
             }
         startActivity(intent)
     }
 
-    private fun onLongClickClickItemLista(pessoa: Pessoa?) {
+    private fun onLongClickClickItemLista(pessoa: Pessoa) {
         val messagem = String.format(
             resources.getString(R.string.msg_deseja_editar_informacoes_),
-            pessoa?.nome
+            pessoa.nome
         )
 
         UtilDialog.showDialogSimNao(this, messagem,

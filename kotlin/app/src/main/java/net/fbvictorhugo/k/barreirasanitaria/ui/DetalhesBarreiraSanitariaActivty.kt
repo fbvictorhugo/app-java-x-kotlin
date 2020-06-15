@@ -5,9 +5,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatButton
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
+import kotlinx.android.synthetic.main.activity_detalhes_barreira_sanitaria.*
 import net.fbvictorhugo.k.barreirasanitaria.R
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.BarreiraSanitariaDAO
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.DAOFactory
@@ -19,24 +17,12 @@ import net.fbvictorhugo.k.barreirasanitaria.utils.UtilDialog
 class DetalhesBarreiraSanitariaActivty : AppCompatActivity() {
 
     private var _modoCadastro = false
-    private var _edtNome: TextInputEditText? = null
-    private var _edtDescricao: TextInputEditText? = null
-    private var _edtEndereco: TextInputEditText? = null
-    private var _edtBairro: TextInputEditText? = null
-    private var _edtCidade: TextInputEditText? = null
-    private var _edtEstado: TextInputEditText? = null
-    private var _btnSalvar: AppCompatButton? = null
-
-    private var _inputlayoutNome: TextInputLayout? = null
-    private var _inputlayoutCidade: TextInputLayout? = null
-    private var _inputlayoutEstado: TextInputLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalhes_barreira_sanitaria)
         _modoCadastro = intent.getBooleanExtra(Constantes.EXTRA_MODO_CADASTRO, true)
 
-        findViews()
         configuraActionBar(supportActionBar)
         configuraClickListeners()
     }
@@ -51,20 +37,6 @@ class DetalhesBarreiraSanitariaActivty : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun findViews() {
-        _edtNome = findViewById(R.id.barreira_edt_nome)
-        _edtDescricao = findViewById(R.id.barreira_edt_descricao)
-        _edtEndereco = findViewById(R.id.barreira_edt_endereco)
-        _edtBairro = findViewById(R.id.barreira_edt_bairro)
-        _edtCidade = findViewById(R.id.barreira_edt_cidade)
-        _edtEstado = findViewById(R.id.barreira_edt_estado)
-        _btnSalvar = findViewById(R.id.barreira_btn_salvar)
-
-        _inputlayoutNome = findViewById(R.id.barreira_inputlayout_nome)
-        _inputlayoutCidade = findViewById(R.id.barreira_inputlayout_cidade)
-        _inputlayoutEstado = findViewById(R.id.barreira_inputlayout_estado)
-    }
-
     private fun configuraActionBar(supportActionBar: ActionBar?) {
         if (_modoCadastro) {
             supportActionBar?.title =
@@ -77,7 +49,7 @@ class DetalhesBarreiraSanitariaActivty : AppCompatActivity() {
     }
 
     private fun configuraClickListeners() {
-        _btnSalvar?.setOnClickListener { onClickBtnSalvar() }
+        barreira_btn_salvar.setOnClickListener { onClickBtnSalvar() }
     }
 
     private fun onClickBtnSalvar() {
@@ -88,7 +60,7 @@ class DetalhesBarreiraSanitariaActivty : AppCompatActivity() {
                 val barreiraSanitariaDAO =
                     DAOFactory.getDataSource(TabelasDataBase.BARREIRA_SANITARIA) as BarreiraSanitariaDAO
 
-                val mensagem : String
+                val mensagem: String
 
                 if (_modoCadastro) {
                     barreiraSanitariaDAO.inserir(barreiraSanitaria)
@@ -110,40 +82,42 @@ class DetalhesBarreiraSanitariaActivty : AppCompatActivity() {
     }
 
     private fun verificaFormularioValido(): Boolean {
-        _inputlayoutNome?.error = ""
-        _inputlayoutCidade?.error = ""
-        _inputlayoutEstado?.error = ""
+        barreira_inputlayout_nome.error = ""
+        barreira_inputlayout_cidade.error = ""
+        barreira_inputlayout_estado.error = ""
         var isFormularioValido = true
 
-        if (_edtNome?.text.toString().isEmpty()) {
+        if (barreira_edt_nome.text.toString().isEmpty()) {
             isFormularioValido = false
-            _inputlayoutNome?.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
+            barreira_inputlayout_nome.error =
+                resources.getString(R.string.msg_erro_campo_obrigatorio)
         }
 
-        if (_edtCidade?.text.toString().isEmpty()) {
+        if (barreira_edt_cidade.text.toString().isEmpty()) {
             isFormularioValido = false
-            _inputlayoutCidade?.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
+            barreira_inputlayout_cidade.error =
+                resources.getString(R.string.msg_erro_campo_obrigatorio)
         }
 
-        if (_edtEstado?.text.toString().isEmpty()) {
+        if (barreira_edt_estado.text.toString().isEmpty()) {
             isFormularioValido = false
-            _inputlayoutEstado?.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
+            barreira_inputlayout_estado.error =
+                resources.getString(R.string.msg_erro_campo_obrigatorio)
         }
 
         return isFormularioValido
     }
 
     private fun populaModelo(): BarreiraSanitaria {
-        val barreiraSanitaria = BarreiraSanitaria(
-            _edtNome?.text.toString(),
-            _edtCidade?.text.toString(),
-            _edtEstado?.text.toString()
+        return BarreiraSanitaria(
+            barreira_edt_nome.text.toString(),
+            barreira_edt_cidade.text.toString(),
+            barreira_edt_estado.text.toString()
         ).apply {
-            descricao = _edtDescricao?.text.toString()
-            endereco = _edtEndereco?.text.toString()
-            bairro = _edtBairro?.text.toString()
+            descricao = barreira_edt_descricao.text.toString()
+            endereco = barreira_edt_endereco.text.toString()
+            bairro = barreira_edt_bairro.text.toString()
         }
-        return barreiraSanitaria
     }
 
 }

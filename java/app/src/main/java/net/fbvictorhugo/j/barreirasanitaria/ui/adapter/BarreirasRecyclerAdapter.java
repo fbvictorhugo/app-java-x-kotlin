@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class BarreirasRecyclerAdapter extends RecyclerView.Adapter<BarreirasRecyclerAdapter.MyViewHolder> {
 
     private List<BarreiraSanitaria> mDataset;
-    private OnItemClickListener onItemClickListener;
+    private OnItemClickListener mOnItemClickListener;
 
     public BarreirasRecyclerAdapter() {
     }
@@ -31,13 +31,13 @@ public class BarreirasRecyclerAdapter extends RecyclerView.Adapter<BarreirasRecy
         holder.textViewPrincipal.setText(mDataset.get(position).getNome());
         holder.textViewSecundario.setText(getTextoExibicaoComplemento(mDataset.get(position)));
         holder.itemView.setOnClickListener(view -> {
-            if (onItemClickListener != null) {
-                onItemClickListener.onClick(mDataset.get(position));
+            if (mOnItemClickListener != null) {
+                mOnItemClickListener.onClick(mDataset.get(position));
             }
         });
         holder.itemView.setOnLongClickListener(view -> {
-            if (onItemClickListener != null) {
-                onItemClickListener.onLongClick(mDataset.get(position));
+            if (mOnItemClickListener != null) {
+                mOnItemClickListener.onLongClick(mDataset.get(position));
             }
             return true;
         });
@@ -67,7 +67,7 @@ public class BarreirasRecyclerAdapter extends RecyclerView.Adapter<BarreirasRecy
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
-        onItemClickListener = listener;
+        mOnItemClickListener = listener;
     }
 
     private String getTextoExibicaoComplemento(BarreiraSanitaria barreiraSanitaria) {

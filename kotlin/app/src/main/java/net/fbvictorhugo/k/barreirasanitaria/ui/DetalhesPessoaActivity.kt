@@ -7,9 +7,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatButton
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
+import kotlinx.android.synthetic.main.activity_detalhes_pessoa.*
 import net.fbvictorhugo.k.barreirasanitaria.R
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.DAOFactory
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.PessoaDAO
@@ -25,28 +23,12 @@ class DetalhesPessoaActivity : AppCompatActivity() {
 
     private var _modoCadastro = false
 
-    private var _edtNome: TextInputEditText? = null
-    private var _edtDocumento: TextInputEditText? = null
-    private var _edtDataNascimento: TextInputEditText? = null
-    private var _edtTelefone: TextInputEditText? = null
-    private var _edtBairro: TextInputEditText? = null
-    private var _edtCidade: TextInputEditText? = null
-    private var _edtEstado: TextInputEditText? = null
-    private var _inputlayoutNome: TextInputLayout? = null
-    private var _inputlayoutDocumento: TextInputLayout? = null
-    private var _inputlayoutDataNascimento: TextInputLayout? = null
-    private var _inputlayoutTelefone: TextInputLayout? = null
-    private var _inputlayoutCidade: TextInputLayout? = null
-    private var _inputlayoutEstado: TextInputLayout? = null
-    private var _btnSalvar: AppCompatButton? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalhes_pessoa)
 
         _modoCadastro = intent.getBooleanExtra(Constantes.EXTRA_MODO_CADASTRO, true)
 
-        findViews()
         configuraActionBar(supportActionBar)
         configuraDadosTela()
         configuraClickListeners()
@@ -62,23 +44,6 @@ class DetalhesPessoaActivity : AppCompatActivity() {
         }
     }
 
-    private fun findViews() {
-        _edtNome = findViewById(R.id.pessoa_edt_nome)
-        _edtDocumento = findViewById(R.id.pessoa_edt_documento)
-        _edtDataNascimento = findViewById(R.id.pessoa_edt_data_nascimento)
-        _edtTelefone = findViewById(R.id.pessoa_edt_telefone)
-        _edtBairro = findViewById(R.id.pessoa_edt_bairro)
-        _edtCidade = findViewById(R.id.pessoa_edt_cidade)
-        _edtEstado = findViewById(R.id.pessoa_edt_estado)
-        _inputlayoutNome = findViewById(R.id.pessoa_inputlayout_nome)
-        _inputlayoutDocumento = findViewById(R.id.pessoa_inputlayout_documento)
-        _inputlayoutDataNascimento = findViewById(R.id.pessoa_inputlayout_data_nascimento)
-        _inputlayoutTelefone = findViewById(R.id.pessoa_inputlayout_telefone)
-        _inputlayoutCidade = findViewById(R.id.pessoa_inputlayout_cidade)
-        _inputlayoutEstado = findViewById(R.id.pessoa_inputlayout_estado)
-        _btnSalvar = findViewById(R.id.pessoa_btn_salvar)
-    }
-
     private fun configuraActionBar(supportActionBar: ActionBar?) {
         if (_modoCadastro) {
             supportActionBar?.title =
@@ -92,12 +57,12 @@ class DetalhesPessoaActivity : AppCompatActivity() {
 
     private fun configuraDadosTela() {
         if (_modoCadastro) {
-            _edtDocumento?.setText(intent.getStringExtra(Constantes.EXTRA_NUMERO_DOCUMENTO))
+            pessoa_edt_documento.setText(intent.getStringExtra(Constantes.EXTRA_NUMERO_DOCUMENTO))
         }
     }
 
     private fun configuraClickListeners() {
-        _btnSalvar?.setOnClickListener { onClickBtnSalvar() }
+        pessoa_btn_salvar.setOnClickListener { onClickBtnSalvar() }
     }
 
     private fun onClickBtnSalvar() {
@@ -138,54 +103,58 @@ class DetalhesPessoaActivity : AppCompatActivity() {
     }
 
     private fun verificaFormularioValido(): Boolean {
-        _inputlayoutNome?.error = ""
-        _inputlayoutDocumento?.error = ""
-        _inputlayoutDataNascimento?.error = ""
-        _inputlayoutTelefone?.error = ""
-        _inputlayoutCidade?.error = ""
-        _inputlayoutEstado?.error = ""
+        pessoa_inputlayout_nome.error = ""
+        pessoa_inputlayout_documento.error = ""
+        pessoa_inputlayout_data_nascimento.error = ""
+        pessoa_inputlayout_telefone.error = ""
+        pessoa_inputlayout_cidade.error = ""
+        pessoa_inputlayout_estado.error = ""
 
         var isFormularioValido = true
 
-        if (_edtNome?.text.toString().isEmpty()) {
+        if (pessoa_edt_nome.text.toString().isEmpty()) {
             isFormularioValido = false
-            _inputlayoutNome?.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
+            pessoa_inputlayout_nome.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
         }
 
-        if (_edtDocumento?.text.toString().isEmpty()) {
+        if (pessoa_edt_documento.text.toString().isEmpty()) {
             isFormularioValido = false
-            _inputlayoutDocumento?.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
+            pessoa_inputlayout_documento.error =
+                resources.getString(R.string.msg_erro_campo_obrigatorio)
         }
 
-        if (_edtDataNascimento?.text.toString().isEmpty()) {
+        if (pessoa_edt_data_nascimento.text.toString().isEmpty()) {
             isFormularioValido = false
-            _inputlayoutDataNascimento?.error =
+            pessoa_inputlayout_data_nascimento.error =
                 resources.getString(R.string.msg_erro_campo_obrigatorio)
         } else {
-            val dataNascimento = formataDataNascimento(_edtDataNascimento?.text.toString())
+            val dataNascimento = formataDataNascimento(pessoa_edt_data_nascimento.text.toString())
             if (dataNascimento == null) {
                 isFormularioValido = false
                 val msgErroDataNascimento = String.format(
                     resources.getString(R.string.msg_erro_data_invalida_),
                     FORMATO_DATA_NASCIMENTO
                 )
-                _inputlayoutDataNascimento?.error = msgErroDataNascimento
+                pessoa_inputlayout_data_nascimento.error = msgErroDataNascimento
             }
         }
 
-        if (_edtTelefone?.text.toString().isEmpty()) {
+        if (pessoa_edt_telefone.text.toString().isEmpty()) {
             isFormularioValido = false
-            _inputlayoutTelefone?.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
+            pessoa_inputlayout_telefone.error =
+                resources.getString(R.string.msg_erro_campo_obrigatorio)
         }
 
-        if (_edtCidade?.text.toString().isEmpty()) {
+        if (pessoa_edt_cidade.text.toString().isEmpty()) {
             isFormularioValido = false
-            _inputlayoutCidade?.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
+            pessoa_inputlayout_cidade.error =
+                resources.getString(R.string.msg_erro_campo_obrigatorio)
         }
 
-        if (_edtEstado?.text.toString().isEmpty()) {
+        if (pessoa_edt_estado.text.toString().isEmpty()) {
             isFormularioValido = false
-            _inputlayoutEstado?.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
+            pessoa_inputlayout_estado.error =
+                resources.getString(R.string.msg_erro_campo_obrigatorio)
         }
 
         return isFormularioValido
@@ -193,14 +162,14 @@ class DetalhesPessoaActivity : AppCompatActivity() {
 
     private fun populaModelo(): Pessoa {
         return Pessoa(
-            _edtNome?.text.toString(),
-            formataNumeroDocumento(_edtDocumento?.text.toString())
+            pessoa_edt_nome.text.toString(),
+            formataNumeroDocumento(pessoa_edt_documento.text.toString())
         ).apply {
-            dataNascimento = formataDataNascimento(_edtDataNascimento?.text.toString())
-            telefone = formataNumeroTelefone(_edtTelefone?.text.toString())
-            bairro = _edtBairro?.text.toString()
-            cidade = _edtCidade?.text.toString()
-            estado = _edtEstado?.text.toString()
+            dataNascimento = formataDataNascimento(pessoa_edt_data_nascimento.text.toString())
+            telefone = formataNumeroTelefone(pessoa_edt_telefone.text.toString())
+            bairro = pessoa_edt_bairro.text.toString()
+            cidade = pessoa_edt_cidade.text.toString()
+            estado = pessoa_edt_estado.text.toString()
         }
     }
 

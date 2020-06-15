@@ -15,16 +15,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class PessoasRecyclerAdapter extends RecyclerView.Adapter<PessoasRecyclerAdapter.MyViewHolder> {
 
+    private final Context mContext;
     private List<Pessoa> mDataset;
-    private OnItemClickListener onItemClickListener;
-    private Context mContext;
+    private OnItemClickListener mOnItemClickListener;
 
-    public PessoasRecyclerAdapter() {
+    public PessoasRecyclerAdapter(final Context context) {
+        mContext = context;
     }
 
     @Override
     public PessoasRecyclerAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        mContext = parent.getContext();
         View view = LayoutInflater.from(mContext).inflate(R.layout.adapter_lista_padrao, parent, false);
         return new MyViewHolder(view);
     }
@@ -35,13 +35,13 @@ public class PessoasRecyclerAdapter extends RecyclerView.Adapter<PessoasRecycler
         String textoCpf = String.format(mContext.getResources().getString(R.string.texto_cpf_), String.valueOf(mDataset.get(position).getNumeroDocumento()));
         holder.textViewSecundario.setText(textoCpf);
         holder.itemView.setOnClickListener(view -> {
-            if (onItemClickListener != null) {
-                onItemClickListener.onClick(mDataset.get(position));
+            if (mOnItemClickListener != null) {
+                mOnItemClickListener.onClick(mDataset.get(position));
             }
         });
         holder.itemView.setOnLongClickListener(view -> {
-            if (onItemClickListener != null) {
-                onItemClickListener.onLongClick(mDataset.get(position));
+            if (mOnItemClickListener != null) {
+                mOnItemClickListener.onLongClick(mDataset.get(position));
             }
             return true;
         });
@@ -78,7 +78,7 @@ public class PessoasRecyclerAdapter extends RecyclerView.Adapter<PessoasRecycler
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
-        onItemClickListener = listener;
+        mOnItemClickListener = listener;
     }
 
     public interface OnItemClickListener {

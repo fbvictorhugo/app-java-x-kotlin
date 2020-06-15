@@ -3,9 +3,7 @@ package net.fbvictorhugo.k.barreirasanitaria.ui
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatButton
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
+import kotlinx.android.synthetic.main.activity_login.*
 import net.fbvictorhugo.k.barreirasanitaria.R
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.DAOFactory
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.TabelasDataBase
@@ -16,43 +14,29 @@ import net.fbvictorhugo.k.barreirasanitaria.utils.UtilDialog
 
 class LoginActivity : AppCompatActivity() {
 
-    private var _edtUsuario: TextInputEditText? = null
-    private var _inputLayoutUsuario: TextInputLayout? = null
-    private var _edtSenha: TextInputEditText? = null
-    private var _inputLayoutSenha: TextInputLayout? = null
-    private var _btnEntrar: AppCompatButton? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        findViews()
         configuraClickListeners()
     }
 
-    private fun findViews() {
-        _edtUsuario = findViewById(R.id.login_edt_usuario)
-        _inputLayoutUsuario = findViewById(R.id.login_inputlayout_usuario)
-        _edtSenha = findViewById(R.id.login_edt_senha)
-        _inputLayoutSenha = findViewById(R.id.login_inputlayout_senha)
-        _btnEntrar = findViewById(R.id.login_btn_entrar)
-    }
-
     private fun configuraClickListeners() {
-        _btnEntrar?.setOnClickListener { clickBotaoEntrar() }
+        login_btn_entrar.setOnClickListener { clickBotaoEntrar() }
     }
 
     private fun clickBotaoEntrar() {
-        _inputLayoutUsuario?.error = ""
-        _inputLayoutSenha?.error = ""
+        login_inputlayout_usuario.error = ""
+        login_inputlayout_usuario.error = ""
 
-        val login = _edtUsuario?.text.toString()
-        val senha = _edtSenha?.text.toString()
+        val login = login_edt_usuario.text.toString()
+        val senha = login_edt_senha.text.toString()
 
         if (login.trim().isEmpty()) {
-            _inputLayoutUsuario?.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
+            login_inputlayout_usuario.error =
+                resources.getString(R.string.msg_erro_campo_obrigatorio)
         } else if (senha.trim().isEmpty()) {
-            _inputLayoutSenha?.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
+            login_inputlayout_senha.error = resources.getString(R.string.msg_erro_campo_obrigatorio)
         } else {
 
             val usuarioDAO: UsuarioDAO =
