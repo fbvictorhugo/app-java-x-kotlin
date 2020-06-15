@@ -7,6 +7,17 @@ import net.fbvictorhugo.j.barreirasanitaria.data.dao.dummy.DummyUsuarioDAO;
 
 public class DAOFactory {
 
+    private static DAOFactory sInstance;
+
+    private DAOFactory() {
+    }
+
+    public static DAOFactory getInstance() {
+        if (sInstance == null) {
+            sInstance = new DAOFactory();
+        }
+        return sInstance;
+    }
 
     public Object getDataSource(final TabelasDataBase tabela) {
         switch (tabela) {
@@ -22,17 +33,5 @@ public class DAOFactory {
             default:
                 return null;
         }
-    }
-
-    private static DAOFactory sInstance;
-
-    private DAOFactory() {
-    }
-
-    public static DAOFactory getInstance() {
-        if (sInstance == null) {
-            sInstance = new DAOFactory();
-        }
-        return sInstance;
     }
 }
