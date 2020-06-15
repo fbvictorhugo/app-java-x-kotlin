@@ -9,6 +9,7 @@ import net.fbvictorhugo.k.barreirasanitaria.data.dao.DAOFactory
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.TabelasDataBase
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.UsuarioDAO
 import net.fbvictorhugo.k.barreirasanitaria.data.model.Usuario
+import net.fbvictorhugo.k.barreirasanitaria.extension.maiorQue
 import net.fbvictorhugo.k.barreirasanitaria.utils.Constantes
 import net.fbvictorhugo.k.barreirasanitaria.utils.UtilDialog
 
@@ -61,6 +62,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun usuarioValido(usuario: Usuario?): Boolean {
-        return usuario != null && usuario.id > 0
+        return usuario?.id.maiorQue(0)
     }
 }

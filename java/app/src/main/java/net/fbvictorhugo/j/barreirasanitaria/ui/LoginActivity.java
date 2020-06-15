@@ -19,11 +19,11 @@ import androidx.appcompat.widget.AppCompatButton;
 
 public class LoginActivity extends AppCompatActivity {
 
-    TextInputEditText mEdtUsuario;
-    TextInputLayout mInputLayoutUsuario;
-    TextInputEditText mEdtSenha;
-    TextInputLayout mInputLayoutSenha;
-    AppCompatButton mBtnEntrar;
+    private TextInputEditText mEdtUsuario;
+    private TextInputLayout mInputLayoutUsuario;
+    private TextInputEditText mEdtSenha;
+    private TextInputLayout mInputLayoutSenha;
+    private AppCompatButton mBtnEntrar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -100,7 +100,7 @@ public class PesquisaPessoasActivity extends AppCompatActivity {
             mRecyclerView.setHasFixedSize(true);
             LinearLayoutManager layoutManager = new LinearLayoutManager(this);
             mRecyclerView.setLayoutManager(layoutManager);
-            mPessoasRecyclerAdapter = new PessoasRecyclerAdapter();
+            mPessoasRecyclerAdapter = new PessoasRecyclerAdapter(this);
             mRecyclerView.setAdapter(mPessoasRecyclerAdapter);
         }
     }
