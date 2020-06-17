@@ -28,4 +28,21 @@ object DummyBarreiraSanitariaDAO : BarreiraSanitariaDAO {
         TODO("Not yet implemented")
     }
 
+    override fun procurarBarreira(barreiraId: Long): BarreiraSanitaria? {
+        return _dummyList
+            .find {
+                it.id == barreiraId
+            }
+    }
+
+    override fun procurarNomeBarreira(barreiraId: Long): String {
+        return procurarBarreira(barreiraId)?.nome.toString()
+    }
+
+    init {
+        _dummyList.add((BarreiraSanitaria("Alpha", "Cataguases", "MG", 1)))
+        _dummyList.add((BarreiraSanitaria("Bravo", "Cataguases", "MG", 2)))
+        _dummyList.add((BarreiraSanitaria("Charlie", "Cataguases", "MG", 3)))
+    }
+
 }

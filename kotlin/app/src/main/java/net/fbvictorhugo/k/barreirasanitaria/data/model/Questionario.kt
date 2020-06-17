@@ -7,13 +7,14 @@ data class Questionario(
     val barreiraId: Long = 0,
     val pessoaId: Long = 0
 ) {
-    val viagemExterior = false
-    val sintomaFebre = false
-    val sintomaCoriza = false
-    val sintomaCancaco = false
-    val sintomaPerdaPaladar = false
-    val sintomaFaltaAr = false
-    val sintomaContatoComEnfermos = false
-    val observacoes: String = ""
-    val dataResposta: Date = Date()
+    var viagemExterior = false
+    var sintomaFebre = false
+    var sintomaCoriza = false
+    var sintomaTosse = false
+    var sintomaCancaco = false
+    var sintomaPerdaPaladar = false
+    var sintomaFaltaAr = false
+    var sintomaContatoComEnfermos = false
+    var observacoes: String = ""
+    var dataResposta: Date = Date()
 }

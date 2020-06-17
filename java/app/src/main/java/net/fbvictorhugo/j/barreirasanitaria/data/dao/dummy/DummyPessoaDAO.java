@@ -20,6 +20,7 @@ public class DummyPessoaDAO implements PessoaDAO {
 
     private DummyPessoaDAO() {
         mDummyList = new ArrayList<>();
+        buildFakeLista();
     }
 
     private long getProximoIdDisponivel() {
@@ -50,6 +51,7 @@ public class DummyPessoaDAO implements PessoaDAO {
     }
 
     public List<Pessoa> pesquisar(long numeroDocumento) {
+        //Para usar API streams requer minSdkVersion = 24
         List<Pessoa> resultado = new ArrayList<>();
         for (Pessoa pessoa : mDummyList) {
             if (pessoa.getNumeroDocumento() == numeroDocumento) {
@@ -58,6 +60,27 @@ public class DummyPessoaDAO implements PessoaDAO {
             }
         }
         return resultado;
+    }
+
+    private void buildFakeLista() {
+        Pessoa p = new Pessoa();
+        p.setId(1);
+        p.setNumeroDocumento(1);
+        p.setNome("Vitor");
+        mDummyList.add(p);
+
+        p = new Pessoa();
+        p.setId(2);
+        p.setNumeroDocumento(2);
+        p.setNome("Hugo");
+        mDummyList.add(p);
+
+        p = new Pessoa();
+        p.setId(3);
+        p.setNumeroDocumento(3);
+        p.setNome("Fabio");
+        mDummyList.add(p);
+
     }
 
 }

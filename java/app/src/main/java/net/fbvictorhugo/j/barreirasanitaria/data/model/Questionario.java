@@ -10,6 +10,7 @@ public class Questionario {
     private boolean viagemExterior;
     private boolean sintomaFebre;
     private boolean sintomaCoriza;
+    private boolean sintomaTosse;
     private boolean sintomaCancaco;
     private boolean sintomaPerdaPaladar;
     private boolean sintomaFaltaAr;
@@ -65,6 +66,14 @@ public class Questionario {
         this.sintomaCoriza = sintomaCoriza;
     }
 
+    public boolean isSintomaTosse() {
+        return sintomaTosse;
+    }
+
+    public void setSintomaTosse(boolean sintomaTosse) {
+        this.sintomaTosse = sintomaTosse;
+    }
+
     public boolean isSintomaCancaco() {
         return sintomaCancaco;
     }
@@ -103,5 +112,13 @@ public class Questionario {
 
     public void setObservacoes(String observacoes) {
         this.observacoes = observacoes;
+    }
+
+    public Date getDataResposta() {
+        return dataResposta;
+    }
+
+    public void setDataResposta(Date dataResposta) {
+        this.dataResposta = dataResposta;
     }
 }

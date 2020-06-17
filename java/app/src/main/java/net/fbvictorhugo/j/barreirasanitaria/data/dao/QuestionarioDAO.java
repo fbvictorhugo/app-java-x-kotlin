@@ -10,4 +10,6 @@ public interface QuestionarioDAO {
 
     void inserir(Questionario questionario) throws Exception;
 
+    Questionario procurarUltimoQuestionarioRespondidoPorPessoa(long idPessoa);
+
 }

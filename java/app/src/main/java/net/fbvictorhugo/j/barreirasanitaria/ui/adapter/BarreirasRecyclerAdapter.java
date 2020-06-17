@@ -72,7 +72,7 @@ public class BarreirasRecyclerAdapter extends RecyclerView.Adapter<BarreirasRecy
 
     private String getTextoExibicaoComplemento(BarreiraSanitaria barreiraSanitaria) {
         if (barreiraSanitaria != null) {
-            if (barreiraSanitaria.getDescricao().isEmpty()) {
+            if (barreiraSanitaria.getDescricao() == null || barreiraSanitaria.getDescricao().isEmpty()) {
                 return
                         barreiraSanitaria.getCidade() + " / " + barreiraSanitaria.getEstado();
             } else {

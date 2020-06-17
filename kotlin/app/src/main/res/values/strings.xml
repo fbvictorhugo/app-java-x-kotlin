@@ -58,5 +58,8 @@
     <string name="msg_usuario_nao_encontrado">Usuário não encontrado!</string>
     <string name="msg_erro_data_invalida_">Data inválida. Tente no formato %s.</string>
     <string name="msg_erro_termo_pesquisa_">Erro ao pesquisar o termo: \'%s\'.</string>
+    <string name="titulo_historico">Histórico</string>
+    <string name="msg_historico_passagem_">Histórico de %s</string>
+    <string name="txt_btn_ver">Ver</string>
 
 </resources>

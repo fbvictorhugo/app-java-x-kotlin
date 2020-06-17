@@ -13,4 +13,6 @@ object Constantes {
     const val FORMATO_DATA_NASCIMENTO = "dd/MM/yyyy"
     const val RESULT_CADASTRO = 999
 
+    const val FORMATO_DATA_HISTORICO = "dd/mm/YYYY hh:MM"
+
 }

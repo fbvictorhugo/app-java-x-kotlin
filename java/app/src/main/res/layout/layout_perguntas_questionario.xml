@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/questionario_check_pergunta_viagem_exterior"
+        style="@style/checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/perguta_viagem_exterior" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/questionario_check_pergunta_febre"
+        style="@style/checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/perguta_sintoma_febre" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/questionario_check_pergunta_coriza"
+        style="@style/checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/perguta_sintoma_coriza" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/questionario_check_pergunta_tosse"
+        style="@style/checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/perguta_sintoma_tosse" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/questionario_check_pergunta_cancaco"
+        style="@style/checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/perguta_sintoma_cancaco" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/questionario_check_pergunta_paladar"
+        style="@style/checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/perguta_sintoma_perda_paladar" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/questionario_check_pergunta_falta_ar"
+        style="@style/checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/perguta_sintoma_falta_ar" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/questionario_check_contato_com_enfermos"
+        style="@style/checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/perguta_sintoma_contato_com_enfermos" />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

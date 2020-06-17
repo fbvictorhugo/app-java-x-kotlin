@@ -39,4 +39,10 @@ object DummyPessoaDAO : PessoaDAO {
         return resultado
     }
 
+    init {
+        _dummyList.add(Pessoa("Vitor", 1, 1))
+        _dummyList.add(Pessoa("Hugo", 2, 2))
+        _dummyList.add(Pessoa("Fabio", 3, 3))
+    }
+
 }

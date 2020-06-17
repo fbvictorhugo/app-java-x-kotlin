@@ -12,4 +12,8 @@ interface BarreiraSanitariaDAO {
     @Throws(Exception::class)
     fun atualizar(barreiraSanitaria: BarreiraSanitaria)
 
+    fun procurarBarreira(barreiraId: Long): BarreiraSanitaria?
+
+    fun procurarNomeBarreira(barreiraId: Long): String
+
 }

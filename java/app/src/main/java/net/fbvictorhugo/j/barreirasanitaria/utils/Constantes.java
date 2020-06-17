@@ -12,4 +12,7 @@ public class Constantes {
 
     public static final String FORMATO_DATA_NASCIMENTO = "dd/MM/yyyy";
     public static final int RESULT_CADASTRO = 999;
+
+    public static final String FORMATO_DATA_HISTORICO = "dd/mm/YYYY hh:MM";
+
 }

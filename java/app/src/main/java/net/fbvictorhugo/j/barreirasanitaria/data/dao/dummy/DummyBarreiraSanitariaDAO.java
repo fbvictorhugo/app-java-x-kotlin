@@ -20,6 +20,15 @@ public class DummyBarreiraSanitariaDAO implements BarreiraSanitariaDAO {
 
     private DummyBarreiraSanitariaDAO() {
         mDummyList = new ArrayList<>();
+        buildLisaFake();
+    }
+
+    private long getProximoIdDisponivel() {
+        if (mDummyList.size() == 0) {
+            return 1;
+        } else {
+            return mDummyList.get(mDummyList.size() - 1).getId() + 1;
+        }
     }
 
     @Override
@@ -30,7 +39,7 @@ public class DummyBarreiraSanitariaDAO implements BarreiraSanitariaDAO {
     @Override
     public void inserir(BarreiraSanitaria barreiraSanitaria) throws Exception {
         if (barreiraSanitaria == null) {
-            throw new NullPointerException("Modelo BarreiraSanitaria está nulo.");
+            throw new NullPointerException("Modelo Barreira Sanitaria está nulo.");
         }
 
         barreiraSanitaria.setId(getProximoIdDisponivel());
@@ -42,12 +51,48 @@ public class DummyBarreiraSanitariaDAO implements BarreiraSanitariaDAO {
         //TODO("Not yet implemented")
     }
 
-    private long getProximoIdDisponivel() {
-        if (mDummyList.size() == 0) {
-            return 1;
-        } else {
-            return mDummyList.get(mDummyList.size() - 1).getId() + 1;
+    @Override
+    public BarreiraSanitaria procurarBarreira(long barreirId) {
+        //Para usar API streams requer minSdkVersion = 24
+        for (BarreiraSanitaria barreiraSanitaria : mDummyList) {
+            if (barreiraSanitaria.getId() == barreirId) {
+                return barreiraSanitaria;
+            }
         }
+        return null;
+    }
+
+    @Override
+    public String procurarNomeBarreira(long barreiraId) {
+        BarreiraSanitaria barreira = procurarBarreira(barreiraId);
+        if (barreira != null) {
+            return barreira.getNome();
+        } else {
+            return "";
+        }
+    }
+
+    void buildLisaFake() {
+        BarreiraSanitaria barreira = new BarreiraSanitaria();
+        barreira.setId(1);
+        barreira.setNome("Alpha");
+        barreira.setCidade("Cataguases");
+        barreira.setEstado("MG");
+        mDummyList.add(barreira);
+
+        barreira = new BarreiraSanitaria();
+        barreira.setId(2);
+        barreira.setNome("Bravo");
+        barreira.setCidade("Cataguases");
+        barreira.setEstado("MG");
+        mDummyList.add(barreira);
+
+        barreira = new BarreiraSanitaria();
+        barreira.setId(3);
+        barreira.setNome("Charlie");
+        barreira.setCidade("Cataguases");
+        barreira.setEstado("MG");
+        mDummyList.add(barreira);
     }
 
 }

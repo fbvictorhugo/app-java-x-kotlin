@@ -9,4 +9,6 @@ interface QuestionarioDAO {
     @Throws(Exception::class)
     fun inserir(questionario: Questionario)
 
+    fun procurarUltimoQuestionarioRespondidoPorPessoa(idPessoa: Long): Questionario?
+
 }

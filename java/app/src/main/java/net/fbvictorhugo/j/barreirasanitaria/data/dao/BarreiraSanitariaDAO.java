@@ -12,4 +12,8 @@ public interface BarreiraSanitariaDAO {
 
     void atualizar(BarreiraSanitaria barreiraSanitaria) throws Exception;
 
+    BarreiraSanitaria procurarBarreira(long barreirId);
+
+    String procurarNomeBarreira(long barreiraId);
+
 }
