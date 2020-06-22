@@ -12,7 +12,7 @@ public class Questionario {
     private boolean sintomaCoriza;
     private boolean sintomaTosse;
     private boolean sintomaCancaco;
-    private boolean sintomaPerdaPaladar;
+    private boolean sintomaDorGarganta;
     private boolean sintomaFaltaAr;
     private boolean sintomaContatoComEnfermos;
     private String observacoes;
