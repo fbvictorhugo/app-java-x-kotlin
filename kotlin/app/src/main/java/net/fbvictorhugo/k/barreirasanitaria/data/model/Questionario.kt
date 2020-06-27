@@ -12,7 +12,7 @@ data class Questionario(
     var sintomaCoriza = false
     var sintomaTosse = false
     var sintomaCancaco = false
-    var sintomaPerdaPaladar = false
+    var sintomaDorGarganta = false
     var sintomaFaltaAr = false
     var sintomaContatoComEnfermos = false
     var observacoes: String = ""

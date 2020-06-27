@@ -41,11 +41,11 @@
         android:text="@string/perguta_sintoma_cancaco" />
 
     <androidx.appcompat.widget.AppCompatCheckBox
-        android:id="@+id/questionario_check_pergunta_paladar"
+        android:id="@+id/questionario_check_dor_garganta"
         style="@style/checkbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/perguta_sintoma_perda_paladar" />
+        android:text="@string/perguta_sintoma_dor_garganta" />
 
     <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/questionario_check_pergunta_falta_ar"

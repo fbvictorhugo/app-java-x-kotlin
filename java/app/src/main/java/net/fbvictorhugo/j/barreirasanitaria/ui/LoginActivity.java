@@ -44,7 +44,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private void configuraClickListeners() {
         if (mBtnEntrar != null) {
-            mBtnEntrar.setOnClickListener(view -> clickBotaoEntrar());
+            mBtnEntrar.setOnClickListener(
+                    view -> clickBotaoEntrar()
+            );
         }
     }
 

@@ -82,12 +82,12 @@ public class Questionario {
         this.sintomaCancaco = sintomaCancaco;
     }
 
-    public boolean isSintomaPerdaPaladar() {
-        return sintomaPerdaPaladar;
+    public boolean isSintomaDorGarganta() {
+        return sintomaDorGarganta;
     }
 
-    public void setSintomaPerdaPaladar(boolean sintomaPerdaPaladar) {
-        this.sintomaPerdaPaladar = sintomaPerdaPaladar;
+    public void setSintomaDorGarganta(boolean sintomaDorGarganta) {
+        this.sintomaDorGarganta = sintomaDorGarganta;
     }
 
     public boolean isSintomaFaltaAr() {

@@ -66,8 +66,8 @@ class DialogQuestionarioPreview(
             questionarioAnterior.sintomaCancaco
         )
         configuraCheckBox(
-            view.findViewById(R.id.questionario_check_pergunta_paladar),
-            questionarioAnterior.sintomaPerdaPaladar
+            view.findViewById(R.id.questionario_check_dor_garganta),
+            questionarioAnterior.sintomaDorGarganta
         )
         configuraCheckBox(
             view.findViewById(R.id.questionario_check_pergunta_falta_ar),

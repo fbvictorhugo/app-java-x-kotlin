@@ -62,7 +62,7 @@ public class DummyQuestionarioDAO implements QuestionarioDAO {
         q.setPessoaId(1);
         q.setBarreiraId(1);
         q.setSintomaCancaco(true);
-        q.setSintomaPerdaPaladar(true);
+        q.setSintomaDorGarganta(true);
         q.setDataResposta(new Date());
         mDummyList.add(q);
 
@@ -72,7 +72,7 @@ public class DummyQuestionarioDAO implements QuestionarioDAO {
         q.setBarreiraId(2);
         q.setDataResposta(new Date());
         q.setSintomaCancaco(true);
-        q.setSintomaPerdaPaladar(true);
+        q.setSintomaDorGarganta(true);
         mDummyList.add(q);
 
         q = new Questionario();

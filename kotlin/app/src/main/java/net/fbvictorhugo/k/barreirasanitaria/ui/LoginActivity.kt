@@ -23,7 +23,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun configuraClickListeners() {
-        login_btn_entrar.setOnClickListener { clickBotaoEntrar() }
+        login_btn_entrar.setOnClickListener {
+            clickBotaoEntrar()
+        }
     }
 
     private fun clickBotaoEntrar() {

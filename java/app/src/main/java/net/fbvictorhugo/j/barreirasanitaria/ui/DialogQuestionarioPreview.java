@@ -77,8 +77,8 @@ public class DialogQuestionarioPreview extends DialogFragment {
                 questionarioAnterior.isSintomaCancaco()
         );
         configuraCheckBox(
-                view.findViewById(R.id.questionario_check_pergunta_paladar),
-                questionarioAnterior.isSintomaPerdaPaladar()
+                view.findViewById(R.id.questionario_check_dor_garganta),
+                questionarioAnterior.isSintomaDorGarganta()
         );
         configuraCheckBox(
                 view.findViewById(R.id.questionario_check_pergunta_falta_ar),

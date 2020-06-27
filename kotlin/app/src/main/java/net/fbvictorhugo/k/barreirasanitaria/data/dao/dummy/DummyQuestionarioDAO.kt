@@ -34,12 +34,12 @@ object DummyQuestionarioDAO : QuestionarioDAO {
         val quest2 = Questionario(2, 2, 1).apply {
             dataResposta = Date()
             sintomaCancaco = true
-            sintomaPerdaPaladar = true
+            sintomaDorGarganta = true
         }
         val quest3 = Questionario(3, 1, 1).apply {
             dataResposta = Date()
             sintomaCancaco = true
-            sintomaPerdaPaladar = true
+            sintomaDorGarganta = true
         }
 
         _dummyList.add(quest3)
