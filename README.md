@@ -1,9 +1,12 @@
 ## Java x Kotlin
 Um estudo comparativo sobre as Linguagens Java e Kotlin para o desenvolvimento de aplicativos para Android
 
-**Android Studio**: versão 3.6.3
-**Java**: versão 8
-**Kotlin**: versão 1.3
+**Android Studio**: versão 3.6.3 
+
+**Java**: versão 8 
+
+**Kotlin**: versão 1.3 
+
 
 ## Estudo de Caso
 O aplicativo Barreiras Sanitárias, tem como objetivo fazer o cadastro de
