@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatCheckBox
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.DialogFragment
 import net.fbvictorhugo.k.barreirasanitaria.R
 import net.fbvictorhugo.k.barreirasanitaria.data.model.Questionario
@@ -22,7 +23,7 @@ class DialogQuestionarioPreview(
 
             val builder = AlertDialog.Builder(it)
             val inflater = requireActivity().layoutInflater
-            val view = inflater.inflate(R.layout.layout_perguntas_questionario, null)
+            val view = inflater.inflate(R.layout.dialog_questionario_preview, null)
             val padding = resources.getDimensionPixelOffset(R.dimen.activity_margin)
             view.setPadding(padding, 0, padding, 0)
 
@@ -41,10 +42,7 @@ class DialogQuestionarioPreview(
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 
-    fun configuraDadosTela(
-        view: View,
-        questionarioAnterior: Questionario
-    ) {
+    fun configuraDadosTela(view: View, questionarioAnterior: Questionario) {
         configuraCheckBox(
             view.findViewById(R.id.questionario_check_pergunta_viagem_exterior),
             questionarioAnterior.viagemExterior
@@ -77,6 +75,10 @@ class DialogQuestionarioPreview(
             view.findViewById(R.id.questionario_check_contato_com_enfermos),
             questionarioAnterior.sintomaContatoComEnfermos
         )
+
+        view.findViewById<AppCompatTextView>(R.id.dialog_tv_observacoes).text =
+            questionarioAnterior.observacoes
+
     }
 
     private fun configuraCheckBox(checkbox: AppCompatCheckBox, checked: Boolean) {

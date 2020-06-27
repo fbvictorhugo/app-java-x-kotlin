@@ -1,5 +1,6 @@
 package net.fbvictorhugo.k.barreirasanitaria.ui
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -7,6 +8,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_questionario.*
+import kotlinx.android.synthetic.main.layout_perguntas_questionario.*
 import net.fbvictorhugo.k.barreirasanitaria.R
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.BarreiraSanitariaDAO
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.DAOFactory
@@ -16,6 +18,8 @@ import net.fbvictorhugo.k.barreirasanitaria.data.model.Questionario
 import net.fbvictorhugo.k.barreirasanitaria.extension.toString
 import net.fbvictorhugo.k.barreirasanitaria.utils.Constantes
 import net.fbvictorhugo.k.barreirasanitaria.utils.Constantes.FORMATO_DATA_HISTORICO
+import net.fbvictorhugo.k.barreirasanitaria.utils.UtilDialog
+import java.util.*
 
 class QuestionarioActivity : AppCompatActivity() {
 
@@ -58,7 +62,42 @@ class QuestionarioActivity : AppCompatActivity() {
     }
 
     private fun configuraClickListeners() {
+        questionario_btn_salvar.setOnClickListener { onClickBtnSalvar() }
+    }
 
+    private fun onClickBtnSalvar() {
+        try {
+            val questionarioDAO =
+                DAOFactory.getDataSource(TabelasDataBase.QUESTIONARIO) as QuestionarioDAO
+            val questionario = populaModelo()
+
+            questionarioDAO.inserir(questionario)
+
+            UtilDialog.showDialogOK(this, resources.getString(R.string.questionarioa_salvo),
+                DialogInterface.OnClickListener { dialogInterface, i -> finish() })
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+            UtilDialog.showDialogOK(this, resources.getString(R.string.msg_erro_generico))
+        }
+    }
+
+    private fun populaModelo(): Questionario {
+
+        return Questionario().apply {
+            barreiraId = intent.getLongExtra(Constantes.EXTRA_ID_BARREIRA, 0)
+            pessoaId = intent.getLongExtra(Constantes.EXTRA_ID_PESSOA, 0)
+            viagemExterior = questionario_check_contato_com_enfermos.isChecked
+            sintomaFebre = questionario_check_pergunta_febre.isChecked
+            sintomaCoriza = questionario_check_pergunta_coriza.isChecked
+            sintomaTosse = questionario_check_pergunta_tosse.isChecked
+            sintomaCancaco = questionario_check_pergunta_cancaco.isChecked
+            sintomaDorGarganta = questionario_check_dor_garganta.isChecked
+            sintomaFaltaAr = questionario_check_pergunta_falta_ar.isChecked
+            sintomaContatoComEnfermos = questionario_check_contato_com_enfermos.isChecked
+            observacoes = questionario_edt_observacoes.text.toString()
+            dataResposta = Date()
+        }
     }
 
     fun verificaOutrosQuestionarios(idPessoa: Long) {

@@ -3,9 +3,9 @@ package net.fbvictorhugo.k.barreirasanitaria.data.model
 import java.util.*
 
 data class Questionario(
-    val id: Long = 0,
-    val barreiraId: Long = 0,
-    val pessoaId: Long = 0
+    var id: Long = 0,
+    var barreiraId: Long = 0,
+    var pessoaId: Long = 0
 ) {
     var viagemExterior = false
     var sintomaFebre = false

@@ -61,5 +61,6 @@
     <string name="titulo_historico">Histórico</string>
     <string name="msg_historico_passagem_">Histórico de %s</string>
     <string name="txt_btn_ver">Ver</string>
+    <string name="questionarioa_salvo">Questionário realizado com sucesso!</string>
 
 </resources>

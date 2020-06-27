@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatCheckBox;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.DialogFragment;
 
 public class DialogQuestionarioPreview extends DialogFragment {
@@ -25,8 +26,8 @@ public class DialogQuestionarioPreview extends DialogFragment {
     private final String mNomePessoa;
     private final String mNomeBarreiraAnterior;
 
-    public DialogQuestionarioPreview(Questionario questionarioAnterior,
-                                     String nomePessoa, String nomeBarreiraAnterior
+    DialogQuestionarioPreview(Questionario questionarioAnterior,
+                              String nomePessoa, String nomeBarreiraAnterior
     ) {
         mQuestionarioAnterior = questionarioAnterior;
         mNomePessoa = nomePessoa;
@@ -39,10 +40,9 @@ public class DialogQuestionarioPreview extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         LayoutInflater inflater = requireActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.layout_perguntas_questionario, null);
+        View view = inflater.inflate(R.layout.dialog_questionario_preview, null);
         int padding = getResources().getDimensionPixelOffset(R.dimen.activity_margin);
         view.setPadding(padding, 0, padding, 0);
-
 
         builder.setView(view)
                 .setTitle(R.string.titulo_historico)
@@ -88,6 +88,9 @@ public class DialogQuestionarioPreview extends DialogFragment {
                 view.findViewById(R.id.questionario_check_contato_com_enfermos),
                 questionarioAnterior.isSintomaContatoComEnfermos()
         );
+
+        AppCompatTextView tvObservacoes = view.findViewById(R.id.dialog_tv_observacoes);
+        tvObservacoes.setText(questionarioAnterior.getObservacoes());
     }
 
     private void configuraCheckBox(AppCompatCheckBox checkbox, boolean checked) {

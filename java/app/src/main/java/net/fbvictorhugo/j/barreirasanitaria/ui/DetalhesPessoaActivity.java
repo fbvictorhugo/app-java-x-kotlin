@@ -12,7 +12,6 @@ import net.fbvictorhugo.j.barreirasanitaria.R;
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.DAOFactory;
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.PessoaDAO;
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.TabelasDataBase;
-import net.fbvictorhugo.j.barreirasanitaria.data.dao.dummy.DummyPessoaDAO;
 import net.fbvictorhugo.j.barreirasanitaria.data.model.Pessoa;
 import net.fbvictorhugo.j.barreirasanitaria.utils.Constantes;
 import net.fbvictorhugo.j.barreirasanitaria.utils.UtilDialog;
@@ -105,17 +104,17 @@ public class DetalhesPessoaActivity extends AppCompatActivity {
     }
 
     private void onClickBtnSalvar() {
-        PessoaDAO mPessoaDAO = (DummyPessoaDAO) DAOFactory.getInstance().getDataSource(TabelasDataBase.PESSOA);
+        PessoaDAO pessoaDAO = (PessoaDAO) DAOFactory.getInstance().getDataSource(TabelasDataBase.PESSOA);
 
         if (verificaFormularioValido()) {
             final Pessoa pessoa = populaModelo();
             try {
                 String mensagem;
                 if (isModoCadastro) {
-                    mPessoaDAO.inserir(pessoa);
+                    pessoaDAO.inserir(pessoa);
                     mensagem = getResources().getString(R.string.msg_cadastrado_com_sucesso);
                 } else {
-                    mPessoaDAO.atualizar(pessoa);
+                    pessoaDAO.atualizar(pessoa);
                     mensagem = getResources().getString(R.string.msg_alterado_com_sucesso);
                 }
 

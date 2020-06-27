@@ -8,5 +8,5 @@ data class Usuario(
     val senha: String,
     val id: Long = 0
 ) {
-    lateinit var ultimoLogin: Date
+    var ultimoLogin: Date? = null
 }

@@ -176,4 +176,9 @@ public class PesquisaPessoasActivity extends AppCompatActivity {
         });
     }
 
+    private void reiniciaDadosTela() {
+        mEdtPesquisa.setText("");
+        pesquisaPessoas();
+    }
+
 }

@@ -22,18 +22,23 @@
 
         <activity
             android:name=".ui.ListaBarreirasActivity"
+            android:windowSoftInputMode="stateHidden"
             android:label="@string/title_activity_barreiras" />
         <activity
             android:name=".ui.DetalhesBarreiraSanitariaActivty"
+            android:windowSoftInputMode="stateHidden"
             android:label="@string/title_activity_detalhes_barreira_sanitaria" />
         <activity
             android:name=".ui.DetalhesPessoaActivity"
+            android:windowSoftInputMode="stateHidden"
             android:label="@string/title_activity_detalhes_pessoa" />
         <activity
             android:name=".ui.PesquisaPessoasActivity"
+            android:windowSoftInputMode="stateHidden"
             android:label="@string/title_activity_pesquisa_pessoas" />
         <activity
             android:name=".ui.QuestionarioActivity"
+            android:windowSoftInputMode="stateHidden"
             android:label="@string/title_activity_questionario" />
     </application>
 

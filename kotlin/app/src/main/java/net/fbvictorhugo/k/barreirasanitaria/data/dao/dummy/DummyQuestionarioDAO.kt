@@ -9,12 +9,21 @@ object DummyQuestionarioDAO : QuestionarioDAO {
 
     private val _dummyList: ArrayList<Questionario> = ArrayList()
 
+    fun getProximoIdDisponivel(): Long {
+        return if (_dummyList.size == 0) {
+            1
+        } else {
+            _dummyList[_dummyList.size - 1].id + 1
+        }
+    }
+
     override fun listar(): ArrayList<Questionario> {
         return _dummyList
     }
 
-    override fun inserir(questionario: Questionario) {
-        TODO("Not yet implemented")
+    override fun inserir(questionario: Questionario)  {
+        questionario.id = getProximoIdDisponivel()
+        _dummyList.add(questionario)
     }
 
     override fun procurarUltimoQuestionarioRespondidoPorPessoa(idPessoa: Long): Questionario? {

@@ -24,6 +24,14 @@ public class DummyQuestionarioDAO implements QuestionarioDAO {
         buildListaFake();
     }
 
+    private long getProximoIdDisponivel() {
+        if (mDummyList.size() == 0) {
+            return 1;
+        } else {
+            return mDummyList.get(mDummyList.size() - 1).getId() + 1;
+        }
+    }
+
     @Override
     public List<Questionario> listar() {
         return mDummyList;
@@ -31,7 +39,12 @@ public class DummyQuestionarioDAO implements QuestionarioDAO {
 
     @Override
     public void inserir(Questionario questionario) throws Exception {
-        //TODO("Not yet implemented")
+        if (questionario == null) {
+            throw new NullPointerException("Modelo Questionario está nulo.");
+        }
+
+        questionario.setId(getProximoIdDisponivel());
+        mDummyList.add(questionario);
     }
 
     @Override
