@@ -11,7 +11,7 @@ public class Constantes {
     public static final String EXTRA_NUMERO_DOCUMENTO = "extra_numero_documento";
 
     public static final String FORMATO_DATA_NASCIMENTO = "dd/MM/yyyy";
-    public static final int RESULT_CADASTRO = 999;
+    public static final int RESULT_TELA_DETALHES = 999;
 
     public static final String FORMATO_DATA_HISTORICO = "dd/MM/yyyy hh:MM";
 

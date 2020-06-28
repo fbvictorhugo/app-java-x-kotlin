@@ -80,8 +80,8 @@ public class DummyBarreiraSanitariaDAO implements BarreiraSanitariaDAO {
         }
     }
 
-    //TODO LISTA FAKE
     void buildLisaFake() {
+        //TODO LISTA FAKE
         BarreiraSanitaria barreira = new BarreiraSanitaria();
         barreira.setId(1);
         barreira.setNome("Alpha");

@@ -18,7 +18,8 @@ import net.fbvictorhugo.k.barreirasanitaria.data.model.Pessoa
 import net.fbvictorhugo.k.barreirasanitaria.extension.maiorQue
 import net.fbvictorhugo.k.barreirasanitaria.ui.adapter.PessoasRecyclerAdapter
 import net.fbvictorhugo.k.barreirasanitaria.utils.Constantes
-import net.fbvictorhugo.k.barreirasanitaria.utils.Constantes.RESULT_CADASTRO
+import net.fbvictorhugo.k.barreirasanitaria.utils.Constantes.EXTRA_MODO_CADASTRO
+import net.fbvictorhugo.k.barreirasanitaria.utils.Constantes.RESULT_TELA_DETALHES
 import net.fbvictorhugo.k.barreirasanitaria.utils.UtilDialog
 
 class PesquisaPessoasActivity : AppCompatActivity() {
@@ -36,12 +37,14 @@ class PesquisaPessoasActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (resultCode == Activity.RESULT_OK && requestCode == RESULT_CADASTRO) {
-            val numeroDocumento = data?.getLongExtra(Constantes.EXTRA_NUMERO_DOCUMENTO, 0)
-            if (numeroDocumento?.maiorQue(0)!!) {
-                pesquisa_pessoas_edt_pesquisar.setText(numeroDocumento.toString())
-                pesquisa_pessoas_btn_pesquisar.callOnClick()
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == RESULT_TELA_DETALHES) {
+                val numeroDocumento = data?.getLongExtra(Constantes.EXTRA_NUMERO_DOCUMENTO, 0)
+                if (numeroDocumento?.maiorQue(0)!!) {
+                    pesquisa_pessoas_edt_pesquisar.setText(numeroDocumento.toString())
+                }
             }
+            pesquisa_pessoas_btn_pesquisar.callOnClick()
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
@@ -106,7 +109,7 @@ class PesquisaPessoasActivity : AppCompatActivity() {
                 pesquisa_pessoas_txt_lista_vazia.visibility = View.VISIBLE
             } else {
                 val documentoPesquisa = termoPesquisa.toLong()
-                val pessoas = pessoaDAO.pesquisar(documentoPesquisa)
+                val pessoas = pessoaDAO.pesquisarPorDocumento(documentoPesquisa)
                 _pessoasRecyclerAdapter?.atualiza(pessoas)
 
                 if (pessoas.size > 0) {
@@ -133,7 +136,7 @@ class PesquisaPessoasActivity : AppCompatActivity() {
                     pesquisa_pessoas_edt_pesquisar.text.toString()
                 )
             }
-        startActivityForResult(intent, RESULT_CADASTRO)
+        startActivityForResult(intent, RESULT_TELA_DETALHES)
     }
 
     private fun onClickItemLista(pessoa: Pessoa) {
@@ -158,11 +161,16 @@ class PesquisaPessoasActivity : AppCompatActivity() {
             resources.getString(R.string.msg_deseja_editar_informacoes_),
             pessoa.nome
         )
-
         UtilDialog.showDialogSimNao(this, messagem,
             DialogInterface.OnClickListener { dialogInterface, i ->
-                //TODO não implementado
-                UtilDialog.showToast(baseContext, "Não implementado.")
+
+                val intent = Intent(this, DetalhesPessoaActivity::class.java)
+                    .apply {
+                        putExtra(Constantes.EXTRA_ID_PESSOA, pessoa.id)
+                        putExtra(EXTRA_MODO_CADASTRO, false)
+                    }
+                startActivityForResult(intent, RESULT_TELA_DETALHES)
+
             })
     }
 }

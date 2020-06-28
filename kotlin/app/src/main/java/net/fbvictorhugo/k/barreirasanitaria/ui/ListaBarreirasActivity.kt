@@ -104,7 +104,7 @@ class ListaBarreirasActivity : AppCompatActivity() {
         )
 
         UtilDialog.showDialogSimNao(this, messagem,
-            DialogInterface.OnClickListener { dialogInterface, i -> //TODO não implementado
+            DialogInterface.OnClickListener { dialogInterface, i ->
 
                 val intent = Intent(this, DetalhesBarreiraSanitariaActivty::class.java)
                     .apply {

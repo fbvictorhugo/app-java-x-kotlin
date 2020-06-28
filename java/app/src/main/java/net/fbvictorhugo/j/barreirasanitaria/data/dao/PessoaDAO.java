@@ -12,6 +12,8 @@ public interface PessoaDAO {
 
     void atualizar(Pessoa pessoa) throws Exception;
 
-    List<Pessoa> pesquisar(long numeroDocumento);
+    List<Pessoa> pesquisarPorDocumento(long numeroDocumento);
+
+    Pessoa procurarPessoa(long pessoaId);
 
 }

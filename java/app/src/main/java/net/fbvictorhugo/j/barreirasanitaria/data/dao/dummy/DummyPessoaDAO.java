@@ -47,10 +47,18 @@ public class DummyPessoaDAO implements PessoaDAO {
 
     @Override
     public void atualizar(Pessoa pessoa) throws Exception {
-        //TODO("Not yet implemented")
+        if (pessoa == null) {
+            throw new NullPointerException("Modelo Pessoa está nulo.");
+        }
+
+        for (int i = 0; i < mDummyList.size(); i++) {
+            if (mDummyList.get(i).getId() == pessoa.getId()) {
+                mDummyList.set(i, pessoa);
+            }
+        }
     }
 
-    public List<Pessoa> pesquisar(long numeroDocumento) {
+    public List<Pessoa> pesquisarPorDocumento(long numeroDocumento) {
         //Para usar API streams requer minSdkVersion = 24
         List<Pessoa> resultado = new ArrayList<>();
         for (Pessoa pessoa : mDummyList) {
@@ -62,7 +70,19 @@ public class DummyPessoaDAO implements PessoaDAO {
         return resultado;
     }
 
+    @Override
+    public Pessoa procurarPessoa(long pessoaId) {
+        //Para usar API streams requer minSdkVersion = 24
+        for (Pessoa pessoa : mDummyList) {
+            if (pessoa.getId() == pessoaId) {
+                return pessoa;
+            }
+        }
+        return null;
+    }
+
     private void buildFakeLista() {
+        //TODO LISTA FAKE
         Pessoa p = new Pessoa();
         p.setId(1);
         p.setNumeroDocumento(1);

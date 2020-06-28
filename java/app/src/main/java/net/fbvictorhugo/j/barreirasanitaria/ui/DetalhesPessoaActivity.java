@@ -44,6 +44,7 @@ public class DetalhesPessoaActivity extends AppCompatActivity {
     private TextInputLayout mInputlayoutCidade;
     private TextInputLayout mInputlayoutEstado;
     private AppCompatButton mBtnSalvar;
+    private long mPessoaId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,10 @@ public class DetalhesPessoaActivity extends AppCompatActivity {
         findViews();
         configuraActionBar(getSupportActionBar());
         configuraClickListeners();
+
+        if (!isModoCadastro) {
+            mPessoaId = getIntent().getLongExtra(Constantes.EXTRA_ID_PESSOA, 0);
+        }
         configuraDadosTela();
     }
 
@@ -96,6 +101,17 @@ public class DetalhesPessoaActivity extends AppCompatActivity {
     private void configuraDadosTela() {
         if (isModoCadastro) {
             mEdtDocumento.setText(getIntent().getStringExtra(Constantes.EXTRA_NUMERO_DOCUMENTO));
+        } else {
+            PessoaDAO pessoaDAO = (PessoaDAO) DAOFactory.getInstance().getDataSource(TabelasDataBase.PESSOA);
+            Pessoa pessoa = pessoaDAO.procurarPessoa(mPessoaId);
+
+            mEdtNome.setText(pessoa.getNome());
+            mEdtDocumento.setText(String.valueOf(pessoa.getNumeroDocumento()));
+            mEdtDataNascimento.setText(formataData(pessoa.getDataNascimento()));
+            mEdtTelefone.setText(String.valueOf(pessoa.getTelefone()));
+            mEdtBairro.setText(pessoa.getBairro());
+            mEdtCidade.setText(pessoa.getCidade());
+            mEdtEstado.setText(pessoa.getEstado());
         }
     }
 
@@ -126,6 +142,7 @@ public class DetalhesPessoaActivity extends AppCompatActivity {
                     finish();
                 });
             } catch (Exception e) {
+                e.printStackTrace();
                 UtilDialog.showDialogOK(this, getResources().getString(R.string.msg_erro_generico));
             }
         }
@@ -189,6 +206,11 @@ public class DetalhesPessoaActivity extends AppCompatActivity {
         pessoa.setBairro(mEdtBairro.getText().toString());
         pessoa.setCidade(mEdtCidade.getText().toString());
         pessoa.setEstado(mEdtEstado.getText().toString());
+
+        if (!isModoCadastro) {
+            pessoa.setId(mPessoaId);
+        }
+
         return pessoa;
     }
 
@@ -208,6 +230,17 @@ public class DetalhesPessoaActivity extends AppCompatActivity {
 
     private long formataNumeroTelefone(String texto) {
         return Long.parseLong(texto);
+    }
+
+    private String formataData(Date data) {
+        SimpleDateFormat sdf = new SimpleDateFormat(FORMATO_DATA_NASCIMENTO, Locale.getDefault());
+        try {
+            return sdf.format(data);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+
     }
 
 }

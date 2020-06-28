@@ -13,6 +13,7 @@ import net.fbvictorhugo.k.barreirasanitaria.data.dao.DAOFactory
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.PessoaDAO
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.TabelasDataBase
 import net.fbvictorhugo.k.barreirasanitaria.data.model.Pessoa
+import net.fbvictorhugo.k.barreirasanitaria.extension.toString
 import net.fbvictorhugo.k.barreirasanitaria.utils.Constantes
 import net.fbvictorhugo.k.barreirasanitaria.utils.Constantes.FORMATO_DATA_NASCIMENTO
 import net.fbvictorhugo.k.barreirasanitaria.utils.UtilDialog
@@ -22,6 +23,7 @@ import java.util.*
 class DetalhesPessoaActivity : AppCompatActivity() {
 
     private var _modoCadastro = false
+    private var _pessoaId: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,8 +32,12 @@ class DetalhesPessoaActivity : AppCompatActivity() {
         _modoCadastro = intent.getBooleanExtra(Constantes.EXTRA_MODO_CADASTRO, true)
 
         configuraActionBar(supportActionBar)
-        configuraDadosTela()
         configuraClickListeners()
+
+        if (!_modoCadastro) {
+            _pessoaId = intent.getLongExtra(Constantes.EXTRA_ID_PESSOA, 0)
+        }
+        configuraDadosTela()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -58,6 +64,22 @@ class DetalhesPessoaActivity : AppCompatActivity() {
     private fun configuraDadosTela() {
         if (_modoCadastro) {
             pessoa_edt_documento.setText(intent.getStringExtra(Constantes.EXTRA_NUMERO_DOCUMENTO))
+        } else {
+            val pessoaDAO = DAOFactory.getDataSource(TabelasDataBase.PESSOA) as PessoaDAO
+            val pessoa = pessoaDAO.procurarPessoa(_pessoaId)
+
+            pessoa_edt_nome.setText(pessoa?.nome)
+            pessoa_edt_documento.setText(pessoa?.numeroDocumento.toString())
+            pessoa_edt_data_nascimento.setText(
+                pessoa?.dataNascimento?.toString(
+                    FORMATO_DATA_NASCIMENTO
+                )
+            )
+            pessoa_edt_telefone.setText(pessoa?.telefone.toString())
+            pessoa_edt_bairro.setText(pessoa?.bairro)
+            pessoa_edt_cidade.setText(pessoa?.cidade)
+            pessoa_edt_estado.setText(pessoa?.estado)
+
         }
     }
 
@@ -95,6 +117,7 @@ class DetalhesPessoaActivity : AppCompatActivity() {
                 )
 
             } catch (exception: Exception) {
+                exception.printStackTrace()
                 UtilDialog.showDialogOK(
                     this, resources.getString(R.string.msg_erro_generico)
                 )
@@ -170,6 +193,9 @@ class DetalhesPessoaActivity : AppCompatActivity() {
             bairro = pessoa_edt_bairro.text.toString()
             cidade = pessoa_edt_cidade.text.toString()
             estado = pessoa_edt_estado.text.toString()
+            if (!_modoCadastro) {
+                id = _pessoaId
+            }
         }
     }
 

@@ -11,7 +11,7 @@ object Constantes {
     const val EXTRA_NUMERO_DOCUMENTO = "extra_numero_documento"
 
     const val FORMATO_DATA_NASCIMENTO = "dd/MM/yyyy"
-    const val RESULT_CADASTRO = 999
+    const val RESULT_TELA_DETALHES = 999
 
     const val FORMATO_DATA_HISTORICO = "dd/MM/yyyy hh:MM"
 

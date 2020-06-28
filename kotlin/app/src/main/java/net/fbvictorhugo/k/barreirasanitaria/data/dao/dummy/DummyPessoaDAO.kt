@@ -25,10 +25,14 @@ object DummyPessoaDAO : PessoaDAO {
     }
 
     override fun atualizar(pessoa: Pessoa) {
-        TODO("Not yet implemented")
+        for (i in _dummyList.indices) {
+            if (_dummyList[i].id == pessoa.id) {
+                _dummyList[i] = pessoa
+            }
+        }
     }
 
-    override fun pesquisar(numeroDocumento: Long): ArrayList<Pessoa> {
+    override fun pesquisarPorDocumento(numeroDocumento: Long): ArrayList<Pessoa> {
         val resultado: ArrayList<Pessoa> = ArrayList()
         for (pessoa in _dummyList) {
             if (pessoa.numeroDocumento == numeroDocumento) {
@@ -39,7 +43,15 @@ object DummyPessoaDAO : PessoaDAO {
         return resultado
     }
 
+    override fun procurarPessoa(pessoaId: Long): Pessoa? {
+        return _dummyList
+            .find {
+                it.id == pessoaId
+            }
+    }
+
     init {
+        //TODO LISTA FAKE
         _dummyList.add(Pessoa("Vitor", 1, 1))
         _dummyList.add(Pessoa("Hugo", 2, 2))
         _dummyList.add(Pessoa("Fabio", 3, 3))

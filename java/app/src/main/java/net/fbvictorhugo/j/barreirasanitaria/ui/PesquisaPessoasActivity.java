@@ -28,7 +28,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static net.fbvictorhugo.j.barreirasanitaria.utils.Constantes.RESULT_CADASTRO;
+import static net.fbvictorhugo.j.barreirasanitaria.utils.Constantes.RESULT_TELA_DETALHES;
 
 public class PesquisaPessoasActivity extends AppCompatActivity {
 
@@ -56,12 +56,14 @@ public class PesquisaPessoasActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (resultCode == RESULT_OK && requestCode == RESULT_CADASTRO && data != null) {
-            long numDocumento = data.getLongExtra(Constantes.EXTRA_NUMERO_DOCUMENTO, 0);
-            if (numDocumento > 0) {
-                mEdtPesquisa.setText(String.valueOf(numDocumento));
-                mBtnPesquisar.callOnClick();
+        if (resultCode == RESULT_OK) {
+            if (requestCode == RESULT_TELA_DETALHES && data != null) {
+                long numDocumento = data.getLongExtra(Constantes.EXTRA_NUMERO_DOCUMENTO, 0);
+                if (numDocumento > 0) {
+                    mEdtPesquisa.setText(String.valueOf(numDocumento));
+                }
             }
+            mBtnPesquisar.callOnClick();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -137,7 +139,7 @@ public class PesquisaPessoasActivity extends AppCompatActivity {
                 } else {
                     long documnentoPesquisa = Long.parseLong(termoPesquisa);
 
-                    List<Pessoa> pessoas = pessoaDAO.pesquisar(documnentoPesquisa);
+                    List<Pessoa> pessoas = pessoaDAO.pesquisarPorDocumento(documnentoPesquisa);
                     mPessoasRecyclerAdapter.atualiza(pessoas);
 
                     if (pessoas.size() > 0) {
@@ -156,7 +158,7 @@ public class PesquisaPessoasActivity extends AppCompatActivity {
         Intent intent = new Intent(this, DetalhesPessoaActivity.class);
         intent.putExtra(Constantes.EXTRA_MODO_CADASTRO, true);
         intent.putExtra(Constantes.EXTRA_NUMERO_DOCUMENTO, mEdtPesquisa.getText().toString());
-        startActivityForResult(intent, RESULT_CADASTRO);
+        startActivityForResult(intent, RESULT_TELA_DETALHES);
     }
 
     private void onClickItemLista(Pessoa pessoa) {
@@ -171,14 +173,13 @@ public class PesquisaPessoasActivity extends AppCompatActivity {
     private void onLongClickClickItemLista(Pessoa pessoa) {
         String messagem = String.format(getResources().getString(R.string.msg_deseja_editar_informacoes_), pessoa.getNome());
         UtilDialog.showDialogSimNao(this, messagem, (dialogInterface, i) -> {
-            //TODO não implementado
-            UtilDialog.showToast(getBaseContext(), "Não implementado.");
-        });
-    }
 
-    private void reiniciaDadosTela() {
-        mEdtPesquisa.setText("");
-        pesquisaPessoas();
+            Intent intent = new Intent(PesquisaPessoasActivity.this, DetalhesPessoaActivity.class);
+            intent.putExtra(Constantes.EXTRA_ID_PESSOA, pessoa.getId());
+            intent.putExtra(Constantes.EXTRA_MODO_CADASTRO, false);
+            startActivityForResult(intent, RESULT_TELA_DETALHES);
+
+        });
     }
 
 }
