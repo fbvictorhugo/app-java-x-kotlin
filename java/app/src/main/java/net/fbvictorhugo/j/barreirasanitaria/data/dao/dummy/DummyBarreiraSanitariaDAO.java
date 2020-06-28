@@ -48,7 +48,15 @@ public class DummyBarreiraSanitariaDAO implements BarreiraSanitariaDAO {
 
     @Override
     public void atualizar(BarreiraSanitaria barreiraSanitaria) throws Exception {
-        //TODO("Not yet implemented")
+        if (barreiraSanitaria == null) {
+            throw new NullPointerException("Modelo Barreira Sanitaria está nulo.");
+        }
+
+        for (int i = 0; i < mDummyList.size(); i++) {
+            if (mDummyList.get(i).getId() == barreiraSanitaria.getId()) {
+                mDummyList.set(i, barreiraSanitaria);
+            }
+        }
     }
 
     @Override
@@ -72,6 +80,7 @@ public class DummyBarreiraSanitariaDAO implements BarreiraSanitariaDAO {
         }
     }
 
+    //TODO LISTA FAKE
     void buildLisaFake() {
         BarreiraSanitaria barreira = new BarreiraSanitaria();
         barreira.setId(1);

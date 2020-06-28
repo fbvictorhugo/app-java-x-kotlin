@@ -32,6 +32,7 @@ public class DetalhesBarreiraSanitariaActivty extends AppCompatActivity {
     private TextInputLayout mInputlayoutNome;
     private TextInputLayout mInputlayoutCidade;
     private TextInputLayout mInputlayoutEstado;
+    private long mBarreiraId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,11 @@ public class DetalhesBarreiraSanitariaActivty extends AppCompatActivity {
         findViews();
         configuraActionBar(getSupportActionBar());
         configuraClickListeners();
+
+        if (!isModoCadastro) {
+            mBarreiraId = getIntent().getLongExtra(Constantes.EXTRA_ID_BARREIRA, 0);
+            configuraDadosTela();
+        }
     }
 
     @Override
@@ -102,6 +108,7 @@ public class DetalhesBarreiraSanitariaActivty extends AppCompatActivity {
 
                 UtilDialog.showDialogOK(this, mensagem, (dialogInterface, i) -> finish());
             } catch (Exception e) {
+                e.printStackTrace();
                 UtilDialog.showDialogOK(this, getResources().getString(R.string.msg_erro_generico));
             }
         }
@@ -121,7 +128,6 @@ public class DetalhesBarreiraSanitariaActivty extends AppCompatActivity {
             isFormularioValido = false;
             mInputlayoutCidade.setError(getResources().getString(R.string.msg_erro_campo_obrigatorio));
         }
-
         if (mEdtEstado.getText().toString().isEmpty()) {
             isFormularioValido = false;
             mInputlayoutEstado.setError(getResources().getString(R.string.msg_erro_campo_obrigatorio));
@@ -138,7 +144,24 @@ public class DetalhesBarreiraSanitariaActivty extends AppCompatActivity {
         barreira.setBairro(mEdtBairro.getText().toString());
         barreira.setCidade(mEdtCidade.getText().toString());
         barreira.setEstado(mEdtEstado.getText().toString());
+
+        if (!isModoCadastro) {
+            barreira.setId(mBarreiraId);
+        }
+
         return barreira;
+    }
+
+    private void configuraDadosTela() {
+        BarreiraSanitaria barreira = mBarreiraSanitariaDAO.procurarBarreira(mBarreiraId);
+
+        mEdtNome.setText(barreira.getNome());
+        mEdtDescricao.setText(barreira.getDescricao());
+        mEdtEndereco.setText(barreira.getEndereco());
+        mEdtBairro.setText(barreira.getBairro());
+        mEdtCidade.setText(barreira.getCidade());
+        mEdtEstado.setText(barreira.getEstado());
+
     }
 
 }

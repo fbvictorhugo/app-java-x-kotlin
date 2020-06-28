@@ -1,6 +1,5 @@
 package net.fbvictorhugo.j.barreirasanitaria.ui;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -114,12 +113,13 @@ public class ListaBarreirasActivity extends AppCompatActivity {
 
     private void onLongClickClickItemLista(BarreiraSanitaria barreiraSanitaria) {
         String messagem = String.format(getResources().getString(R.string.msg_deseja_editar_informacoes_), barreiraSanitaria.getNome());
-        UtilDialog.showDialogSimNao(this, messagem, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                //TODO não implementado
-                UtilDialog.showToast(getBaseContext(), "Não implementado.");
-            }
+        UtilDialog.showDialogSimNao(this, messagem, (dialogInterface, i) -> {
+
+            Intent intent = new Intent(ListaBarreirasActivity.this, DetalhesBarreiraSanitariaActivty.class);
+            intent.putExtra(Constantes.EXTRA_ID_BARREIRA, barreiraSanitaria.getId());
+            intent.putExtra(Constantes.EXTRA_MODO_CADASTRO, false);
+            startActivity(intent);
+
         });
     }
 

@@ -25,7 +25,13 @@ object DummyBarreiraSanitariaDAO : BarreiraSanitariaDAO {
     }
 
     override fun atualizar(barreiraSanitaria: BarreiraSanitaria) {
-        TODO("Not yet implemented")
+
+        for (i in _dummyList.indices) {
+            if (_dummyList[i].id == barreiraSanitaria.id) {
+                _dummyList[i] = barreiraSanitaria
+            }
+        }
+
     }
 
     override fun procurarBarreira(barreiraId: Long): BarreiraSanitaria? {
@@ -40,6 +46,7 @@ object DummyBarreiraSanitariaDAO : BarreiraSanitariaDAO {
     }
 
     init {
+        //TODO LISTA FAKE
         _dummyList.add((BarreiraSanitaria("Alpha", "Cataguases", "MG", 1)))
         _dummyList.add((BarreiraSanitaria("Bravo", "Cataguases", "MG", 2)))
         _dummyList.add((BarreiraSanitaria("Charlie", "Cataguases", "MG", 3)))

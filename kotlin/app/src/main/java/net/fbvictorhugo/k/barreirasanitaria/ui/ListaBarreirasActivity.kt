@@ -105,7 +105,14 @@ class ListaBarreirasActivity : AppCompatActivity() {
 
         UtilDialog.showDialogSimNao(this, messagem,
             DialogInterface.OnClickListener { dialogInterface, i -> //TODO não implementado
-                UtilDialog.showToast(baseContext, "Não implementado.")
+
+                val intent = Intent(this, DetalhesBarreiraSanitariaActivty::class.java)
+                    .apply {
+                        putExtra(Constantes.EXTRA_ID_BARREIRA, barreiraSanitaria.id)
+                        putExtra(Constantes.EXTRA_MODO_CADASTRO, false);
+                    }
+                startActivity(intent)
+
             })
     }
 

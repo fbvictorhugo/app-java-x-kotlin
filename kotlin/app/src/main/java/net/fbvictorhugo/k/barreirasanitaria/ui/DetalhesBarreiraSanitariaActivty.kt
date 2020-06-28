@@ -17,6 +17,7 @@ import net.fbvictorhugo.k.barreirasanitaria.utils.UtilDialog
 class DetalhesBarreiraSanitariaActivty : AppCompatActivity() {
 
     private var _modoCadastro = false
+    private var _barreidaId: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +26,11 @@ class DetalhesBarreiraSanitariaActivty : AppCompatActivity() {
 
         configuraActionBar(supportActionBar)
         configuraClickListeners()
+
+        if (!_modoCadastro) {
+            _barreidaId = intent.getLongExtra(Constantes.EXTRA_ID_BARREIRA, 0)
+            configuraDadosTela()
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -74,6 +80,7 @@ class DetalhesBarreiraSanitariaActivty : AppCompatActivity() {
                     DialogInterface.OnClickListener { dialogInterface, i -> finish() })
 
             } catch (exception: Exception) {
+                exception.printStackTrace()
                 UtilDialog.showDialogOK(
                     this, resources.getString(R.string.msg_erro_generico)
                 )
@@ -117,7 +124,25 @@ class DetalhesBarreiraSanitariaActivty : AppCompatActivity() {
             descricao = barreira_edt_descricao.text.toString()
             endereco = barreira_edt_endereco.text.toString()
             bairro = barreira_edt_bairro.text.toString()
+            if (!_modoCadastro) {
+                id = _barreidaId
+            }
         }
+    }
+
+    fun configuraDadosTela() {
+        val barreiraSanitariaDAO =
+            DAOFactory.getDataSource(TabelasDataBase.BARREIRA_SANITARIA) as BarreiraSanitariaDAO
+
+        val barreira = barreiraSanitariaDAO.procurarBarreira(_barreidaId)
+
+        barreira_edt_nome.setText(barreira?.nome)
+        barreira_edt_descricao.setText(barreira?.descricao)
+        barreira_edt_endereco.setText(barreira?.endereco)
+        barreira_edt_bairro.setText(barreira?.bairro)
+        barreira_edt_cidade.setText(barreira?.cidade)
+        barreira_edt_estado.setText(barreira?.estado)
+
     }
 
 }
