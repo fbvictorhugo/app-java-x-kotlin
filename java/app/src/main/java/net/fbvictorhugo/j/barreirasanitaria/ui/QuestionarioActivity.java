@@ -37,7 +37,7 @@ public class QuestionarioActivity extends AppCompatActivity {
     private AppCompatCheckBox mCheckDorGarganta;
     private AppCompatCheckBox mCheckFaltaAr;
     private AppCompatCheckBox mCheckContatoEnfermos;
-    private TextInputEditText mEdtObservacoe;
+    private TextInputEditText mEdtObservacoes;
     private AppCompatButton mBtnSalvar;
 
     @Override
@@ -75,7 +75,7 @@ public class QuestionarioActivity extends AppCompatActivity {
         mCheckFaltaAr = findViewById(R.id.questionario_check_pergunta_falta_ar);
         mCheckContatoEnfermos = findViewById(R.id.questionario_check_contato_com_enfermos);
 
-        mEdtObservacoe = findViewById(R.id.questionario_edt_observacoes);
+        mEdtObservacoes = findViewById(R.id.questionario_edt_observacoes);
         mBtnSalvar = findViewById(R.id.questionario_btn_salvar);
     }
 
@@ -125,7 +125,7 @@ public class QuestionarioActivity extends AppCompatActivity {
         questionario.setSintomaFaltaAr(mCheckFaltaAr.isChecked());
         questionario.setSintomaContatoComEnfermos(mCheckContatoEnfermos.isChecked());
 
-        questionario.setObservacoes(mEdtObservacoe.getText().toString());
+        questionario.setObservacoes(mEdtObservacoes.getText().toString());
         questionario.setDataResposta(new Date());
 
         return questionario;

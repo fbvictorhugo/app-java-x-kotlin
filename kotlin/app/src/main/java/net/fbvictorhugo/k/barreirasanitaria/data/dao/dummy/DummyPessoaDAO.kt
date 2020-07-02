@@ -2,6 +2,10 @@ package net.fbvictorhugo.k.barreirasanitaria.data.dao.dummy
 
 import net.fbvictorhugo.k.barreirasanitaria.data.dao.PessoaDAO
 import net.fbvictorhugo.k.barreirasanitaria.data.model.Pessoa
+import net.fbvictorhugo.k.barreirasanitaria.extension.fromString
+import net.fbvictorhugo.k.barreirasanitaria.utils.Constantes.FORMATO_DATA_NASCIMENTO
+import java.util.*
+import kotlin.collections.ArrayList
 
 object DummyPessoaDAO : PessoaDAO {
 
@@ -52,9 +56,32 @@ object DummyPessoaDAO : PessoaDAO {
 
     init {
         //TODO LISTA FAKE
-        _dummyList.add(Pessoa("Vitor", 1, 1))
-        _dummyList.add(Pessoa("Hugo", 2, 2))
-        _dummyList.add(Pessoa("Fabio", 3, 3))
+        _dummyList.add(
+            Pessoa("Paulo Pereira Araujo", 10020010051, 1)
+                .apply {
+                    dataNascimento = Date().fromString("05/08/1996", FORMATO_DATA_NASCIMENTO)
+                    cidade = "Rio de Janeiro"
+                    estado = "RJ"
+                    telefone = 229999999
+                })
+
+        _dummyList.add(Pessoa("Tiago Pereira Rocha", 10020010052, 2)
+
+            .apply {
+                dataNascimento = Date().fromString("04/11/1980", FORMATO_DATA_NASCIMENTO)
+                cidade = "Ferraz de Vasconcelos"
+                estado = "SP"
+                telefone = 369999999
+            })
+
+        _dummyList.add(Pessoa("Laura Pereira Costa", 10020010053, 3)
+            .apply {
+                dataNascimento = Date().fromString("27/03/1953", FORMATO_DATA_NASCIMENTO)
+                cidade = "Cataguases"
+                estado = "MG"
+                bairro = "Centro"
+                telefone = 329999999
+            })
     }
 
 }

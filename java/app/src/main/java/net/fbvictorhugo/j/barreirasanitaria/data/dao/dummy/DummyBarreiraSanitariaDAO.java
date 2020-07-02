@@ -84,24 +84,21 @@ public class DummyBarreiraSanitariaDAO implements BarreiraSanitariaDAO {
         //TODO LISTA FAKE
         BarreiraSanitaria barreira = new BarreiraSanitaria();
         barreira.setId(1);
-        barreira.setNome("Alpha");
+        barreira.setNome("Acesso Vila Minalda");
         barreira.setCidade("Cataguases");
         barreira.setEstado("MG");
+        barreira.setBairro("Vila Minalda");
+        barreira.setEndereco("Av. Nicolau Siervi, 1286");
         mDummyList.add(barreira);
 
         barreira = new BarreiraSanitaria();
         barreira.setId(2);
-        barreira.setNome("Bravo");
+        barreira.setNome("Acesso MG-285");
         barreira.setCidade("Cataguases");
         barreira.setEstado("MG");
+        barreira.setEndereco("Rod Valdir Freitas");
         mDummyList.add(barreira);
 
-        barreira = new BarreiraSanitaria();
-        barreira.setId(3);
-        barreira.setNome("Charlie");
-        barreira.setCidade("Cataguases");
-        barreira.setEstado("MG");
-        mDummyList.add(barreira);
     }
 
 }

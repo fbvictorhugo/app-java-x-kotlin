@@ -67,36 +67,73 @@ public class DummyQuestionarioDAO implements QuestionarioDAO {
     }
 
     void buildListaFake() {
-
+        //TODO LISTA FAKE
         Questionario q;
 
         q = new Questionario();
         q.setId(3);
-        q.setPessoaId(1);
+        q.setPessoaId(2);
         q.setBarreiraId(1);
-        q.setSintomaCancaco(true);
-        q.setSintomaDorGarganta(true);
+        q.setViagemExterior(randomBoolean());
+        q.setSintomaFebre(randomBoolean());
+        q.setSintomaCoriza(randomBoolean());
+        q.setSintomaTosse(randomBoolean());
+        q.setSintomaCancaco(randomBoolean());
+        q.setSintomaDorGarganta(randomBoolean());
+        q.setSintomaFaltaAr(randomBoolean());
+        q.setSintomaContatoComEnfermos(randomBoolean());
         q.setDataResposta(new Date());
         mDummyList.add(q);
 
         q = new Questionario();
         q.setId(2);
-        q.setPessoaId(1);
+        q.setPessoaId(2);
         q.setBarreiraId(2);
+        q.setViagemExterior(randomBoolean());
+        q.setSintomaFebre(randomBoolean());
+        q.setSintomaCoriza(randomBoolean());
+        q.setSintomaTosse(randomBoolean());
+        q.setSintomaCancaco(randomBoolean());
+        q.setSintomaDorGarganta(randomBoolean());
+        q.setSintomaFaltaAr(randomBoolean());
+        q.setSintomaContatoComEnfermos(randomBoolean());
         q.setDataResposta(new Date());
-        q.setSintomaCancaco(true);
-        q.setSintomaDorGarganta(true);
         mDummyList.add(q);
 
         q = new Questionario();
         q.setId(1);
         q.setPessoaId(1);
         q.setBarreiraId(1);
+        q.setViagemExterior(randomBoolean());
+        q.setSintomaFebre(randomBoolean());
+        q.setSintomaCoriza(randomBoolean());
+        q.setSintomaTosse(randomBoolean());
+        q.setSintomaCancaco(randomBoolean());
+        q.setSintomaDorGarganta(randomBoolean());
+        q.setSintomaFaltaAr(randomBoolean());
+        q.setSintomaContatoComEnfermos(randomBoolean());
         q.setDataResposta(new Date());
-        q.setSintomaCancaco(true);
-        q.setSintomaCoriza(true);
         mDummyList.add(q);
 
+        q = new Questionario();
+        q.setId(4);
+        q.setPessoaId(1);
+        q.setBarreiraId(1);
+        q.setViagemExterior(randomBoolean());
+        q.setSintomaFebre(randomBoolean());
+        q.setSintomaCoriza(randomBoolean());
+        q.setSintomaTosse(randomBoolean());
+        q.setSintomaCancaco(randomBoolean());
+        q.setSintomaDorGarganta(randomBoolean());
+        q.setSintomaFaltaAr(randomBoolean());
+        q.setSintomaContatoComEnfermos(randomBoolean());
+        q.setDataResposta(new Date());
+        mDummyList.add(q);
+
+    }
+
+    private boolean randomBoolean() {
+        return Math.random() < 0.5;
     }
 
 }

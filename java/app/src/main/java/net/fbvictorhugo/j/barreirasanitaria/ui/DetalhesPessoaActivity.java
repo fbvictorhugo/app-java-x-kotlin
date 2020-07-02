@@ -14,12 +14,10 @@ import net.fbvictorhugo.j.barreirasanitaria.data.dao.PessoaDAO;
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.TabelasDataBase;
 import net.fbvictorhugo.j.barreirasanitaria.data.model.Pessoa;
 import net.fbvictorhugo.j.barreirasanitaria.utils.Constantes;
+import net.fbvictorhugo.j.barreirasanitaria.utils.DateUtil;
 import net.fbvictorhugo.j.barreirasanitaria.utils.UtilDialog;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -107,11 +105,12 @@ public class DetalhesPessoaActivity extends AppCompatActivity {
 
             mEdtNome.setText(pessoa.getNome());
             mEdtDocumento.setText(String.valueOf(pessoa.getNumeroDocumento()));
-            mEdtDataNascimento.setText(formataData(pessoa.getDataNascimento()));
+            mEdtDataNascimento.setText(DateUtil.formataData(pessoa.getDataNascimento()));
             mEdtTelefone.setText(String.valueOf(pessoa.getTelefone()));
             mEdtBairro.setText(pessoa.getBairro());
             mEdtCidade.setText(pessoa.getCidade());
             mEdtEstado.setText(pessoa.getEstado());
+
         }
     }
 
@@ -172,7 +171,7 @@ public class DetalhesPessoaActivity extends AppCompatActivity {
             isFormularioValido = false;
             mInputlayoutDataNascimento.setError(getResources().getString(R.string.msg_erro_campo_obrigatorio));
         } else {
-            Date dataNascimento = formataDataNascimento(mEdtDataNascimento.getText().toString());
+            Date dataNascimento = DateUtil.formataDataNascimento(mEdtDataNascimento.getText().toString());
             if (dataNascimento == null) {
                 isFormularioValido = false;
                 String msgErroDataNascimento = String.format(getResources().getString(R.string.msg_erro_data_invalida_), FORMATO_DATA_NASCIMENTO);
@@ -201,7 +200,7 @@ public class DetalhesPessoaActivity extends AppCompatActivity {
         Pessoa pessoa = new Pessoa();
         pessoa.setNome(mEdtNome.getText().toString());
         pessoa.setNumeroDocumento(formataNumeroDocumento(mEdtDocumento.getText().toString()));
-        pessoa.setDataNascimento(formataDataNascimento(mEdtDataNascimento.getText().toString()));
+        pessoa.setDataNascimento(DateUtil.formataDataNascimento(mEdtDataNascimento.getText().toString()));
         pessoa.setTelefone(formataNumeroTelefone(mEdtTelefone.getText().toString()));
         pessoa.setBairro(mEdtBairro.getText().toString());
         pessoa.setCidade(mEdtCidade.getText().toString());
@@ -218,29 +217,8 @@ public class DetalhesPessoaActivity extends AppCompatActivity {
         return Long.parseLong(texto);
     }
 
-    private Date formataDataNascimento(String texto) {
-        SimpleDateFormat sdf = new SimpleDateFormat(FORMATO_DATA_NASCIMENTO, Locale.getDefault());
-        try {
-            return sdf.parse(texto);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
     private long formataNumeroTelefone(String texto) {
         return Long.parseLong(texto);
-    }
-
-    private String formataData(Date data) {
-        SimpleDateFormat sdf = new SimpleDateFormat(FORMATO_DATA_NASCIMENTO, Locale.getDefault());
-        try {
-            return sdf.format(data);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "";
-        }
-
     }
 
 }

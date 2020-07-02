@@ -27,11 +27,6 @@ class QuestionarioActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_questionario)
 
-//        intent.getLongExtra(Constantes.EXTRA_ID_BARREIRA,0)
-//        intent.getStringExtra(Constantes.EXTRA_NOME_BARREIRA)
-//        intent.getLongExtra(Constantes.EXTRA_ID_PESSOA,0)
-//        intent.getStringExtra(Constantes.EXTRA_NOME_PESSOA)
-
         configuraActionBar(supportActionBar)
         configuraDadosTela()
         configuraClickListeners()

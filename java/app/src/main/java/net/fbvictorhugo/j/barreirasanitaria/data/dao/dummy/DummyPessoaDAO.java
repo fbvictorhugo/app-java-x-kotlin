@@ -2,6 +2,7 @@ package net.fbvictorhugo.j.barreirasanitaria.data.dao.dummy;
 
 import net.fbvictorhugo.j.barreirasanitaria.data.dao.PessoaDAO;
 import net.fbvictorhugo.j.barreirasanitaria.data.model.Pessoa;
+import net.fbvictorhugo.j.barreirasanitaria.utils.DateUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,20 +86,33 @@ public class DummyPessoaDAO implements PessoaDAO {
         //TODO LISTA FAKE
         Pessoa p = new Pessoa();
         p.setId(1);
-        p.setNumeroDocumento(1);
-        p.setNome("Vitor");
+        p.setNumeroDocumento(10020010051L);
+        p.setNome("Paulo Pereira Araujo");
+        p.setDataNascimento(DateUtil.formataDataNascimento("05/08/1996"));
+        p.setCidade("Rio de Janeiro");
+        p.setEstado("RJ");
+        p.setTelefone(229999999);
         mDummyList.add(p);
 
         p = new Pessoa();
         p.setId(2);
-        p.setNumeroDocumento(2);
-        p.setNome("Hugo");
+        p.setNumeroDocumento(10020010052L);
+        p.setNome("Tiago Pereira Rocha");
+        p.setDataNascimento(DateUtil.formataDataNascimento("04/11/1980"));
+        p.setCidade("Ferraz de Vasconcelos");
+        p.setEstado("SP");
+        p.setTelefone(369999999);
         mDummyList.add(p);
 
         p = new Pessoa();
         p.setId(3);
-        p.setNumeroDocumento(3);
-        p.setNome("Fabio");
+        p.setNumeroDocumento(10020010053L);
+        p.setNome("Laura Pereira Costa");
+        p.setDataNascimento(DateUtil.formataDataNascimento("27/03/1953"));
+        p.setCidade("Cataguases");
+        p.setEstado("MG");
+        p.setBairro("Centro");
+        p.setTelefone(329999999);
         mDummyList.add(p);
 
     }

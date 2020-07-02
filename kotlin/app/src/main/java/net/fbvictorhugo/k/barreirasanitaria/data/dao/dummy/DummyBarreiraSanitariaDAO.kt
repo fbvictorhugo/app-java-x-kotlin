@@ -47,9 +47,20 @@ object DummyBarreiraSanitariaDAO : BarreiraSanitariaDAO {
 
     init {
         //TODO LISTA FAKE
-        _dummyList.add((BarreiraSanitaria("Alpha", "Cataguases", "MG", 1)))
-        _dummyList.add((BarreiraSanitaria("Bravo", "Cataguases", "MG", 2)))
-        _dummyList.add((BarreiraSanitaria("Charlie", "Cataguases", "MG", 3)))
+        _dummyList.add(
+            BarreiraSanitaria(
+                "Acesso Vila Minalda", "Cataguases", "MG", 1
+            ).apply {
+                bairro = "Vila Minalda"
+                endereco = "Av. Nicolau Siervi, 1286"
+            }
+        )
+
+        _dummyList.add(
+            BarreiraSanitaria(
+                "Bravo", "Cataguases", "MG", 2
+            ).apply { endereco = "Av. Nicolau Siervi, 1286" }
+        )
     }
 
 }
