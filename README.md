@@ -1,6 +1,9 @@
 ## Java x Kotlin
 Código fonte utilizado no artigo **Um estudo comparativo sobre as Linguagens Java e Kotlin para o desenvolvimento de aplicativos para Android** como trabalho de conclusão de curso.
 
+Foram desenvolvidos 2 aplicativos, cada um em uma linguagem: [Java](/java) e [Kotlin](/kotlin). Eles possuem a mesma arquitetura e estrutura, mesmos nomes de métodos, classes, pacotes... são iguais no desenvolvimento do código, salvo a sintaxe específica de cada linguagem.
+
+
 ## Tecnologias
 
 **Android Studio**: versão 3.6.3
